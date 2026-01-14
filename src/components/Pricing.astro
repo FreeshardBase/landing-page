@@ -91,19 +91,30 @@
   const DISK_COST_PER_GB = 0.10; // $0.10 per GB
 
   function calculatePrice() {
-    const vmSize = parseInt((document.getElementById('vm-size') as HTMLInputElement).value);
-    const diskSize = parseInt((document.getElementById('disk-size') as HTMLInputElement).value);
+    const vmSizeEl = document.getElementById('vm-size') as HTMLInputElement;
+    const diskSizeEl = document.getElementById('disk-size') as HTMLInputElement;
+    
+    if (!vmSizeEl || !diskSizeEl) return;
+    
+    const vmSize = parseInt(vmSizeEl.value);
+    const diskSize = parseInt(diskSizeEl.value);
 
     const vmCost = vmSize * VM_COST_PER_VCPU;
     const diskCost = diskSize * DISK_COST_PER_GB;
     const totalCost = vmCost + diskCost;
 
     // Update display
-    (document.getElementById('vm-value') as HTMLElement).textContent = vmSize.toString();
-    (document.getElementById('disk-value') as HTMLElement).textContent = diskSize.toString();
-    (document.getElementById('vm-cost') as HTMLElement).textContent = `$${vmCost.toFixed(2)}`;
-    (document.getElementById('disk-cost') as HTMLElement).textContent = `$${diskCost.toFixed(2)}`;
-    (document.getElementById('total-cost') as HTMLElement).textContent = `$${totalCost.toFixed(2)}`;
+    const vmValueEl = document.getElementById('vm-value');
+    const diskValueEl = document.getElementById('disk-value');
+    const vmCostEl = document.getElementById('vm-cost');
+    const diskCostEl = document.getElementById('disk-cost');
+    const totalCostEl = document.getElementById('total-cost');
+    
+    if (vmValueEl) vmValueEl.textContent = vmSize.toString();
+    if (diskValueEl) diskValueEl.textContent = diskSize.toString();
+    if (vmCostEl) vmCostEl.textContent = `$${vmCost.toFixed(2)}`;
+    if (diskCostEl) diskCostEl.textContent = `$${diskCost.toFixed(2)}`;
+    if (totalCostEl) totalCostEl.textContent = `$${totalCost.toFixed(2)}`;
   }
 
   // Event listeners for sliders
@@ -118,8 +129,11 @@
       const diskValue = target.getAttribute('data-disk');
       
       if (vmValue && diskValue) {
-        (document.getElementById('vm-size') as HTMLInputElement).value = vmValue;
-        (document.getElementById('disk-size') as HTMLInputElement).value = diskValue;
+        const vmSizeEl = document.getElementById('vm-size') as HTMLInputElement;
+        const diskSizeEl = document.getElementById('disk-size') as HTMLInputElement;
+        
+        if (vmSizeEl) vmSizeEl.value = vmValue;
+        if (diskSizeEl) diskSizeEl.value = diskValue;
         calculatePrice();
       }
 
