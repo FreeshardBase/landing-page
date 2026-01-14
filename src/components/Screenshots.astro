@@ -1,0 +1,69 @@
+---
+---
+
+<section id="screenshots">
+  <div class="container">
+    <h2>Screenshots</h2>
+    <p class="section-description">
+      See Freeshard in action with our intuitive interface
+    </p>
+    <div class="screenshots-grid">
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">
+          <span>Dashboard Overview</span>
+        </div>
+        <h3>Dashboard</h3>
+        <p>Monitor your applications and resources at a glance</p>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">
+          <span>Analytics & Metrics</span>
+        </div>
+        <h3>Analytics</h3>
+        <p>Deep insights into your application performance</p>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">
+          <span>Deployment Pipeline</span>
+        </div>
+        <h3>Deployment</h3>
+        <p>Streamlined CI/CD pipeline for faster releases</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .screenshot-card {
+    text-align: center;
+  }
+
+  .screenshot-placeholder {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 0.75rem;
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .screenshot-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .screenshot-card p {
+    color: var(--text-light);
+  }
+</style>

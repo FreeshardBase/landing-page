@@ -1,0 +1,280 @@
+---
+---
+
+<section id="pricing">
+  <div class="container">
+    <h2>Pricing Calculator</h2>
+    <p class="section-description">
+      Calculate your monthly costs based on your needs. Transparent and flexible pricing.
+    </p>
+    
+    <div class="pricing-container">
+      <div class="presets">
+        <h3>Quick Presets</h3>
+        <div class="preset-buttons">
+          <button class="preset-btn" data-vm="1" data-disk="10">Starter</button>
+          <button class="preset-btn" data-vm="2" data-disk="50">Professional</button>
+          <button class="preset-btn" data-vm="4" data-disk="100">Business</button>
+          <button class="preset-btn" data-vm="8" data-disk="250">Enterprise</button>
+        </div>
+      </div>
+
+      <div class="calculator">
+        <div class="slider-group">
+          <label for="vm-size">
+            <span class="slider-label">VM Size (vCPUs)</span>
+            <span class="slider-value" id="vm-value">2</span>
+          </label>
+          <input 
+            type="range" 
+            id="vm-size" 
+            min="1" 
+            max="16" 
+            value="2" 
+            step="1"
+            class="slider"
+          />
+          <div class="slider-markers">
+            <span>1</span>
+            <span>4</span>
+            <span>8</span>
+            <span>12</span>
+            <span>16</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <label for="disk-size">
+            <span class="slider-label">Disk Size (GB)</span>
+            <span class="slider-value" id="disk-value">50</span>
+          </label>
+          <input 
+            type="range" 
+            id="disk-size" 
+            min="10" 
+            max="500" 
+            value="50" 
+            step="10"
+            class="slider"
+          />
+          <div class="slider-markers">
+            <span>10</span>
+            <span>125</span>
+            <span>250</span>
+            <span>375</span>
+            <span>500</span>
+          </div>
+        </div>
+
+        <div class="price-breakdown">
+          <div class="breakdown-item">
+            <span>VM Cost:</span>
+            <span id="vm-cost">$20.00</span>
+          </div>
+          <div class="breakdown-item">
+            <span>Disk Cost:</span>
+            <span id="disk-cost">$5.00</span>
+          </div>
+          <div class="breakdown-total">
+            <span>Total Monthly Cost:</span>
+            <span id="total-cost">$25.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pricing constants
+  const VM_COST_PER_VCPU = 10; // $10 per vCPU
+  const DISK_COST_PER_GB = 0.10; // $0.10 per GB
+
+  function calculatePrice() {
+    const vmSize = parseInt((document.getElementById('vm-size') as HTMLInputElement).value);
+    const diskSize = parseInt((document.getElementById('disk-size') as HTMLInputElement).value);
+
+    const vmCost = vmSize * VM_COST_PER_VCPU;
+    const diskCost = diskSize * DISK_COST_PER_GB;
+    const totalCost = vmCost + diskCost;
+
+    // Update display
+    (document.getElementById('vm-value') as HTMLElement).textContent = vmSize.toString();
+    (document.getElementById('disk-value') as HTMLElement).textContent = diskSize.toString();
+    (document.getElementById('vm-cost') as HTMLElement).textContent = `$${vmCost.toFixed(2)}`;
+    (document.getElementById('disk-cost') as HTMLElement).textContent = `$${diskCost.toFixed(2)}`;
+    (document.getElementById('total-cost') as HTMLElement).textContent = `$${totalCost.toFixed(2)}`;
+  }
+
+  // Event listeners for sliders
+  document.getElementById('vm-size')?.addEventListener('input', calculatePrice);
+  document.getElementById('disk-size')?.addEventListener('input', calculatePrice);
+
+  // Event listeners for preset buttons
+  document.querySelectorAll('.preset-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const vmValue = target.getAttribute('data-vm');
+      const diskValue = target.getAttribute('data-disk');
+      
+      if (vmValue && diskValue) {
+        (document.getElementById('vm-size') as HTMLInputElement).value = vmValue;
+        (document.getElementById('disk-size') as HTMLInputElement).value = diskValue;
+        calculatePrice();
+      }
+
+      // Visual feedback
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      target.classList.add('active');
+    });
+  });
+
+  // Initial calculation
+  calculatePrice();
+</script>
+
+<style>
+  .pricing-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .presets {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .presets h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  .preset-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .preset-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .preset-btn:hover,
+  .preset-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .calculator {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .slider-group {
+    margin-bottom: 2.5rem;
+  }
+
+  .slider-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .slider-label {
+    color: var(--text-color);
+  }
+
+  .slider-value {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+  }
+
+  .slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+
+  .slider-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+  }
+
+  .price-breakdown {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+  }
+
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    color: var(--text-light);
+  }
+
+  .breakdown-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    margin-top: 1rem;
+    border-top: 2px solid var(--border-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .calculator {
+      padding: 1.5rem;
+    }
+
+    .preset-buttons {
+      flex-direction: column;
+    }
+
+    .preset-btn {
+      width: 100%;
+    }
+  }
+</style>

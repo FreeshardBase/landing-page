@@ -1,0 +1,111 @@
+---
+---
+
+<section id="motivation">
+  <div class="container">
+    <h2>Why Freeshard?</h2>
+    <p class="section-description">
+      Built by developers, for developers
+    </p>
+    <div class="motivation-content">
+      <div class="motivation-text">
+        <h3>Our Story</h3>
+        <p>
+          We built Freeshard because we were frustrated with the complexity and cost of existing cloud platforms. 
+          As developers ourselves, we knew there had to be a better way.
+        </p>
+        <p>
+          Freeshard was designed from the ground up to be simple, transparent, and developer-friendly. 
+          No hidden fees, no complex pricing tiers, and no vendor lock-in.
+        </p>
+        <p>
+          Whether you're a solo developer building a side project or a large enterprise deploying mission-critical 
+          applications, Freeshard scales with you every step of the way.
+        </p>
+      </div>
+      <div class="motivation-stats">
+        <div class="stat-card">
+          <div class="stat-number">99.99%</div>
+          <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10k+</div>
+          <div class="stat-label">Active Users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50ms</div>
+          <div class="stat-label">Avg Response Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .motivation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .motivation-text h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .motivation-text p {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  .motivation-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .motivation-content {
+      grid-template-columns: 1fr;
+    }
+
+    .motivation-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
