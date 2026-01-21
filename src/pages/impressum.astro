@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// --- i18n ---
+const content = {
+  de: {
+    title: "Impressum",
+    pageTitle: "Impressum",
+    contactLabel: "Angaben gemäß § 5 TMG:",
+    address: "Good For Business UG (haftungsbeschränkt)<br>Schwanthalerstr. 123<br>80339 München",
+    ceoLabel: "Vertreten durch:",
+    ceoName: "Max von Tettenborn",
+    contactInfoLabel: "Kontakt:",
+    contactInfo: "E-Mail: contact@freeshard.net",
+    registerLabel: "Registereintrag:",
+    registerInfo: "Registergericht: Amtsgericht München<br>Registernummer: HRB 285507",
+    vatLabel: "Umsatzsteuer-ID",
+    vatInfo: "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>[Bitte hier Ihre USt-IdNr. eintragen, falls vorhanden]",
+    responsibleLabel: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+    responsibleInfo: "[Bitte hier den Namen und die Anschrift des inhaltlich Verantwortlichen eintragen, falls abweichend]"
+  }
+};
+const t = content.de;
+---
+
+<Layout title={t.title}>
+  <section class="legal-page">
+    <div class="container">
+      <h1>{t.pageTitle}</h1>
+      
+      <div class="imprint-details">
+        <h2>{t.contactLabel}</h2>
+        <p set:html={t.address} />
+
+        <h3>{t.ceoLabel}</h3>
+        <p>{t.ceoName}</p>
+        
+        <h3>{t.contactInfoLabel}</h3>
+        <p>{t.contactInfo}</p>
+        
+        <h3>{t.registerLabel}</h3>
+        <p set:html={t.registerInfo} />
+
+        <h3>{t.vatLabel}</h3>
+        <p set:html={t.vatInfo} />
+
+        <h3>{t.responsibleLabel}</h3>
+        <p set:html={t.responsibleInfo} />
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 4rem 0;
+    min-height: 60vh;
+  }
+  .legal-page h1 {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+  .imprint-details {
+    margin-top: 1rem;
+  }
+  .imprint-details h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  .imprint-details h3 {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  .imprint-details p {
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+</style>

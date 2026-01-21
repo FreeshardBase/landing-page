@@ -1,45 +1,51 @@
 ---
+// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
+const BASE_URL = import.meta.env.BASE_URL;
+
+// --- Internationalisierungs-Setup (i18n) ---
+const content = {
+  de: {
+    sectionTitle: "Unsere Mission",
+    sectionDescription: "Deine digitale Freiheit, unsere Leidenschaft.",
+    story: {
+      title: "Warum es uns gibt",
+      paragraphs: [
+        "Wir waren frustriert von der Abhängigkeit großer Tech-Konzerne. Wir glauben, dass jeder das Recht auf eine eigene, unabhängige digitale Präsenz haben sollte – ohne technische Hürden und ohne die eigenen Daten zu opfern.",
+        "Deshalb haben wir eine Lösung geschaffen, die von Grund auf einfach, transparent und fair ist. Bei uns gibt es keine versteckten Kosten und keine Datenkraken. Unser Code ist <a href='" + BASE_URL + "/faq'>Fair Source</a> – das bedeutet maximale Transparenz für dich.",
+        "Und das Beste: Echte Unabhängigkeit heißt für uns, dass du jederzeit gehen kannst. Du kannst deinen kompletten Shard mitnehmen und ihn selbst hosten, wenn du das möchtest. Deine Daten und dein System gehören dir."
+      ]
+    },
+    // Wir nutzen die Kacheln nun für unsere Kernwerte statt für Statistiken
+    values: {
+      location: { value: "EU", label: "Server-Standort", link: "/faq#data-location" },
+      code: { value: "Fair", label: "Fair Source Code", link: "/faq#fair-source" },
+      data: { value: "Deins", label: "Voller Daten-Export", link: "/faq#export" },
+      privacy: { value: "Privat", label: "Kein Tracking", link: "/faq#privacy" }
+    }
+  }
+};
+
+const t = content.de;
+const valuesList = Object.values(t.values);
 ---
 
 <section id="motivation">
   <div class="container">
-    <h2>Why Freeshard?</h2>
-    <p class="section-description">
-      Built by developers, for developers
-    </p>
+    <h2>{t.sectionTitle}</h2>
+    <p class="section-description">{t.sectionDescription}</p>
     <div class="motivation-content">
       <div class="motivation-text">
-        <h3>Our Story</h3>
-        <p>
-          We built Freeshard because we were frustrated with the complexity and cost of existing cloud platforms. 
-          As developers ourselves, we knew there had to be a better way.
-        </p>
-        <p>
-          Freeshard was designed from the ground up to be simple, transparent, and developer-friendly. 
-          No hidden fees, no complex pricing tiers, and no vendor lock-in.
-        </p>
-        <p>
-          Whether you're a solo developer building a side project or a large enterprise deploying mission-critical 
-          applications, Freeshard scales with you every step of the way.
-        </p>
+        <h3>{t.story.title}</h3>
+        {t.story.paragraphs.map(p => <p set:html={p} />)}
       </div>
       <div class="motivation-stats">
-        <div class="stat-card">
-          <div class="stat-number">99.99%</div>
-          <div class="stat-label">Uptime SLA</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">10k+</div>
-          <div class="stat-label">Active Users</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">50ms</div>
-          <div class="stat-label">Avg Response Time</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Support</div>
-        </div>
+        {valuesList.map(item => (
+          <a href={`${BASE_URL}${item.link}`} class="stat-card">
+            <div class="stat-number">{item.value}</div>
+            <div class="stat-label">{item.label}</div>
+            <div class="info-icon">ℹ️</div>
+          </a>
+        ))}
       </div>
     </div>
   </div>
@@ -64,6 +70,16 @@
     font-size: 1.125rem;
     line-height: 1.8;
   }
+  
+  .motivation-text p :global(a) {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .motivation-text p :global(a:hover) {
+    text-decoration: none;
+  }
 
   .motivation-stats {
     display: grid;
@@ -78,11 +94,15 @@
     text-align: center;
     border: 1px solid var(--border-color);
     transition: all 0.3s;
+    text-decoration: none; /* Link-Unterstreichung entfernen */
+    display: block;
+    position: relative;
   }
 
   .stat-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
   }
 
   .stat-number {
@@ -98,6 +118,18 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+  
+  .info-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.8rem;
+    opacity: 0.5;
+  }
+  
+  .stat-card:hover .info-icon {
+    opacity: 1;
+  }
 
   @media (max-width: 768px) {
     .motivation-content {
@@ -105,7 +137,7 @@
     }
 
     .motivation-stats {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>

@@ -1,16 +1,35 @@
 ---
+import ImmichIcon from '../icons/Immich.astro';
+// --- Internationalisierungs-Setup (i18n) ---
+const content = {
+  de: {
+    titleLine1: "Dein Shard.",
+    titleLine2: "Deine Daten. Deine Freiheit.",
+    description: "Ein Shard ist dein ganz persönliches, privates Stück einer souveränen Cloud. Hier gehören deine Daten nur dir – sicher gehostet in Europa und befreit von der Neugier großer Konzerne. Wir kümmern uns um die Technik, damit du deine Freiheit einfach genießen kannst.",
+    cta: {
+      primary: "Jetzt loslegen",
+      secondary: "Mehr erfahren"
+    }
+  }
+};
+
+const t = content.de;
 ---
 
 <section id="hero" class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1>Welcome to Freeshard</h1>
-      <p class="hero-description">
-        The next generation software platform that empowers developers to build, deploy, and scale applications effortlessly.
-      </p>
+      <h1>
+        <span class="highlight">{t.titleLine1}</span><br />
+        {t.titleLine2}
+      </h1>
+      <p class="hero-description">{t.description}</p>
       <div class="hero-cta">
-        <a href="#pricing" class="btn btn-primary">Get Started</a>
-        <a href="#features" class="btn btn-secondary">Learn More</a>
+        <a href="#pricing" class="btn btn-primary">{t.cta.primary}</a>
+        <a href="#features" class="btn btn-secondary">
+          <ImmichIcon class="btn-icon" />
+          {t.cta.secondary}
+        </a>
       </div>
     </div>
   </div>
@@ -20,7 +39,7 @@
   .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 6rem 0;
+    padding: 8rem 0 6rem; /* Etwas mehr Platz oben */
     text-align: center;
   }
 
@@ -28,15 +47,24 @@
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-content h1 .highlight {
+    color: #a3bffa; /* Ein helles Blau/Lila für den Akzent */
+    font-size: 4rem; /* "Dein Shard" etwas größer */
+    display: inline-block;
+    margin-bottom: 0.5rem;
   }
 
   .hero-description {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     opacity: 0.95;
+    line-height: 1.6;
   }
 
   .hero-cta {
@@ -47,7 +75,10 @@
   }
 
   .btn {
-    display: inline-block;
+    display: inline-flex; /* Flexbox für Zentrierung von Icon + Text */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Abstand zwischen Icon und Text */
     padding: 0.875rem 2rem;
     font-size: 1rem;
     font-weight: 600;
@@ -76,13 +107,22 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
 
+  /* Optional: Icon etwas anpassen */
+  .btn-icon {
+    font-size: 1.2rem; /* Icon etwas größer als der Text */
+  }
+
   @media (max-width: 768px) {
     .hero {
-      padding: 4rem 0;
+      padding: 5rem 0 4rem;
     }
 
     .hero-content h1 {
       font-size: 2.5rem;
+    }
+    
+    .hero-content h1 .highlight {
+      font-size: 3rem;
     }
 
     .hero-description {

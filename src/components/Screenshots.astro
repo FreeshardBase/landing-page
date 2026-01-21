@@ -1,33 +1,57 @@
 ---
+// --- Internationalisierungs-Setup (i18n) ---
+const content = {
+  de: {
+    sectionTitle: "So einfach ist dein Shard",
+    sectionDescription: "Vergiss komplizierte Menüs und Technik-Kauderwelsch. Bei uns steht die Nutzung im Vordergrund.",
+    cards: {
+      portal: {
+        placeholder: "Dein Startbildschirm",
+        title: "Alles auf einen Klick",
+        description: "Nach dem Einloggen siehst du sofort deine Apps. Ein Klick auf 'Fotos' öffnet deine Galerie, ein Klick auf 'Dokumente' deine Ordner. Aufgeräumt und klar."
+      },
+      mobile: {
+        placeholder: "Smartphone & Tablet",
+        title: "Immer dabei",
+        description: "Deine Cloud reist mit dir. Deine Fotos vom Handy landen automatisch auf deinem Shard und du kannst von überall auf deine Rezepte oder Passwörter zugreifen."
+      },
+      peace: {
+        placeholder: "Entspannter Schlaf",
+        title: "Unsichtbare Technik",
+        description: "Wir arbeiten im Hintergrund. Updates und Sicherheits-Backups laufen automatisch, oft während du schläfst. Du wachst auf und alles ist frisch und sicher."
+      }
+    }
+  }
+};
+
+const t = content.de;
 ---
 
 <section id="screenshots">
   <div class="container">
-    <h2>Screenshots</h2>
-    <p class="section-description">
-      See Freeshard in action with our intuitive interface
-    </p>
+    <h2>{t.sectionTitle}</h2>
+    <p class="section-description">{t.sectionDescription}</p>
     <div class="screenshots-grid">
       <div class="screenshot-card">
         <div class="screenshot-placeholder">
-          <span>Dashboard Overview</span>
+          <span>{t.cards.portal.placeholder}</span>
         </div>
-        <h3>Dashboard</h3>
-        <p>Monitor your applications and resources at a glance</p>
+        <h3>{t.cards.portal.title}</h3>
+        <p>{t.cards.portal.description}</p>
       </div>
       <div class="screenshot-card">
         <div class="screenshot-placeholder">
-          <span>Analytics & Metrics</span>
+          <span>{t.cards.mobile.placeholder}</span>
         </div>
-        <h3>Analytics</h3>
-        <p>Deep insights into your application performance</p>
+        <h3>{t.cards.mobile.title}</h3>
+        <p>{t.cards.mobile.description}</p>
       </div>
       <div class="screenshot-card">
         <div class="screenshot-placeholder">
-          <span>Deployment Pipeline</span>
+          <span>{t.cards.peace.placeholder}</span>
         </div>
-        <h3>Deployment</h3>
-        <p>Streamlined CI/CD pipeline for faster releases</p>
+        <h3>{t.cards.peace.title}</h3>
+        <p>{t.cards.peace.description}</p>
       </div>
     </div>
   </div>
@@ -52,18 +76,25 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .screenshot-card:hover .screenshot-placeholder {
+    transform: scale(1.02);
   }
 
   .screenshot-card h3 {
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
   }
 
   .screenshot-card p {
     color: var(--text-light);
+    line-height: 1.6;
   }
 </style>

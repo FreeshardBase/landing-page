@@ -1,43 +1,55 @@
 ---
+// --- Internationalisierungs-Setup (i18n) ---
+const content = {
+  de: {
+    sectionTitle: "Auf dem Laufenden bleiben",
+    sectionDescription: "Erfahre als Erstes von neuen Apps für deinen Shard und erhalte wertvolle Tipps für deine digitale Unabhängigkeit. Kein Spam, nur relevante Infos.",
+    form: {
+      placeholder: "Deine E-Mail-Adresse",
+      button: "Anmelden",
+      successMessage: "Vielen Dank für deine Anmeldung! Bitte prüfe dein Postfach."
+    }
+  }
+};
+
+const t = content.de;
 ---
 
 <section id="newsletter">
   <div class="container">
-    <h2>Stay Updated</h2>
-    <p class="section-description">
-      Subscribe to our newsletter for the latest updates, tips, and announcements
-    </p>
+    <h2>{t.sectionTitle}</h2>
+    <p class="section-description">{t.sectionDescription}</p>
     <div class="newsletter-form-container">
       <form id="newsletter-form" class="newsletter-form">
         <input 
           type="email" 
           id="email" 
           name="email" 
-          placeholder="Enter your email address" 
+          placeholder={t.form.placeholder}
           required 
           class="email-input"
         />
-        <button type="submit" class="submit-btn">Subscribe</button>
+        <button type="submit" class="submit-btn">{t.form.button}</button>
       </form>
       <p id="form-message" class="form-message"></p>
     </div>
   </div>
 </section>
 
-<script>
+<script define:vars={{ t }}>
   document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const emailInput = document.getElementById('email') as HTMLInputElement;
-    const message = document.getElementById('form-message') as HTMLElement;
+    const emailInput = document.getElementById('email');
+    const message = document.getElementById('form-message');
     
     if (emailInput && message) {
-      // Simulate form submission
-      message.textContent = 'Thank you for subscribing! Check your email for confirmation.';
+      // Simuliert eine erfolgreiche Anmeldung
+      message.textContent = t.form.successMessage;
       message.classList.add('success');
       emailInput.value = '';
       
-      // Reset message after 5 seconds
+      // Nachricht nach 5 Sekunden zurücksetzen
       setTimeout(() => {
         message.textContent = '';
         message.classList.remove('success');
