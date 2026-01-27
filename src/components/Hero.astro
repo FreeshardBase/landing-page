@@ -1,6 +1,10 @@
 ---
-import ImmichIcon from '../icons/Immich.astro';
-// --- Internationalisierungs-Setup (i18n) ---
+import {
+  BRAND_LOGO_DARK,
+  BRAND_LOGO_DARK_2X,
+  BRAND_LOGO_DARK_4X
+} from "../lib/branding";
+
 const content = {
   de: {
     titleLine1: "Dein Shard.",
@@ -19,6 +23,18 @@ const t = content.de;
 <section id="hero" class="hero">
   <div class="container">
     <div class="hero-content">
+      <div class="hero-brand" aria-label="Freeshard">
+        <img
+          class="hero-logo"
+          src={BRAND_LOGO_DARK}
+          srcset={`${BRAND_LOGO_DARK_2X} 2x, ${BRAND_LOGO_DARK_4X} 4x`}
+          width="220"
+          height="44"
+          alt="Freeshard"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
       <h1>
         <span class="highlight">{t.titleLine1}</span><br />
         {t.titleLine2}
@@ -27,7 +43,6 @@ const t = content.de;
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary">{t.cta.primary}</a>
         <a href="#features" class="btn btn-secondary">
-          <ImmichIcon class="btn-icon" />
           {t.cta.secondary}
         </a>
       </div>
@@ -41,6 +56,19 @@ const t = content.de;
     color: white;
     padding: 8rem 0 6rem; /* Etwas mehr Platz oben */
     text-align: center;
+  }
+
+  .hero-brand {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .hero-logo {
+    display: block;
+    height: auto;
+    max-width: 240px;
+    width: 100%;
   }
 
   .hero-content h1 {
@@ -115,6 +143,10 @@ const t = content.de;
   @media (max-width: 768px) {
     .hero {
       padding: 5rem 0 4rem;
+    }
+
+    .hero-logo {
+      max-width: 200px;
     }
 
     .hero-content h1 {

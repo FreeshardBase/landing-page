@@ -1,11 +1,17 @@
 ---
+import {
+  BASE_URL,
+  BRAND_LOGO_LIGHT_2X,
+  BRAND_LOGO_LIGHT_4X,
+  BRAND_MARK,
+  BRAND_MARK_2X,
+  BRAND_MARK_4X
+} from "../lib/branding";
+
 interface Props {
   title: string;
   description?: string;
 }
-
-// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
-const BASE_URL = import.meta.env.BASE_URL;
 
 // --- i18n ---
 const content = {
@@ -45,7 +51,17 @@ const { title, description = t.defaultDescription } = Astro.props;
       <nav class="navbar">
         <div class="container">
           <div class="logo">
-            <a href={BASE_URL} style="text-decoration: none;"><h1>Freeshard</h1></a>
+            <a class="brand" href={BASE_URL} aria-label="Freeshard">
+              <img
+                class="brand-mark brand-mark--header"
+                src={BRAND_MARK}
+                srcset={`${BRAND_MARK_2X} 2x, ${BRAND_MARK_4X} 4x`}
+                alt="Freeshard"
+                loading="eager"
+                decoding="async"
+              />
+              <span class="sr-only">Freeshard</span>
+            </a>
           </div>
           <ul class="nav-links">
             <li><a href={`${BASE_URL}/#features`}>{t.nav.features}</a></li>
@@ -62,6 +78,17 @@ const { title, description = t.defaultDescription } = Astro.props;
     </main>
     <footer>
       <div class="container">
+        <div class="footer-brand">
+          <img
+            class="footer-logo"
+            src={BRAND_MARK}
+            srcset={`${BRAND_LOGO_LIGHT_2X} 2x, ${BRAND_LOGO_LIGHT_4X} 4x`}
+            height="24"
+            alt="Freeshard"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <div class="footer-links">
           <a href={`${BASE_URL}/faq`}>{t.footer.faq}</a>
           <a href={`${BASE_URL}/impressum`}>{t.footer.imprint}</a>
@@ -79,13 +106,14 @@ const { title, description = t.defaultDescription } = Astro.props;
       }
 
       :root {
-        --primary-color: #4f46e5;
-        --secondary-color: #06b6d4;
-        --text-color: #1f2937;
+        --primary-color: #2f3cff;
+        --secondary-color: #1bb3b8;
+        --text-color: #111827;
         --text-light: #6b7280;
         --bg-color: #ffffff;
-        --bg-light: #f9fafb;
-        --border-color: #e5e7eb;
+        --bg-light: #f5f7fb;
+        --border-color: #e2e8f0;
+        --brand-gradient: linear-gradient(90deg, #2f3cff 0%, #1bb3b8 100%);
       }
 
       html {
@@ -123,10 +151,39 @@ const { title, description = t.defaultDescription } = Astro.props;
         align-items: center;
       }
 
-      .logo h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-color);
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        gap: 0.5rem;
+      }
+
+      .brand-mark {
+        display: block;
+      }
+
+      .brand-mark--header {
+        height: 40px;
+        width: auto;
+      }
+
+      .gradient-text {
+        background: var(--brand-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       .nav-links {
@@ -154,6 +211,21 @@ const { title, description = t.defaultDescription } = Astro.props;
         margin-top: 4rem;
       }
       
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo {
+        display: block;
+        height: 24px;
+        width: auto;
+      }
+
       .footer-links {
         margin-bottom: 1rem;
         display: flex;
@@ -215,6 +287,10 @@ const { title, description = t.defaultDescription } = Astro.props;
 
         .navbar .container {
           justify-content: center;
+        }
+
+        .brand-logo {
+          width: 140px;
         }
 
         h2 {
