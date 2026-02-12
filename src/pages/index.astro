@@ -7,6 +7,26 @@ import Screenshots from '../components/Screenshots.astro';
 import Pricing from '../components/Pricing.astro';
 import Motivation from '../components/Motivation.astro';
 import Newsletter from '../components/Newsletter.astro';
+import { BASE_URL } from '../lib/branding';
+
+const miniFaq = [
+  {
+    question: "Ist das SaaS?",
+    answer: "Nein. Ein Shard ist dein eigener Cloud-Computer, exklusiv für dich."
+  },
+  {
+    question: "Wer sieht meine Daten?",
+    answer: "Niemand. Dein Shard gehört dir."
+  },
+  {
+    question: "Sind Apps wirklich kostenlos?",
+    answer: "Ja. Alle Apps sind kostenlos, du zahlst nur für deinen Shard."
+  },
+  {
+    question: "Kann ich später skalieren?",
+    answer: "Ja. Skalierung ist auf der Roadmap."
+  }
+];
 ---
 
 <Layout title="Freeshard - Ihre souveräne Cloud-Plattform">
@@ -15,6 +35,61 @@ import Newsletter from '../components/Newsletter.astro';
   <Features />
   <Screenshots />
   <Pricing />
+
+  <section id="mini-faq" class="mini-faq">
+    <div class="container">
+      <h2>Mini-FAQ</h2>
+      <p class="section-description">Kurz beantwortet. Alles Weitere findest du im FAQ.</p>
+      <div class="mini-faq-grid">
+        {miniFaq.map(item => (
+          <div class="mini-faq-card">
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mini-faq-link">
+        <a href={`${BASE_URL}/faq`} class="btn btn-secondary">Zum vollständigen FAQ</a>
+      </div>
+    </div>
+  </section>
+
   <Motivation />
   <Newsletter />
 </Layout>
+
+<style>
+  .mini-faq {
+    padding: 4rem 0;
+  }
+
+  .mini-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .mini-faq-card {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .mini-faq-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .mini-faq-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .mini-faq-link {
+    text-align: center;
+    margin-top: 2rem;
+  }
+</style>
