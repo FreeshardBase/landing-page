@@ -1,294 +1,324 @@
 ---
+// --- Internationalisierungs-Setup (i18n) ---
+// Alle Texte sind hier an einer Stelle gebündelt.
+const content = {
+  de: {
+    pageTitle: "Preisrechner",
+    info: {
+      performanceTitle: "Was ist der Unterschied?",
+      performanceText: "Aktuell gibt es eine Shard-Größe. Die Beispiele unten zeigen, wie sich Kosten mit mehr Leistung und Speicher später entwickeln könnten.",
+      flexibilityTitle: "Apps inklusive",
+      flexibilityText: "Alle Apps sind kostenlos. Du zahlst nur für deinen Shard.",
+      trialText: "Hinweis: Das sind Beispielrechnungen. Skalieren ist auf der Roadmap."
+    },
+    presetsTitle: "Unsere Empfehlungen",
+    presets: {
+      basis: { name: "Basis", description: "Perfekt für den Einstieg. Ideal, um deine Fotos und Dokumente sicher zu verwalten." },
+      standard: { name: "Standard", description: "Der Allrounder. Genug Leistung, damit deine Apps flüssig laufen und Spaß machen." },
+      profi: { name: "Profi", description: "Für Familien & Vielnutzer. Wenn mehrere Personen gleichzeitig auf den Shard zugreifen." },
+      experte: { name: "Experte", description: "Maximale Freiheit. Für große Mediensammlungen und intensive Nutzung ohne Kompromisse." }
+    },
+    toggleLabel: "Für Technik-Fans: Details anpassen",
+    calculator: {
+      vmLabel: "Leistung (vCPUs)",
+      diskLabel: "Speicherplatz (GB)",
+      vmCostLabel: "Kosten Leistung:",
+      diskCostLabel: "Kosten Speicher:"
+    },
+    summary: {
+      totalLabel: "Gesamtkosten pro Monat:",
+      cancelLabel: "Keine Knebelverträge: Monatlich kündbar."
+    },
+    locale: 'de-DE',
+    currency: 'EUR',
+    priceSuffix: '/Monat'
+  }
+};
+
+// Aktuelle Sprache auswählen
+const t = content.de;
 ---
 
 <section id="pricing">
   <div class="container">
-    <h2>Pricing Calculator</h2>
-    <p class="section-description">
-      Calculate your monthly costs based on your needs. Transparent and flexible pricing.
-    </p>
+    <h2>{t.pageTitle}</h2>
+    
+    <div class="pricing-info">
+      <div class="info-block">
+        <h3>{t.info.performanceTitle}</h3>
+        <p>{t.info.performanceText}</p>
+      </div>
+      <div class="info-block">
+        <h3>{t.info.flexibilityTitle}</h3>
+        <p>{t.info.flexibilityText}</p>
+        <p class="highlight-text">{t.info.trialText}</p>
+      </div>
+    </div>
     
     <div class="pricing-container">
       <div class="presets">
-        <h3>Quick Presets</h3>
-        <div class="preset-buttons">
-          <button class="preset-btn" data-vm="1" data-disk="10">Starter</button>
-          <button class="preset-btn" data-vm="2" data-disk="50">Professional</button>
-          <button class="preset-btn" data-vm="4" data-disk="100">Business</button>
-          <button class="preset-btn" data-vm="8" data-disk="250">Enterprise</button>
+        <h3>{t.presetsTitle}</h3>
+        <div class="preset-grid">
+          <div class="preset-card" data-vm="1" data-disk="10">
+            <div class="preset-icon">🚀</div>
+            <h4>{t.presets.basis.name}</h4>
+            <p>{t.presets.basis.description}</p>
+            <div class="preset-price"></div>
+          </div>
+          <div class="preset-card" data-vm="2" data-disk="50">
+            <div class="preset-icon">💼</div>
+            <h4>{t.presets.standard.name}</h4>
+            <p>{t.presets.standard.description}</p>
+            <div class="preset-price"></div>
+          </div>
+          <div class="preset-card" data-vm="4" data-disk="100">
+            <div class="preset-icon">🏢</div>
+            <h4>{t.presets.profi.name}</h4>
+            <p>{t.presets.profi.description}</p>
+            <div class="preset-price"></div>
+          </div>
+          <div class="preset-card" data-vm="8" data-disk="250">
+            <div class="preset-icon">🌐</div>
+            <h4>{t.presets.experte.name}</h4>
+            <p>{t.presets.experte.description}</p>
+            <div class="preset-price"></div>
+          </div>
         </div>
       </div>
 
-      <div class="calculator">
-        <div class="slider-group">
-          <label for="vm-size">
-            <span class="slider-label">VM Size (vCPUs)</span>
-            <span class="slider-value" id="vm-value">2</span>
-          </label>
-          <input 
-            type="range" 
-            id="vm-size" 
-            min="1" 
-            max="16" 
-            value="2" 
-            step="1"
-            class="slider"
-          />
-          <div class="slider-markers">
-            <span>1</span>
-            <span>4</span>
-            <span>8</span>
-            <span>12</span>
-            <span>16</span>
+      <div class="detail-toggle">
+        <label class="switch">
+          <input type="checkbox" id="detail-calculator-toggle">
+          <span class="switch-slider"></span>
+        </label>
+        <span class="toggle-label">{t.toggleLabel}</span>
+      </div>
+
+      <div class="calculator-wrapper is-hidden">
+        <div class="calculator">
+          <div class="slider-group">
+            <label for="vm-size">
+              <span class="slider-label">{t.calculator.vmLabel}</span>
+              <span class="slider-value" id="vm-value">2</span>
+            </label>
+            <input type="range" id="vm-size" min="1" max="16" value="2" step="1" class="slider"/>
+            <div class="slider-markers"><span>1</span><span>4</span><span>8</span><span>12</span><span>16</span></div>
+          </div>
+
+          <div class="slider-group">
+            <label for="disk-size">
+              <span class="slider-label">{t.calculator.diskLabel}</span>
+              <span class="slider-value" id="disk-value">50</span>
+            </label>
+            <input type="range" id="disk-size" min="10" max="500" value="50" step="10" class="slider"/>
+            <div class="slider-markers"><span>10</span><span>125</span><span>250</span><span>375</span><span>500</span></div>
+          </div>
+          
+          <div class="price-breakdown-details">
+            <div class="breakdown-item">
+              <span>{t.calculator.vmCostLabel}</span>
+              <span id="vm-cost"></span>
+            </div>
+            <div class="breakdown-item">
+              <span>{t.calculator.diskCostLabel}</span>
+              <span id="disk-cost"></span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="slider-group">
-          <label for="disk-size">
-            <span class="slider-label">Disk Size (GB)</span>
-            <span class="slider-value" id="disk-value">50</span>
-          </label>
-          <input 
-            type="range" 
-            id="disk-size" 
-            min="10" 
-            max="500" 
-            value="50" 
-            step="10"
-            class="slider"
-          />
-          <div class="slider-markers">
-            <span>10</span>
-            <span>125</span>
-            <span>250</span>
-            <span>375</span>
-            <span>500</span>
-          </div>
+      <div class="price-summary">
+        <div class="breakdown-total">
+          <span>{t.summary.totalLabel}</span>
+          <span id="total-cost"></span>
         </div>
-
-        <div class="price-breakdown">
-          <div class="breakdown-item">
-            <span>VM Cost:</span>
-            <span id="vm-cost">$20.00</span>
-          </div>
-          <div class="breakdown-item">
-            <span>Disk Cost:</span>
-            <span id="disk-cost">$5.00</span>
-          </div>
-          <div class="breakdown-total">
-            <span>Total Monthly Cost:</span>
-            <span id="total-cost">$25.00</span>
-          </div>
+        <div class="cancellation-note">
+          {t.summary.cancelLabel}
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  // Pricing constants
-  const VM_COST_PER_VCPU = 10; // $10 per vCPU
-  const DISK_COST_PER_GB = 0.10; // $0.10 per GB
+<script define:vars={{ t }}>
+  // --- Konstanten und DOM-Elemente ---
+  const VM_KOSTEN_PRO_VCPU = 10;
+  const DISK_KOSTEN_PRO_GB = 0.10;
 
-  function calculatePrice() {
-    const vmSizeEl = document.getElementById('vm-size') as HTMLInputElement;
-    const diskSizeEl = document.getElementById('disk-size') as HTMLInputElement;
-    
+  const vmSizeEl = document.getElementById('vm-size');
+  const diskSizeEl = document.getElementById('disk-size');
+  const detailToggle = document.getElementById('detail-calculator-toggle');
+  const calculatorWrapper = document.querySelector('.calculator-wrapper');
+
+  // Hilfsfunktion zur Währungsformatierung
+  const currencyFormatter = new Intl.NumberFormat(t.locale, {
+    style: 'currency',
+    currency: t.currency,
+  });
+
+  // --- Hauptfunktionen ---
+
+  function updateAktivesPaket() {
+    const vmSize = parseInt(vmSizeEl.value);
+    const diskSize = parseInt(diskSizeEl.value);
+
+    document.querySelectorAll('.preset-card').forEach(card => {
+      const cardEl = card;
+      const presetVm = parseInt(cardEl.dataset.vm || '0');
+      const presetDisk = parseInt(cardEl.dataset.disk || '0');
+
+      if (presetVm === vmSize && presetDisk === diskSize) {
+        cardEl.classList.add('active');
+      } else {
+        cardEl.classList.remove('active');
+      }
+    });
+  }
+
+  function berechnePreis() {
     if (!vmSizeEl || !diskSizeEl) return;
     
     const vmSize = parseInt(vmSizeEl.value);
     const diskSize = parseInt(diskSizeEl.value);
 
-    const vmCost = vmSize * VM_COST_PER_VCPU;
-    const diskCost = diskSize * DISK_COST_PER_GB;
-    const totalCost = vmCost + diskCost;
+    const vmKosten = vmSize * VM_KOSTEN_PRO_VCPU;
+    const diskKosten = diskSize * DISK_KOSTEN_PRO_GB;
+    const totalKosten = vmKosten + diskKosten;
 
-    // Update display
-    const vmValueEl = document.getElementById('vm-value');
-    const diskValueEl = document.getElementById('disk-value');
-    const vmCostEl = document.getElementById('vm-cost');
-    const diskCostEl = document.getElementById('disk-cost');
-    const totalCostEl = document.getElementById('total-cost');
-    
-    if (vmValueEl) vmValueEl.textContent = vmSize.toString();
-    if (diskValueEl) diskValueEl.textContent = diskSize.toString();
-    if (vmCostEl) vmCostEl.textContent = `$${vmCost.toFixed(2)}`;
-    if (diskCostEl) diskCostEl.textContent = `$${diskCost.toFixed(2)}`;
-    if (totalCostEl) totalCostEl.textContent = `$${totalCost.toFixed(2)}`;
+    document.getElementById('vm-value').textContent = vmSize.toString();
+    document.getElementById('disk-value').textContent = diskSize.toString();
+    document.getElementById('vm-cost').textContent = currencyFormatter.format(vmKosten);
+    document.getElementById('disk-cost').textContent = currencyFormatter.format(diskKosten);
+    document.getElementById('total-cost').textContent = currencyFormatter.format(totalKosten);
+
+    updateAktivesPaket();
   }
 
-  // Event listeners for sliders
-  document.getElementById('vm-size')?.addEventListener('input', calculatePrice);
-  document.getElementById('disk-size')?.addEventListener('input', calculatePrice);
+  function initialisierePaketPreise() {
+    document.querySelectorAll('.preset-card').forEach(card => {
+      const cardEl = card;
+      const vmSize = parseInt(cardEl.dataset.vm || '0');
+      const diskSize = parseInt(cardEl.dataset.disk || '0');
+      const preis = (vmSize * VM_KOSTEN_PRO_VCPU) + (diskSize * DISK_KOSTEN_PRO_GB);
+      const priceEl = cardEl.querySelector('.preset-price');
+      if (priceEl) {
+        priceEl.textContent = `${currencyFormatter.format(preis)}${t.priceSuffix}`;
+      }
+    });
+  }
 
-  // Event listeners for preset buttons
-  document.querySelectorAll('.preset-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      const vmValue = target.getAttribute('data-vm');
-      const diskValue = target.getAttribute('data-disk');
+  // --- Event-Listener ---
+  vmSizeEl?.addEventListener('input', berechnePreis);
+  diskSizeEl?.addEventListener('input', berechnePreis);
+
+  document.querySelectorAll('.preset-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const target = e.currentTarget;
+      const vmValue = target.dataset.vm;
+      const diskValue = target.dataset.disk;
       
       if (vmValue && diskValue) {
-        const vmSizeEl = document.getElementById('vm-size') as HTMLInputElement;
-        const diskSizeEl = document.getElementById('disk-size') as HTMLInputElement;
-        
-        if (vmSizeEl) vmSizeEl.value = vmValue;
-        if (diskSizeEl) diskSizeEl.value = diskValue;
-        calculatePrice();
+        vmSizeEl.value = vmValue;
+        diskSizeEl.value = diskValue;
+        berechnePreis();
       }
-
-      // Visual feedback
-      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-      target.classList.add('active');
     });
   });
 
-  // Initial calculation
-  calculatePrice();
+  detailToggle?.addEventListener('change', () => {
+    calculatorWrapper?.classList.toggle('is-hidden', !detailToggle.checked);
+  });
+
+  // --- Initialisierung ---
+  document.addEventListener('DOMContentLoaded', () => {
+    initialisierePaketPreise();
+    vmSizeEl.value = "2";
+    diskSizeEl.value = "50";
+    berechnePreis();
+  });
 </script>
 
 <style>
-  .pricing-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .presets {
+  .pricing-container { max-width: 900px; margin: 0 auto; }
+  
+  /* Neue Styles für die Info-Boxen */
+  .pricing-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     margin-bottom: 3rem;
-    text-align: center;
+    text-align: left;
   }
-
-  .presets h3 {
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-  }
-
-  .preset-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .preset-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid var(--primary-color);
-    background-color: white;
-    color: var(--primary-color);
-    border-radius: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .preset-btn:hover,
-  .preset-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-  }
-
-  .calculator {
-    background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  }
-
-  .slider-group {
-    margin-bottom: 2.5rem;
-  }
-
-  .slider-group label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-
-  .slider-label {
-    color: var(--text-color);
-  }
-
-  .slider-value {
+  
+  .info-block h3 {
     color: var(--primary-color);
     font-size: 1.25rem;
+    margin-bottom: 0.75rem;
   }
-
-  .slider {
-    width: 100%;
-    height: 8px;
-    border-radius: 5px;
-    background: linear-gradient(to right, #667eea, #764ba2);
-    outline: none;
-    -webkit-appearance: none;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  .slider::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border: none;
-  }
-
-  .slider-markers {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
+  
+  .info-block p {
     color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .highlight-text {
+    font-weight: 600;
+    color: var(--primary-color) !important;
+    background-color: var(--bg-light);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color);
   }
 
-  .price-breakdown {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 2px solid var(--border-color);
-  }
-
-  .breakdown-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem 0;
-    color: var(--text-light);
-  }
-
-  .breakdown-total {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0;
+  .presets { margin-bottom: 2rem; text-align: center; }
+  .presets h3 { margin-bottom: 1.5rem; color: var(--primary-color); }
+  .preset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .preset-card { background-color: var(--bg-color); padding: 1.5rem; border-radius: 0.75rem; border: 2px solid var(--border-color); cursor: pointer; transition: all 0.3s; text-align: center; display: flex; flex-direction: column; }
+  .preset-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2); }
+  .preset-card.active { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2); border-color: var(--primary-color); }
+  .preset-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .preset-card h4 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.25rem; }
+  .preset-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 1rem; }
+  .preset-price { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+  .detail-toggle { display: flex; justify-content: center; align-items: center; margin: 2rem 0; }
+  .toggle-label { margin-left: 0.75rem; font-weight: 600; color: var(--text-color); }
+  .calculator-wrapper { transition: all 0.4s ease-in-out; overflow: hidden; max-height: 1000px; opacity: 1; margin-top: 1rem; }
+  .calculator-wrapper.is-hidden { max-height: 0; opacity: 0; margin-top: 0; transform: scaleY(0); }
+  .calculator { background-color: var(--bg-color); padding: 2rem; border-radius: 0.75rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+  .slider-group { margin-bottom: 2.5rem; }
+  .slider-group:last-child { margin-bottom: 1.5rem; }
+  .slider-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-weight: 600; }
+  .slider-label { color: var(--text-color); }
+  .slider-value { color: var(--primary-color); font-size: 1.25rem; }
+  .slider { width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, #667eea, #764ba2); outline: none; -webkit-appearance: none; }
+  .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+  .slider::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); border: none; }
+  .slider-markers { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-light); }
+  .price-breakdown-details { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--border-color); }
+  .price-summary { margin-top: 2rem; padding: 2rem; border-radius: 0.75rem; background-color: var(--bg-color); border: 1px solid var(--border-color); }
+  .breakdown-item { display: flex; justify-content: space-between; padding: 0.5rem 0; color: var(--text-light); }
+  .breakdown-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+  
+  .cancellation-note {
+    text-align: center;
     margin-top: 1rem;
-    border-top: 2px solid var(--border-color);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    color: #16a34a; /* Ein freundliches Grün */
+    font-weight: 600;
+    font-size: 1rem;
   }
 
-  @media (max-width: 768px) {
-    .calculator {
-      padding: 1.5rem;
-    }
-
-    .preset-buttons {
-      flex-direction: column;
-    }
-
-    .preset-btn {
-      width: 100%;
-    }
+  .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+  .switch-slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+  input:checked + .switch-slider { background-color: var(--primary-color); }
+  input:focus + .switch-slider { box-shadow: 0 0 1px var(--primary-color); }
+  input:checked + .switch-slider:before { transform: translateX(26px); }
+  
+  @media (max-width: 768px) { 
+    .preset-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; } 
+    .preset-card { padding: 1.5rem 1rem; } 
+    .pricing-info { grid-template-columns: 1fr; gap: 1.5rem; }
   }
 </style>

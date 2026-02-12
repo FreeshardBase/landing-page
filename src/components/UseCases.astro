@@ -1,0 +1,200 @@
+---
+import { BASE_URL } from "../lib/branding";
+
+// --- Internationalisierungs-Setup (i18n) ---
+const content = {
+  de: {
+    sectionTitle: "Deine persönliche Cloud",
+    sectionDescription: "Dein Shard ist deine Mini-Cloud. Wir installieren dir auf Wunsch passende Apps – sicher, privat und nur für dich erreichbar.",
+    disclaimer: "Rechtlicher Hinweis: Freeshard ist ein unabhängiger Hosting-Anbieter. Wir stehen in keiner geschäftlichen Verbindung zu den Projekt-Teams von Immich, Paperless-ngx, Vaultwarden oder anderen hier genannten Anwendungen. Es besteht keine Partnerschaft, Unterstützung oder Sponsoring durch diese Projekte. Alle genannten Markennamen und Logos sind Eigentum der jeweiligen Rechteinhaber.",
+    useCases: {
+      photos: { 
+        icon: "/icons/apps/immich-logo.svg", 
+        title: "Private Fotoverwaltung", 
+        software: "Immich",
+        description: "Alle deine Fotos und Videos an einem sicheren Ort. Automatisch vom Handy gesichert und einfach mit der Familie geteilt – ganz ohne Google oder Apple." 
+      },
+      documents: { 
+        icon: "/icons/apps/paperless-ngx.svg", 
+        title: "Digitales Dokumentenarchiv", 
+        software: "Paperless-ngx",
+        description: "Verwandle deinen Papierkram in ein durchsuchbares Archiv. Rechnungen und Verträge an einem Ort finden, statt lange zu suchen." 
+      },
+      passwords: { 
+        icon: "/icons/apps/vaultwarden.svg", 
+        title: "Sicherer Passwort-Safe", 
+        software: "Vaultwarden",
+        description: "Ein Passwort für alles. Speichere all deine Zugangsdaten sicher und zentral, ohne unsichere Notizen zu verwenden." 
+      },
+      recipes: {
+        icon: "/icons/apps/mealie.png", 
+        title: "Digitale Rezeptsammlung", 
+        software: "Mealie",
+        description: "Sammle und organisiere deine Lieblingsrezepte. Erstelle Einkaufslisten und plane deine Mahlzeiten ganz einfach."
+      },
+      finances: {
+        icon: "/icons/apps/actual.png", 
+        title: "Persönliches Finanz-Cockpit", 
+        software: "Actual",
+        description: "Behalte die volle Kontrolle über deine Einnahmen und Ausgaben. Plane Budgets und verstehe, wohin dein Geld fließt."
+      },
+      notes: {
+        icon: "/icons/apps/memos.webp", 
+        title: "Schnelle Notizen & Ideen", 
+        software: "Memos",
+        description: "Halte Gedanken und Ideen schnell und einfach fest. Dein persönliches, digitales Notizbuch für alles, was dir wichtig ist."
+      },
+      audiobooks: {
+        icon: "/icons/apps/audiobookshelf.png",
+        title: "Eigene Hörbuch-Bibliothek", 
+        software: "Audiobookshelf",
+        description: "Verwalte und höre deine Hörbücher und Podcasts auf all deinen Geräten. Dein persönlicher Hörbuch-Streamingdienst."
+      },
+      files: {
+        icon: "/icons/apps/filebrowser.svg", 
+        title: "Sicherer Datei-Austausch", 
+        software: "Filebrowser",
+        description: "Deine persönliche Alternative zu Dropbox. Greife von überall auf deine Dateien zu und teile sie sicher mit Freunden und Familie."
+      },
+      more: {
+        icon: "/icons/apps/opensource.svg", 
+        title: "Und vieles mehr...", 
+        software: "Open Source",
+        description: "Die Welt der selbst gehosteten Anwendungen ist riesig. Wir finden und installieren die passende Lösung für deine individuellen Bedürfnisse."
+      }
+    }
+  }
+};
+
+const t = content.de;
+const useCasesList = Object.values(t.useCases);
+
+// Hilfsfunktion um den korrekten Pfad zu generieren
+// Wenn BASE_URL '/' ist, müssen wir aufpassen, keine doppelten Slashes zu erzeugen
+const getIconPath = (iconPath) => {
+  if (BASE_URL === '/' || BASE_URL === '') {
+    return iconPath;
+  }
+  // Entferne führenden Slash vom Icon-Pfad, falls vorhanden, um Doppel-Slashes zu vermeiden
+  const cleanIconPath = iconPath.startsWith('/') ? iconPath.substring(1) : iconPath;
+  // Stelle sicher, dass BASE_URL mit Slash endet oder füge ihn hinzu
+  const cleanBaseUrl = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`;
+  
+  return `${cleanBaseUrl}${cleanIconPath}`;
+};
+---
+
+<section id="use-cases">
+  <div class="container">
+    <h2>{t.sectionTitle}</h2>
+    <p class="section-description">{t.sectionDescription}</p>
+    
+    <div class="use-cases-grid">
+      {useCasesList.map(useCase => (
+        <div class="use-case-card">
+          <div class="card-header">
+            <div class="use-case-icon">
+              <img src={getIconPath(useCase.icon)} alt={useCase.software} loading="lazy" />
+            </div>
+            {useCase.software && <div class="software-badge">{useCase.software}</div>}
+          </div>
+          <h3>{useCase.title}</h3>
+          <p>{useCase.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="disclaimer-box">
+      <p>{t.disclaimer}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .use-case-card {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .use-case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .use-case-icon {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+  
+  .use-case-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px; /* Leicht abgerundete Ecken für die Icons */
+  }
+
+  .software-badge {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 1rem;
+  }
+
+  .use-case-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .use-case-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex-grow: 1;
+  }
+
+  .disclaimer-box {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .disclaimer-box p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+</style>

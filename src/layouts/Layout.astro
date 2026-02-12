@@ -1,19 +1,49 @@
 ---
+import {
+  BASE_URL,
+  BRAND_LOGO_LIGHT_2X,
+  BRAND_LOGO_LIGHT_4X,
+  BRAND_MARK,
+  BRAND_MARK_2X,
+  BRAND_MARK_4X
+} from "../lib/branding";
+
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Freeshard - The next generation software platform" } = Astro.props;
+// --- i18n ---
+const content = {
+  de: {
+    defaultDescription: "Deine souveräne Software-Plattform – einfach, sicher, unabhängig.",
+    nav: {
+      features: "Vorteile",
+      screenshots: "Einblicke",
+      pricing: "Preise",
+      motivation: "Mission",
+      contact: "Kontakt"
+    },
+    footer: {
+      copyright: `© ${new Date().getFullYear()} Freeshard. Alle Rechte vorbehalten.`,
+      imprint: "Impressum",
+      privacy: "Datenschutz",
+      faq: "Häufige Fragen (FAQ)"
+    }
+  }
+};
+const t = content.de;
+
+const { title, description = t.defaultDescription } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${BASE_URL}/favicon.svg`} />
     <title>{title}</title>
   </head>
   <body>
@@ -21,14 +51,24 @@ const { title, description = "Freeshard - The next generation software platform"
       <nav class="navbar">
         <div class="container">
           <div class="logo">
-            <h1>Freeshard</h1>
+            <a class="brand" href={BASE_URL} aria-label="Freeshard">
+              <img
+                class="brand-mark brand-mark--header"
+                src={BRAND_MARK}
+                srcset={`${BRAND_MARK_2X} 2x, ${BRAND_MARK_4X} 4x`}
+                alt="Freeshard"
+                loading="eager"
+                decoding="async"
+              />
+              <span class="sr-only">Freeshard</span>
+            </a>
           </div>
           <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#screenshots">Screenshots</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#motivation">Motivation</a></li>
-            <li><a href="#newsletter">Newsletter</a></li>
+            <li><a href={`${BASE_URL}/#features`}>{t.nav.features}</a></li>
+            <li><a href={`${BASE_URL}/#screenshots`}>{t.nav.screenshots}</a></li>
+            <li><a href={`${BASE_URL}/#pricing`}>{t.nav.pricing}</a></li>
+            <li><a href={`${BASE_URL}/#motivation`}>{t.nav.motivation}</a></li>
+            <li><a href={`${BASE_URL}/kontakt`}>{t.nav.contact}</a></li>
           </ul>
         </div>
       </nav>
@@ -38,7 +78,24 @@ const { title, description = "Freeshard - The next generation software platform"
     </main>
     <footer>
       <div class="container">
-        <p>&copy; 2026 Freeshard. All rights reserved.</p>
+        <div class="footer-brand">
+          <img
+            class="footer-logo"
+            src={BRAND_MARK}
+            srcset={`${BRAND_LOGO_LIGHT_2X} 2x, ${BRAND_LOGO_LIGHT_4X} 4x`}
+            height="24"
+            alt="Freeshard"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="footer-links">
+          <a href={`${BASE_URL}/faq`}>{t.footer.faq}</a>
+          <a href={`${BASE_URL}/impressum`}>{t.footer.imprint}</a>
+          <a href={`${BASE_URL}/datenschutz`}>{t.footer.privacy}</a>
+          <a href={`${BASE_URL}/kontakt`}>{t.nav.contact}</a>
+        </div>
+        <p>{t.footer.copyright}</p>
       </div>
     </footer>
     <style is:global>
@@ -49,13 +106,18 @@ const { title, description = "Freeshard - The next generation software platform"
       }
 
       :root {
-        --primary-color: #4f46e5;
-        --secondary-color: #06b6d4;
-        --text-color: #1f2937;
+        --primary-color: #2f3cff;
+        --secondary-color: #1bb3b8;
+        --text-color: #111827;
         --text-light: #6b7280;
         --bg-color: #ffffff;
-        --bg-light: #f9fafb;
-        --border-color: #e5e7eb;
+        --bg-light: #f5f7fb;
+        --border-color: #e2e8f0;
+        --brand-gradient: linear-gradient(90deg, #2f3cff 0%, #1bb3b8 100%);
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -89,10 +151,39 @@ const { title, description = "Freeshard - The next generation software platform"
         align-items: center;
       }
 
-      .logo h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-color);
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        gap: 0.5rem;
+      }
+
+      .brand-mark {
+        display: block;
+      }
+
+      .brand-mark--header {
+        height: 40px;
+        width: auto;
+      }
+
+      .gradient-text {
+        background: var(--brand-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       .nav-links {
@@ -119,9 +210,43 @@ const { title, description = "Freeshard - The next generation software platform"
         text-align: center;
         margin-top: 4rem;
       }
+      
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo {
+        display: block;
+        height: 24px;
+        width: auto;
+      }
+
+      .footer-links {
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: var(--text-light);
+        text-decoration: none;
+      }
+      
+      .footer-links a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
 
       footer p {
         color: var(--text-light);
+        font-size: 0.9rem;
       }
 
       section {
@@ -157,14 +282,15 @@ const { title, description = "Freeshard - The next generation software platform"
 
       @media (max-width: 768px) {
         .nav-links {
-          gap: 1rem;
-          flex-wrap: wrap;
-          justify-content: center;
+          display: none; /* Hide nav links on mobile for simplicity, could be replaced with a burger menu */
         }
 
         .navbar .container {
-          flex-direction: column;
-          gap: 1rem;
+          justify-content: center;
+        }
+
+        .brand-logo {
+          width: 140px;
         }
 
         h2 {
