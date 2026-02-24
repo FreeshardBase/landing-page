@@ -1,17 +1,12 @@
 ---
-import {
-  BRAND_LOGO_DARK,
-  BRAND_LOGO_DARK_2X,
-  BRAND_LOGO_DARK_4X
-} from "../lib/branding";
-
+// --- Internationalisierungs-Setup (i18n) ---
 const content = {
   de: {
     titleLine1: "Dein Shard.",
-    titleLine2: "Deine Daten. Deine Freiheit.",
-    description: "Ein Shard ist dein ganz persönliches, privates Stück einer souveränen Cloud. Hier gehören deine Daten nur dir – sicher gehostet in Europa und befreit von der Neugier großer Konzerne. Wir kümmern uns um die Technik, damit du deine Freiheit einfach genießen kannst.",
+    titleLine2: "Deine Mini-Cloud. Deine Souveränität.",
+    description: "Ein Shard ist deine persönliche Mini-Cloud von Freeshard. Ein Ort für Apps, Daten und Identität. Keine Passwörter, kein Sync, digitale Souveränität ohne Technikstress.",
     cta: {
-      primary: "Jetzt loslegen",
+      primary: "Shard vormerken",
       secondary: "Mehr erfahren"
     }
   }
@@ -23,18 +18,6 @@ const t = content.de;
 <section id="hero" class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-brand" aria-label="Freeshard">
-        <img
-          class="hero-logo"
-          src={BRAND_LOGO_DARK}
-          srcset={`${BRAND_LOGO_DARK_2X} 2x, ${BRAND_LOGO_DARK_4X} 4x`}
-          width="220"
-          height="44"
-          alt="Freeshard"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
       <h1>
         <span class="highlight">{t.titleLine1}</span><br />
         {t.titleLine2}
@@ -42,9 +25,7 @@ const t = content.de;
       <p class="hero-description">{t.description}</p>
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary">{t.cta.primary}</a>
-        <a href="#features" class="btn btn-secondary">
-          {t.cta.secondary}
-        </a>
+        <a href="#features" class="btn btn-secondary">{t.cta.secondary}</a>
       </div>
     </div>
   </div>
@@ -54,21 +35,8 @@ const t = content.de;
   .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 8rem 0 6rem; /* Etwas mehr Platz oben */
+    padding: 8rem 0 6rem;
     text-align: center;
-  }
-
-  .hero-brand {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
-
-  .hero-logo {
-    display: block;
-    height: auto;
-    max-width: 240px;
-    width: 100%;
   }
 
   .hero-content h1 {
@@ -79,8 +47,8 @@ const t = content.de;
   }
   
   .hero-content h1 .highlight {
-    color: #a3bffa; /* Ein helles Blau/Lila für den Akzent */
-    font-size: 4rem; /* "Dein Shard" etwas größer */
+    color: #a3bffa;
+    font-size: 4rem;
     display: inline-block;
     margin-bottom: 0.5rem;
   }
@@ -103,10 +71,7 @@ const t = content.de;
   }
 
   .btn {
-    display: inline-flex; /* Flexbox für Zentrierung von Icon + Text */
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem; /* Abstand zwischen Icon und Text */
+    display: inline-block;
     padding: 0.875rem 2rem;
     font-size: 1rem;
     font-weight: 600;
@@ -135,18 +100,9 @@ const t = content.de;
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  /* Optional: Icon etwas anpassen */
-  .btn-icon {
-    font-size: 1.2rem; /* Icon etwas größer als der Text */
-  }
-
   @media (max-width: 768px) {
     .hero {
       padding: 5rem 0 4rem;
-    }
-
-    .hero-logo {
-      max-width: 200px;
     }
 
     .hero-content h1 {

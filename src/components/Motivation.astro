@@ -1,17 +1,18 @@
 ---
-import { BASE_URL } from "../lib/branding";
+// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
+const BASE_URL = import.meta.env.BASE_URL;
 
 // --- Internationalisierungs-Setup (i18n) ---
 const content = {
   de: {
     sectionTitle: "Unsere Mission",
-    sectionDescription: "Deine digitale Freiheit, unsere Leidenschaft.",
+    sectionDescription: "Digitale Souveränität, klar und alltagstauglich.",
     story: {
-      title: "Warum es uns gibt",
+      title: "Warum Freeshard",
       paragraphs: [
-        "Wir waren frustriert von der Abhängigkeit großer Tech-Konzerne. Wir glauben, dass jeder das Recht auf eine eigene, unabhängige digitale Präsenz haben sollte – ohne technische Hürden und ohne die eigenen Daten zu opfern.",
-        "Deshalb haben wir eine Lösung geschaffen, die von Grund auf einfach, transparent und fair ist. Bei uns gibt es keine versteckten Kosten und keine Datenkraken. Unser Code ist <a href='" + BASE_URL + "/faq'>Fair Source</a> – das bedeutet maximale Transparenz für dich.",
-        "Und das Beste: Echte Unabhängigkeit heißt für uns, dass du jederzeit gehen kannst. Du kannst deinen kompletten Shard mitnehmen und ihn selbst hosten, wenn du das möchtest. Deine Daten und dein System gehören dir."
+        "Wir wollten eine digitale Heimat, die nicht von Plattformen abhängt. Ein Shard gehört dir und bleibt dein Zentrum.",
+        "Digitale Souveränität ist gerade ein Trend, für uns ist es die Grundlage. Wir machen sie praktisch: ohne Technikstress und ohne Datensilos.",
+        "Transparenz gehört dazu. Unser Code ist <a href='" + BASE_URL + "/faq'>Fair Source</a> und dein Shard bleibt portabel, wenn du ihn mitnehmen willst."
       ]
     },
     // Wir nutzen die Kacheln nun für unsere Kernwerte statt für Statistiken
