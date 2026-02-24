@@ -1,5 +1,6 @@
 ---
-import { BASE_URL } from "../lib/branding";
+// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
+const BASE_URL = import.meta.env.BASE_URL;
 
 // --- Internationalisierungs-Setup (i18n) ---
 const content = {
@@ -27,9 +28,9 @@ const content = {
         description: "Ein Passwort für alles. Speichere all deine Zugangsdaten sicher und zentral, ohne unsichere Notizen zu verwenden." 
       },
       recipes: {
-        icon: "/icons/apps/mealie.png", 
+        icon: "/icons/apps/kitchenowl.png", 
         title: "Digitale Rezeptsammlung", 
-        software: "Mealie",
+        software: "KitchenOwl",
         description: "Sammle und organisiere deine Lieblingsrezepte. Erstelle Einkaufslisten und plane deine Mahlzeiten ganz einfach."
       },
       finances: {

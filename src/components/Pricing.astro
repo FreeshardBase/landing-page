@@ -3,21 +3,21 @@
 // Alle Texte sind hier an einer Stelle gebündelt.
 const content = {
   de: {
-    pageTitle: "Preisrechner",
+    pageTitle: "Dein Wunsch-Paket",
     // Wir strukturieren die Beschreibung neu, um die Fakten klar zu gliedern
     info: {
       performanceTitle: "Was ist der Unterschied?",
-      performanceText: "Unsere Pakete unterscheiden sich durch Speicherplatz und Geschwindigkeit. In den günstigeren Paketen konzentriert sich dein System immer auf eine Aufgabe: Wenn du z.B. von der Fotoverwaltung zu deinen Dokumenten wechselst, muss das eine kurz pausieren, damit das andere starten kann. Das spart Kosten, dauert aber einen kleinen Moment. In den stärkeren Paketen läuft alles gleichzeitig – für einen sofortigen Wechsel ohne Wartezeit.",
+      performanceText: "Unsere Pakete unterscheiden sich durch Speicherplatz und Geschwindigkeit. In den günstigeren Paketen konzentriert sich dein System immer auf eine Aufgabe: Wenn du z.B. von der Fotoverwaltung zu deinen Dokumenten wechselst, muss das eine kurz pausieren, damit das andere starten kann. In den stärkeren Paketen läuft alles gleichzeitig – für einen sofortigen Wechsel ohne Wartezeit.",
       flexibilityTitle: "Bleib flexibel",
       flexibilityText: "Du kannst die Leistung deines Pakets monatlich anpassen – sowohl nach oben als auch nach unten. Lediglich beim Speicherplatz geht es technisch bedingt nur nach oben. Der Wechsel dauert nur ca. eine Minute, in der dein System kurz neu startet.",
-      trialText: "Tipp: Du bist unsicher? Einmal im Monat kannst du kostenlos für eine Stunde ein stärkeres Paket ausprobieren."
+      trialText: "Wir feilen gerade noch an den finalen, fairen Preisen. Konfiguriere dir hier schon mal deinen idealen Shard!"
     },
     presetsTitle: "Unsere Empfehlungen",
     presets: {
-      basis: { name: "Basis", description: "Perfekt für den Einstieg. Ideal, um deine Fotos und Dokumente sicher zu verwalten." },
-      standard: { name: "Standard", description: "Der Allrounder. Genug Leistung, damit deine Apps flüssig laufen und Spaß machen." },
-      profi: { name: "Profi", description: "Für Familien & Vielnutzer. Wenn mehrere Personen gleichzeitig auf den Shard zugreifen." },
-      experte: { name: "Experte", description: "Maximale Freiheit. Für große Mediensammlungen und intensive Nutzung ohne Kompromisse." }
+      starter: { name: "Einsteiger", description: "Für den Start. Deine wichtigsten Dokumente und Passwörter sicher an einem Ort." },
+      collector: { name: "Sammler", description: "Für deine Fotos. Genug Platz für all deine Erinnerungen und flüssiges Durchblättern." },
+      family: { name: "Familie", description: "Für alle zu Hause. Jeder hat seinen eigenen Bereich für Fotos, Chats und Dateien." },
+      enthusiast: { name: "Enthusiast", description: "Keine Grenzen. Für riesige Mediensammlungen, viele Apps und maximale Geschwindigkeit." }
     },
     toggleLabel: "Für Technik-Fans: Details anpassen",
     calculator: {
@@ -27,8 +27,9 @@ const content = {
       diskCostLabel: "Kosten Speicher:"
     },
     summary: {
-      totalLabel: "Gesamtkosten pro Monat:",
-      cancelLabel: "Keine Knebelverträge: Monatlich kündbar."
+      totalLabel: "Monatlicher Preis:",
+      pricePlaceholder: "Bald verfügbar",
+      ctaButton: "Benachrichtigung beim Start"
     },
     locale: 'de-DE',
     currency: 'EUR',
@@ -61,28 +62,24 @@ const t = content.de;
         <h3>{t.presetsTitle}</h3>
         <div class="preset-grid">
           <div class="preset-card" data-vm="1" data-disk="10">
-            <div class="preset-icon">🚀</div>
-            <h4>{t.presets.basis.name}</h4>
-            <p>{t.presets.basis.description}</p>
-            <div class="preset-price"></div>
+            <div class="preset-icon">🌱</div>
+            <h4>{t.presets.starter.name}</h4>
+            <p>{t.presets.starter.description}</p>
           </div>
           <div class="preset-card" data-vm="2" data-disk="50">
-            <div class="preset-icon">💼</div>
-            <h4>{t.presets.standard.name}</h4>
-            <p>{t.presets.standard.description}</p>
-            <div class="preset-price"></div>
+            <div class="preset-icon">📸</div>
+            <h4>{t.presets.collector.name}</h4>
+            <p>{t.presets.collector.description}</p>
           </div>
-          <div class="preset-card" data-vm="4" data-disk="100">
-            <div class="preset-icon">🏢</div>
-            <h4>{t.presets.profi.name}</h4>
-            <p>{t.presets.profi.description}</p>
-            <div class="preset-price"></div>
+          <div class="preset-card" data-vm="4" data-disk="250">
+            <div class="preset-icon">🏠</div>
+            <h4>{t.presets.family.name}</h4>
+            <p>{t.presets.family.description}</p>
           </div>
-          <div class="preset-card" data-vm="8" data-disk="250">
-            <div class="preset-icon">🌐</div>
-            <h4>{t.presets.experte.name}</h4>
-            <p>{t.presets.experte.description}</p>
-            <div class="preset-price"></div>
+          <div class="preset-card" data-vm="8" data-disk="500">
+            <div class="preset-icon">🚀</div>
+            <h4>{t.presets.enthusiast.name}</h4>
+            <p>{t.presets.enthusiast.description}</p>
           </div>
         </div>
       </div>
@@ -114,27 +111,16 @@ const t = content.de;
             <input type="range" id="disk-size" min="10" max="500" value="50" step="10" class="slider"/>
             <div class="slider-markers"><span>10</span><span>125</span><span>250</span><span>375</span><span>500</span></div>
           </div>
-          
-          <div class="price-breakdown-details">
-            <div class="breakdown-item">
-              <span>{t.calculator.vmCostLabel}</span>
-              <span id="vm-cost"></span>
-            </div>
-            <div class="breakdown-item">
-              <span>{t.calculator.diskCostLabel}</span>
-              <span id="disk-cost"></span>
-            </div>
-          </div>
         </div>
       </div>
 
       <div class="price-summary">
         <div class="breakdown-total">
           <span>{t.summary.totalLabel}</span>
-          <span id="total-cost"></span>
+          <span class="coming-soon-badge">{t.summary.pricePlaceholder}</span>
         </div>
-        <div class="cancellation-note">
-          {t.summary.cancelLabel}
+        <div class="cta-wrapper">
+          <a href="#newsletter" class="cta-button">{t.summary.ctaButton}</a>
         </div>
       </div>
     </div>
@@ -143,19 +129,10 @@ const t = content.de;
 
 <script define:vars={{ t }}>
   // --- Konstanten und DOM-Elemente ---
-  const VM_KOSTEN_PRO_VCPU = 10;
-  const DISK_KOSTEN_PRO_GB = 0.10;
-
   const vmSizeEl = document.getElementById('vm-size');
   const diskSizeEl = document.getElementById('disk-size');
   const detailToggle = document.getElementById('detail-calculator-toggle');
   const calculatorWrapper = document.querySelector('.calculator-wrapper');
-
-  // Hilfsfunktion zur Währungsformatierung
-  const currencyFormatter = new Intl.NumberFormat(t.locale, {
-    style: 'currency',
-    currency: t.currency,
-  });
 
   // --- Hauptfunktionen ---
 
@@ -176,41 +153,22 @@ const t = content.de;
     });
   }
 
-  function berechnePreis() {
+  function updateDisplay() {
     if (!vmSizeEl || !diskSizeEl) return;
     
     const vmSize = parseInt(vmSizeEl.value);
     const diskSize = parseInt(diskSizeEl.value);
 
-    const vmKosten = vmSize * VM_KOSTEN_PRO_VCPU;
-    const diskKosten = diskSize * DISK_KOSTEN_PRO_GB;
-    const totalKosten = vmKosten + diskKosten;
-
+    // Wir aktualisieren nur noch die angezeigten Werte, keine Preise mehr
     document.getElementById('vm-value').textContent = vmSize.toString();
     document.getElementById('disk-value').textContent = diskSize.toString();
-    document.getElementById('vm-cost').textContent = currencyFormatter.format(vmKosten);
-    document.getElementById('disk-cost').textContent = currencyFormatter.format(diskKosten);
-    document.getElementById('total-cost').textContent = currencyFormatter.format(totalKosten);
 
     updateAktivesPaket();
   }
 
-  function initialisierePaketPreise() {
-    document.querySelectorAll('.preset-card').forEach(card => {
-      const cardEl = card;
-      const vmSize = parseInt(cardEl.dataset.vm || '0');
-      const diskSize = parseInt(cardEl.dataset.disk || '0');
-      const preis = (vmSize * VM_KOSTEN_PRO_VCPU) + (diskSize * DISK_KOSTEN_PRO_GB);
-      const priceEl = cardEl.querySelector('.preset-price');
-      if (priceEl) {
-        priceEl.textContent = `${currencyFormatter.format(preis)}${t.priceSuffix}`;
-      }
-    });
-  }
-
   // --- Event-Listener ---
-  vmSizeEl?.addEventListener('input', berechnePreis);
-  diskSizeEl?.addEventListener('input', berechnePreis);
+  vmSizeEl?.addEventListener('input', updateDisplay);
+  diskSizeEl?.addEventListener('input', updateDisplay);
 
   document.querySelectorAll('.preset-card').forEach(card => {
     card.addEventListener('click', (e) => {
@@ -221,7 +179,7 @@ const t = content.de;
       if (vmValue && diskValue) {
         vmSizeEl.value = vmValue;
         diskSizeEl.value = diskValue;
-        berechnePreis();
+        updateDisplay();
       }
     });
   });
@@ -232,17 +190,15 @@ const t = content.de;
 
   // --- Initialisierung ---
   document.addEventListener('DOMContentLoaded', () => {
-    initialisierePaketPreise();
     vmSizeEl.value = "2";
     diskSizeEl.value = "50";
-    berechnePreis();
+    updateDisplay();
   });
 </script>
 
 <style>
   .pricing-container { max-width: 900px; margin: 0 auto; }
   
-  /* Neue Styles für die Info-Boxen */
   .pricing-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -281,7 +237,7 @@ const t = content.de;
   .preset-icon { font-size: 2.5rem; margin-bottom: 1rem; }
   .preset-card h4 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.25rem; }
   .preset-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 1rem; }
-  .preset-price { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+  
   .detail-toggle { display: flex; justify-content: center; align-items: center; margin: 2rem 0; }
   .toggle-label { margin-left: 0.75rem; font-weight: 600; color: var(--text-color); }
   .calculator-wrapper { transition: all 0.4s ease-in-out; overflow: hidden; max-height: 1000px; opacity: 1; margin-top: 1rem; }
@@ -296,17 +252,25 @@ const t = content.de;
   .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
   .slider::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); border: none; }
   .slider-markers { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-light); }
-  .price-breakdown-details { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--border-color); }
-  .price-summary { margin-top: 2rem; padding: 2rem; border-radius: 0.75rem; background-color: var(--bg-color); border: 1px solid var(--border-color); }
-  .breakdown-item { display: flex; justify-content: space-between; padding: 0.5rem 0; color: var(--text-light); }
-  .breakdown-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
   
-  .cancellation-note {
-    text-align: center;
-    margin-top: 1rem;
-    color: #16a34a; /* Ein freundliches Grün */
+  .price-summary { margin-top: 2rem; padding: 2rem; border-radius: 0.75rem; background-color: var(--bg-color); border: 1px solid var(--border-color); text-align: center; }
+  .breakdown-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 1.5rem; }
+  .coming-soon-badge { color: var(--primary-color); background: var(--bg-light); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 1.25rem; }
+  
+  .cta-wrapper { margin-top: 1rem; }
+  .cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 
   .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
@@ -321,5 +285,6 @@ const t = content.de;
     .preset-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; } 
     .preset-card { padding: 1.5rem 1rem; } 
     .pricing-info { grid-template-columns: 1fr; gap: 1.5rem; }
+    .breakdown-total { flex-direction: column; gap: 0.5rem; }
   }
 </style>

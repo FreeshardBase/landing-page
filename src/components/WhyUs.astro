@@ -1,0 +1,232 @@
+---
+const comparisons = [
+  {
+    category: "Deine Chats & Nachrichten",
+    bad: {
+      title: "Überwachung & Chatkontrolle",
+      text: "Große Messenger scannen Metadaten. Die geplante EU-Chatkontrolle bedroht selbst verschlüsselte Dienste wie WhatsApp oder Signal.",
+      icon: "eye-off"
+    },
+    good: {
+      title: "Privat & Unantastbar",
+      text: "Dein eigener Matrix-Server. Niemand liest mit, keine Hintertüren. Du bist immun gegen Gesetzesänderungen, weil die Daten physisch bei dir liegen.",
+      icon: "shield-check"
+    }
+  },
+  {
+    category: "Deine Fotos & Erinnerungen",
+    bad: {
+      title: "Futter für KIs & Werbung",
+      text: "Kostenlose Clouds scannen deine privaten Familienfotos, um KIs zu trainieren oder dir personalisierte Werbung anzuzeigen.",
+      icon: "scan"
+    },
+    good: {
+      title: "Nur für deine Augen",
+      text: "Deine Fotos gehören dir. Keine Analyse, kein KI-Training. Du teilst Alben nur mit Menschen, die du wirklich kennst.",
+      icon: "image"
+    }
+  },
+  {
+    category: "Deine Unabhängigkeit",
+    bad: {
+      title: "Gefangen im Ökosystem",
+      text: "Einmal drin, kommst du kaum raus. Datenexporte sind kompliziert oder unvollständig. Preiserhöhungen musst du schlucken.",
+      icon: "lock-closed"
+    },
+    good: {
+      title: "Jederzeit frei",
+      text: "Es ist dein Shard. Du kannst deine Daten jederzeit vollständig exportieren und umziehen. Wir binden dich durch Qualität, nicht durch Zwang.",
+      icon: "door-open"
+    }
+  }
+];
+---
+
+<section id="why-us" class="why-us-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Der Realitäts-Check</h2>
+      <p>Warum "kostenlos" bei großen Anbietern dich am Ende mehr kostet – und warum Freeshard die Antwort ist.</p>
+    </div>
+
+    <div class="comparison-list">
+      {comparisons.map((item) => (
+        <div class="comparison-row">
+          <div class="comparison-label">{item.category}</div>
+          
+          <div class="comparison-card bad">
+            <div class="icon-bad">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                {item.bad.icon === 'eye-off' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />}
+                {item.bad.icon === 'scan' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5zM13.5 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5z" />}
+                {item.bad.icon === 'lock-closed' && <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />}
+              </svg>
+            </div>
+            <h4>{item.bad.title}</h4>
+            <p>{item.bad.text}</p>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <div class="comparison-card good">
+            <div class="icon-good">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                {item.good.icon === 'shield-check' && <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />}
+                {item.good.icon === 'image' && <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />}
+                {item.good.icon === 'door-open' && <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />}
+              </svg>
+            </div>
+            <h4>{item.good.title}</h4>
+            <p>{item.good.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-us-section {
+    padding: 6rem 0;
+    background-color: #f1f5f9;
+    color: #1e293b;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #0f172a;
+  }
+
+  .section-header p {
+    font-size: 1.25rem;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .comparison-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .comparison-label {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .comparison-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+  }
+
+  .comparison-card.bad {
+    background-color: #fff1f2; /* Sehr helles Rot */
+    border-color: #fecdd3;
+  }
+
+  .comparison-card.good {
+    background-color: #ffffff;
+    border-color: #667eea; /* Brand Color Border */
+    box-shadow: 0 10px 15px -3px rgba(102, 126, 234, 0.15);
+    transform: scale(1.02); /* Leicht hervorgehoben */
+    z-index: 1;
+  }
+
+  .vs-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: #e2e8f0;
+    color: #64748b;
+    font-weight: 800;
+    border-radius: 50%;
+    align-self: center;
+    font-size: 0.875rem;
+  }
+
+  .icon-bad, .icon-good {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .icon-bad { color: #e11d48; }
+  .icon-good { color: #667eea; }
+
+  .comparison-card h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+  }
+
+  .comparison-card p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .vs-badge {
+      display: none; /* Auf Mobile ausblenden, da Reihenfolge klar ist */
+    }
+    
+    .comparison-card.good {
+      transform: none;
+      margin-top: -0.5rem; /* Optisch verbinden */
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .comparison-card.bad {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .why-us-section {
+      padding: 4rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,254 @@
+---
+// --- Internationalisierungs-Setup (i18n) ---
+const content = {
+  de: {
+    teaser: "Freeshard empfohlen bekommen? Hier ist der Grund.",
+    close: "Vergleich schließen",
+    items: [
+      {
+        title: "Deine privaten Chats",
+        bigTech: {
+          label: "Bei den Großen",
+          text: "Deine Nachrichten werden oft analysiert. Drohende Gesetze wie die Chatkontrolle könnten deine Privatsphäre komplett aushebeln. Wenn Dienste wie Signal den Markt verlassen, stehst du ohne Alternative da."
+        },
+        freeshard: {
+          label: "Auf deinem Shard",
+          text: "Du betreibst deinen eigenen Chat-Server (Matrix). Niemand scannt deine Nachrichten. Du bist immun gegen Chatkontrolle und unabhängig von Konzern-Entscheidungen."
+        }
+      },
+      {
+        title: "Deine Fotos & Erinnerungen",
+        bigTech: {
+          label: "Bei den Großen",
+          text: "Deine Fotos werden oft gescannt, um Werbung zu personalisieren oder KI-Modelle zu trainieren. Deine privatesten Momente machen andere reich."
+        },
+        freeshard: {
+          label: "Auf deinem Shard",
+          text: "Deine Fotos gehören nur dir. Sie liegen sicher auf deinem Speicherplatz. Keine Analyse, keine Werbung. Anders als bei den Großen bist du hier der Kunde, nicht das Produkt."
+        }
+      },
+      {
+        title: "Dein digitales Hausrecht",
+        bigTech: {
+          label: "Bei den Großen",
+          text: "Ein Algorithmus entscheidet, ob du bleiben darfst. Ein falscher Verdacht, und dein Konto wird gesperrt – oft ohne Ansprechpartner. Deine Daten sind dann weg."
+        },
+        freeshard: {
+          label: "Auf deinem Shard",
+          text: "Niemand kann dich aussperren. Du hast die Schlüssel. Und wenn du uns verlassen willst, nimmst du deine Daten einfach mit. Du bleibst immer der Chef."
+        }
+      }
+    ]
+  }
+};
+
+const t = content.de;
+---
+
+<section id="reality-check" class="reality-check">
+  <div class="container">
+    <button class="teaser-btn" id="reality-toggle" aria-expanded="false">
+      <span class="teaser-text">{t.teaser}</span>
+      <span class="icon-plus">+</span>
+      <span class="icon-minus" style="display: none;">−</span>
+    </button>
+
+    <div class="comparison-content" id="reality-content" aria-hidden="true">
+      <div class="comparison-grid">
+        {t.items.map(item => (
+          <div class="comparison-row">
+            <h3 class="row-title">{item.title}</h3>
+            <div class="cards-wrapper">
+              <div class="card big-tech">
+                <div class="card-header">
+                  <span class="icon">⚠️</span>
+                  <h4>{item.bigTech.label}</h4>
+                </div>
+                <p>{item.bigTech.text}</p>
+              </div>
+              <div class="card freeshard">
+                <div class="card-header">
+                  <span class="icon">🛡️</span>
+                  <h4>{item.freeshard.label}</h4>
+                </div>
+                <p>{item.freeshard.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="close-wrapper">
+        <button class="close-btn" id="reality-close">{t.close}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggleBtn = document.getElementById('reality-toggle');
+  const closeBtn = document.getElementById('reality-close');
+  const content = document.getElementById('reality-content');
+  const iconPlus = document.querySelector('.icon-plus') as HTMLElement;
+  const iconMinus = document.querySelector('.icon-minus') as HTMLElement;
+
+  function toggleContent() {
+    const isExpanded = toggleBtn?.getAttribute('aria-expanded') === 'true';
+    
+    if (toggleBtn && content && iconPlus && iconMinus) {
+      toggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      content.setAttribute('aria-hidden', isExpanded.toString());
+      
+      if (!isExpanded) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.opacity = "1";
+        content.style.marginTop = "2rem";
+        iconPlus.style.display = "none";
+        iconMinus.style.display = "inline";
+      } else {
+        content.style.maxHeight = "0";
+        content.style.opacity = "0";
+        content.style.marginTop = "0";
+        iconPlus.style.display = "inline";
+        iconMinus.style.display = "none";
+      }
+    }
+  }
+
+  toggleBtn?.addEventListener('click', toggleContent);
+  closeBtn?.addEventListener('click', toggleContent);
+</script>
+
+<style>
+  .reality-check {
+    padding: 2rem 0;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .teaser-btn {
+    width: 100%;
+    background: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .teaser-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-plus, .icon-minus {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .comparison-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    margin-top: 0;
+  }
+
+  .comparison-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .row-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+  }
+
+  .cards-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .card {
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .card.big-tech {
+    background-color: #f9fafb; /* Leichtes Grau */
+    border-left: 4px solid #ef4444; /* Rot */
+  }
+
+  .card.freeshard {
+    background-color: white;
+    border-left: 4px solid #10b981; /* Grün */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-header h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .big-tech .card-header h4 { color: #7f1d1d; }
+  .freeshard .card-header h4 { color: #065f46; }
+
+  .icon { font-size: 1.5rem; }
+
+  .card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .close-wrapper {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .close-btn:hover {
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .cards-wrapper {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .teaser-text {
+      text-align: left;
+      margin-right: 1rem;
+    }
+  }
+</style>

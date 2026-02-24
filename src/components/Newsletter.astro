@@ -60,13 +60,20 @@ const t = content.de;
 
 <style>
   #newsletter {
-    background: var(--brand-gradient);
+    /* Wir nutzen hier den gleichen Verlauf wie im Hero für Konsistenz */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    padding: 6rem 0; /* Mehr Padding oben/unten */
   }
 
-  #newsletter h2,
-  #newsletter .section-description {
+  #newsletter h2 {
     color: white;
+    margin-bottom: 1rem;
+  }
+  
+  #newsletter .section-description {
+    color: rgba(255, 255, 255, 0.9); /* Leicht transparentes Weiß für bessere Lesbarkeit */
+    margin-bottom: 3rem;
   }
 
   .newsletter-form-container {
@@ -78,51 +85,61 @@ const t = content.de;
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.1); /* Leichter Hintergrund für den Container */
+    padding: 0.5rem;
+    border-radius: 0.75rem;
   }
 
   .email-input {
     flex: 1;
     padding: 1rem 1.5rem;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 0.5rem;
     font-size: 1rem;
     outline: none;
+    transition: all 0.3s;
   }
 
   .email-input:focus {
+    border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
   }
 
   .submit-btn {
     padding: 1rem 2rem;
     background-color: white;
-    color: #667eea;
+    color: #667eea; /* Textfarbe passend zum Theme */
     border: none;
     border-radius: 0.5rem;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
+    white-space: nowrap; /* Verhindert Umbruch des Textes */
   }
 
   .submit-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #f8fafc;
   }
 
   .form-message {
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
     min-height: 1.5rem;
+    margin-top: 1rem;
   }
 
   .form-message.success {
-    color: #d1fae5;
+    color: #d1fae5; /* Helles Grün für Erfolg auf dunklem Hintergrund */
   }
 
   @media (max-width: 768px) {
     .newsletter-form {
       flex-direction: column;
+      background: transparent; /* Kein Hintergrund auf Mobile */
+      padding: 0;
     }
 
     .submit-btn {
