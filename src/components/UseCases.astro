@@ -6,62 +6,81 @@ const BASE_URL = import.meta.env.BASE_URL;
 const content = {
   de: {
     sectionTitle: "Deine persönliche Cloud",
-    sectionDescription: "Dein Shard ist deine Mini-Cloud. Wir installieren dir auf Wunsch passende Apps – sicher, privat und nur für dich erreichbar.",
+    sectionDescription: "Entdecke, was alles möglich ist. Wir installieren auf Wunsch diese und weitere Anwendungen für dich – sicher und nur für dich erreichbar.",
+    toggleLabel: "Für Technik-Fans: Was steckt unter der Haube?",
     disclaimer: "Rechtlicher Hinweis: Freeshard ist ein unabhängiger Hosting-Anbieter. Wir stehen in keiner geschäftlichen Verbindung zu den Projekt-Teams von Immich, Paperless-ngx, Vaultwarden oder anderen hier genannten Anwendungen. Es besteht keine Partnerschaft, Unterstützung oder Sponsoring durch diese Projekte. Alle genannten Markennamen und Logos sind Eigentum der jeweiligen Rechteinhaber.",
     useCases: {
       photos: { 
-        icon: "/icons/apps/immich-logo.svg", 
+        simpleIcon: "🖼️",
+        techIcon: "/icons/apps/immich-logo.svg", 
         title: "Private Fotoverwaltung", 
         software: "Immich",
-        description: "Alle deine Fotos und Videos an einem sicheren Ort. Automatisch vom Handy gesichert und einfach mit der Familie geteilt – ganz ohne Google oder Apple." 
+        simpleDescription: "Alle deine Fotos sicher an einem Ort. Automatisch vom Handy gesichert und ganz einfach mit Freunden und Familie geteilt.",
+        techDescription: "Leistungsstarke, lokale Bild-Indizierung und Gesichtserkennung direkt auf deinem Shard. Volle Kontrolle über deine Metadaten."
       },
       documents: { 
-        icon: "/icons/apps/paperless-ngx.svg", 
+        simpleIcon: "📄",
+        techIcon: "/icons/apps/paperless-ngx.svg", 
         title: "Digitales Dokumentenarchiv", 
         software: "Paperless-ngx",
-        description: "Verwandle deinen Papierkram in ein durchsuchbares Archiv. Rechnungen und Verträge an einem Ort finden, statt lange zu suchen." 
+        simpleDescription: "Nie wieder suchen. Scanne Dokumente einfach mit dem Handy. Die automatische Texterkennung findet jede Rechnung in Sekunden – perfekt für die Steuererklärung.",
+        techDescription: "Professionelles Dokumentenmanagement mit Tika OCR. Durchsuchbare PDFs, automatische Tagging-Regeln und Workflow-Automatisierung."
       },
       passwords: { 
-        icon: "/icons/apps/vaultwarden.svg", 
+        simpleIcon: "🔑",
+        techIcon: "/icons/apps/vaultwarden.svg", 
         title: "Sicherer Passwort-Safe", 
         software: "Vaultwarden",
-        description: "Ein Passwort für alles. Speichere all deine Zugangsdaten sicher und zentral, ohne unsichere Notizen zu verwenden." 
+        simpleDescription: "Ein sicherer Tresor für die ganze Familie. Teile WLAN-Passwörter oder Streaming-Zugänge sicher, ohne sie per WhatsApp zu schicken.",
+        techDescription: "Bitwarden-kompatibler Server mit Premium-Features: Organisationen, Policies, feingranulare Rechteverwaltung und Notfallzugriff inklusive."
       },
       recipes: {
-        icon: "/icons/apps/kitchenowl.png", 
+        simpleIcon: "🍲",
+        techIcon: "/icons/apps/kitchenowl.png", 
         title: "Digitale Rezeptsammlung", 
         software: "KitchenOwl",
-        description: "Sammle und organisiere deine Lieblingsrezepte. Erstelle Einkaufslisten und plane deine Mahlzeiten ganz einfach."
+        simpleDescription: "Nie wieder was vergessen. Die gemeinsame Einkaufsliste synchronisiert sich sofort. Importiere Rezepte von Chefkoch & Co. mit einem Klick.",
+        techDescription: "Moderne Rezeptverwaltung mit nativen Apps für iOS und Android. Smarte Parsing-Engine für Importe und automatische Skalierung der Zutaten."
       },
       finances: {
-        icon: "/icons/apps/actual.png", 
+        simpleIcon: "💶",
+        techIcon: "/icons/apps/actual.png", 
         title: "Persönliches Finanz-Cockpit", 
         software: "Actual",
-        description: "Behalte die volle Kontrolle über deine Einnahmen und Ausgaben. Plane Budgets und verstehe, wohin dein Geld fließt."
+        simpleDescription: "Behalte die volle Kontrolle über deine Einnahmen und Ausgaben. Plane Budgets und verstehe, wohin dein Geld fließt.",
+        techDescription: "Lokales Budgeting mit Zero-Knowledge-Verschlüsselung. Synchronisation über alle Geräte, aber die Datenhoheit bleibt bei dir."
       },
       notes: {
-        icon: "/icons/apps/memos.webp", 
+        simpleIcon: "📝",
+        techIcon: "/icons/apps/memos.webp", 
         title: "Schnelle Notizen & Ideen", 
         software: "Memos",
-        description: "Halte Gedanken und Ideen schnell und einfach fest. Dein persönliches, digitales Notizbuch für alles, was dir wichtig ist."
+        simpleDescription: "Halte Gedanken und Ideen schnell und einfach fest. Dein persönliches, digitales Notizbuch für alles, was dir wichtig ist.",
+        techDescription: "Leichtgewichtiger Notiz-Service mit Markdown-Support. Perfekt für schnelle Gedanken, Code-Snippets und To-Do-Listen."
       },
       audiobooks: {
-        icon: "/icons/apps/audiobookshelf.png",
+        simpleIcon: "🎧",
+        techIcon: "/icons/apps/audiobookshelf.png", 
         title: "Eigene Hörbuch-Bibliothek", 
         software: "Audiobookshelf",
-        description: "Verwalte und höre deine Hörbücher und Podcasts auf all deinen Geräten. Dein persönlicher Hörbuch-Streamingdienst."
+        simpleDescription: "Verwalte und höre deine Hörbücher und Podcasts auf all deinen Geräten. Dein persönlicher Hörbuch-Streamingdienst.",
+        techDescription: "Self-hosted Hörbuch-Server mit App-Support. Merkt sich den Fortschritt über Geräte hinweg und unterstützt Podcasts."
       },
       files: {
-        icon: "/icons/apps/filebrowser.svg", 
+        simpleIcon: "📂",
+        techIcon: "/icons/apps/filebrowser.svg", 
         title: "Sicherer Datei-Austausch", 
         software: "Filebrowser",
-        description: "Deine persönliche Alternative zu Dropbox. Greife von überall auf deine Dateien zu und teile sie sicher mit Freunden und Familie."
+        simpleDescription: "Deine persönliche Alternative zu Dropbox. Greife von überall auf deine Dateien zu und teile sie sicher mit Freunden und Familie.",
+        techDescription: "Webbasierter Dateimanager. Erlaubt Uploads, Downloads und Sharing direkt über den Browser, ohne Client-Installation."
       },
       more: {
-        icon: "/icons/apps/opensource.svg", 
+        simpleIcon: "✨",
+        techIcon: "/icons/apps/opensource.svg", 
         title: "Und vieles mehr...", 
         software: "Open Source",
-        description: "Die Welt der selbst gehosteten Anwendungen ist riesig. Wir finden und installieren die passende Lösung für deine individuellen Bedürfnisse."
+        simpleDescription: "Die Welt der selbst gehosteten Anwendungen ist riesig. Wir finden und installieren die passende Lösung für deine individuellen Bedürfnisse.",
+        techDescription: "Dein Shard basiert auf Docker. Wir können fast jede containerisierte Anwendung für dich deployen und warten."
       }
     }
   }
@@ -71,16 +90,12 @@ const t = content.de;
 const useCasesList = Object.values(t.useCases);
 
 // Hilfsfunktion um den korrekten Pfad zu generieren
-// Wenn BASE_URL '/' ist, müssen wir aufpassen, keine doppelten Slashes zu erzeugen
 const getIconPath = (iconPath) => {
   if (BASE_URL === '/' || BASE_URL === '') {
     return iconPath;
   }
-  // Entferne führenden Slash vom Icon-Pfad, falls vorhanden, um Doppel-Slashes zu vermeiden
   const cleanIconPath = iconPath.startsWith('/') ? iconPath.substring(1) : iconPath;
-  // Stelle sicher, dass BASE_URL mit Slash endet oder füge ihn hinzu
   const cleanBaseUrl = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`;
-  
   return `${cleanBaseUrl}${cleanIconPath}`;
 };
 ---
@@ -90,28 +105,74 @@ const getIconPath = (iconPath) => {
     <h2>{t.sectionTitle}</h2>
     <p class="section-description">{t.sectionDescription}</p>
     
-    <div class="use-cases-grid">
+    <div class="tech-toggle-wrapper">
+      <label class="switch">
+        <input type="checkbox" id="tech-toggle">
+        <span class="switch-slider"></span>
+      </label>
+      <span class="toggle-label">{t.toggleLabel}</span>
+    </div>
+    
+    <div class="use-cases-grid" id="use-cases-grid">
       {useCasesList.map(useCase => (
         <div class="use-case-card">
           <div class="card-header">
-            <div class="use-case-icon">
-              <img src={getIconPath(useCase.icon)} alt={useCase.software} loading="lazy" />
+            <div class="icon-container">
+              <div class="simple-icon">{useCase.simpleIcon}</div>
+              <div class="tech-icon">
+                <img src={getIconPath(useCase.techIcon)} alt={useCase.software} loading="lazy" />
+              </div>
             </div>
             {useCase.software && <div class="software-badge">{useCase.software}</div>}
           </div>
           <h3>{useCase.title}</h3>
-          <p>{useCase.description}</p>
+          <div class="description-container">
+            <p class="simple-text">{useCase.simpleDescription}</p>
+            <p class="tech-text">{useCase.techDescription}</p>
+          </div>
         </div>
       ))}
     </div>
 
-    <div class="disclaimer-box">
+    <div class="disclaimer-box" id="tech-disclaimer">
       <p>{t.disclaimer}</p>
     </div>
   </div>
 </section>
 
+<script>
+  const techToggle = document.getElementById('tech-toggle');
+  const grid = document.getElementById('use-cases-grid');
+  const disclaimer = document.getElementById('tech-disclaimer');
+
+  techToggle?.addEventListener('change', () => {
+    const isTech = (techToggle as HTMLInputElement).checked;
+    
+    if (isTech) {
+      grid?.classList.add('show-tech');
+      disclaimer?.classList.add('visible');
+    } else {
+      grid?.classList.remove('show-tech');
+      disclaimer?.classList.remove('visible');
+    }
+  });
+</script>
+
 <style>
+  .tech-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .toggle-label {
+    margin-left: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
   .use-cases-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -141,21 +202,45 @@ const getIconPath = (iconPath) => {
   .card-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 1.5rem;
+    height: 64px;
   }
 
-  .use-case-icon {
+  .icon-container {
+    position: relative;
     width: 64px;
     height: 64px;
-    flex-shrink: 0;
+  }
+
+  .simple-icon, .tech-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .simple-icon {
+    font-size: 3.5rem;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .tech-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
   }
   
-  .use-case-icon img {
+  .tech-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 12px; /* Leicht abgerundete Ecken für die Icons */
+    border-radius: 12px;
   }
 
   .software-badge {
@@ -168,7 +253,10 @@ const getIconPath = (iconPath) => {
     border: 1px solid var(--border-color);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-left: 1rem;
+    margin-left: auto;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
   }
 
   .use-case-card h3 {
@@ -177,19 +265,89 @@ const getIconPath = (iconPath) => {
     font-size: 1.25rem;
   }
 
-  .use-case-card p {
+  .description-container {
+    position: relative;
+    /* Wir brauchen hier keine feste Höhe, da wir die Elemente absolut positionieren und überblenden */
+  }
+
+  .simple-text, .tech-text {
     color: var(--text-light);
     line-height: 1.6;
     font-size: 0.95rem;
-    flex-grow: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .simple-text {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative; /* Nimmt Platz ein */
+  }
+
+  .tech-text {
+    opacity: 0;
+    transform: translateY(10px);
+    position: absolute; /* Liegt darüber */
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* Klicks gehen durch, wenn unsichtbar */
+  }
+
+  /* Tech-Mode Styles */
+  .use-cases-grid.show-tech .simple-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(10deg);
+  }
+
+  .use-cases-grid.show-tech .tech-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  .use-cases-grid.show-tech .software-badge {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .use-cases-grid.show-tech .simple-text {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  .use-cases-grid.show-tech .tech-text {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    position: relative; /* Nimmt jetzt Platz ein */
+  }
+  
+  /* Trick: Wenn Tech aktiv ist, muss Simple absolut werden, damit Tech Platz nimmt */
+  .use-cases-grid.show-tech .simple-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 
   .disclaimer-box {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding-top: 2rem;
     border-top: 1px solid var(--border-color);
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .disclaimer-box.visible {
+    max-height: 200px;
+    opacity: 1;
+    padding-top: 2rem;
+    margin-top: 2rem;
   }
 
   .disclaimer-box p {
@@ -198,4 +356,13 @@ const getIconPath = (iconPath) => {
     opacity: 0.8;
     line-height: 1.5;
   }
+
+  /* Switch Styles */
+  .switch { position: relative; display: inline-block; width: 50px; height: 28px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+  .switch-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+  input:checked + .switch-slider { background-color: var(--primary-color); }
+  input:focus + .switch-slider { box-shadow: 0 0 1px var(--primary-color); }
+  input:checked + .switch-slider:before { transform: translateX(22px); }
 </style>
