@@ -1,44 +1,14 @@
 ---
-// --- Internationalisierungs-Setup (i18n) ---
-// Alle Texte sind hier an einer Stelle gebündelt.
-const content = {
-  de: {
-    pageTitle: "Dein Wunsch-Paket",
-    // Wir strukturieren die Beschreibung neu, um die Fakten klar zu gliedern
-    info: {
-      performanceTitle: "Was ist der Unterschied?",
-      performanceText: "Unsere Pakete unterscheiden sich durch Speicherplatz und Geschwindigkeit. In den günstigeren Paketen konzentriert sich dein System immer auf eine Aufgabe: Wenn du z.B. von der Fotoverwaltung zu deinen Dokumenten wechselst, muss das eine kurz pausieren, damit das andere starten kann. In den stärkeren Paketen läuft alles gleichzeitig – für einen sofortigen Wechsel ohne Wartezeit.",
-      flexibilityTitle: "Bleib flexibel",
-      flexibilityText: "Du kannst die Leistung deines Pakets monatlich anpassen – sowohl nach oben als auch nach unten. Lediglich beim Speicherplatz geht es technisch bedingt nur nach oben. Der Wechsel dauert nur ca. eine Minute, in der dein System kurz neu startet.",
-      trialText: "Wir feilen gerade noch an den finalen, fairen Preisen. Konfiguriere dir hier schon mal deinen idealen Shard!"
-    },
-    presetsTitle: "Unsere Empfehlungen",
-    presets: {
-      starter: { name: "Einsteiger", description: "Für den Start. Deine wichtigsten Dokumente und Passwörter sicher an einem Ort." },
-      collector: { name: "Sammler", description: "Für deine Fotos. Genug Platz für all deine Erinnerungen und flüssiges Durchblättern." },
-      family: { name: "Familie", description: "Für alle zu Hause. Jeder hat seinen eigenen Bereich für Fotos, Chats und Dateien." },
-      enthusiast: { name: "Enthusiast", description: "Keine Grenzen. Für riesige Mediensammlungen, viele Apps und maximale Geschwindigkeit." }
-    },
-    toggleLabel: "Für Technik-Fans: Details anpassen",
-    calculator: {
-      vmLabel: "Leistung (vCPUs)",
-      diskLabel: "Speicherplatz (GB)",
-      vmCostLabel: "Kosten Leistung:",
-      diskCostLabel: "Kosten Speicher:"
-    },
-    summary: {
-      totalLabel: "Monatlicher Preis:",
-      pricePlaceholder: "Bald verfügbar",
-      ctaButton: "Benachrichtigung beim Start"
-    },
-    locale: 'de-DE',
-    currency: 'EUR',
-    priceSuffix: '/Monat'
-  }
-};
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
 
-// Aktuelle Sprache auswählen
-const t = content.de;
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.pricing;
 ---
 
 <section id="pricing">

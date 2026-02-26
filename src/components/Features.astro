@@ -1,46 +1,15 @@
 ---
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    sectionTitle: "Deine Vorteile",
-    sectionDescription: "Weniger Reibung, mehr Kontrolle. Dein Shard ist dein digitales Zentrum.",
-    features: {
-      sovereignty: {
-        icon: "🛡️",
-        title: "Digitale Souveränität",
-        description: "Deine Daten, deine Regeln. Keine Plattform, die mitliest oder dich bindet."
-      },
-      identity: {
-        icon: "🧭",
-        title: "Eine Identität statt vieler",
-        description: "Dein Shard ist dein Zugang. Keine Passwortflut, keine Konto-Silos."
-      },
-      friction: {
-        icon: "⚡",
-        title: "Keine Reibung",
-        description: "Backups, Updates und Sicherheit laufen automatisch im Hintergrund."
-      },
-      device: {
-        icon: "💠",
-        title: "Ein Ort, alle Geräte",
-        description: "Installiere Apps einmal, nutze sie überall. Kein Sync, kein Export."
-      },
-      filesystem: {
-        icon: "🗂️",
-        title: "Dateien gehören dir",
-        description: "Ein echtes Dateisystem statt App-Silos. Daten bleiben bei dir."
-      },
-      apps: {
-        icon: "🧩",
-        title: "Apps ohne Aufpreis",
-        description: "Alle Apps sind kostenlos. Du zahlst nur für deinen Shard."
-      }
-    }
-  }
-};
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
 
-const t = content.de;
-const featuresList = Object.values(t.features);
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.features;
+const featuresList = Object.values(t.items);
 ---
 
 <section id="features">

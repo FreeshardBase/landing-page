@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { languages } from '../../i18n/ui';
+import { de } from '../../i18n/de';
+import { en } from '../../i18n/en';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const content = lang === 'en' ? en : de;
+const t = content.imprint;
+---
+
+<Layout title={t.title} lang={lang}>
+  <section class="legal-page">
+    <div class="container">
+      <h1>{t.pageTitle}</h1>
+      
+      <div class="imprint-details">
+        <h2>{t.contactLabel}</h2>
+        <p set:html={t.address} />
+
+        <h3>{t.ceoLabel}</h3>
+        <p>{t.ceoName}</p>
+        
+        <h3>{t.contactInfoLabel}</h3>
+        <p>{t.contactInfo}</p>
+        
+        <h3>{t.registerLabel}</h3>
+        <p set:html={t.registerInfo} />
+
+        <h3>{t.vatLabel}</h3>
+        <p set:html={t.vatInfo} />
+
+        <h3>{t.responsibleLabel}</h3>
+        <p set:html={t.responsibleInfo} />
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 4rem 0;
+    min-height: 60vh;
+  }
+  .legal-page h1 {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+  .imprint-details {
+    margin-top: 1rem;
+  }
+  .imprint-details h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  .imprint-details h3 {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  .imprint-details p {
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+</style>

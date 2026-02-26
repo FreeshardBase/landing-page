@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { languages } from '../../i18n/ui';
+import { de } from '../../i18n/de';
+import { en } from '../../i18n/en';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const content = lang === 'en' ? en : de;
+const t = content.contact;
+---
+
+<Layout title={t.title} lang={lang}>
+  <section class="contact-page">
+    <div class="container">
+      <h1>{t.pageTitle}</h1>
+      <p class="section-description">{t.description}</p>
+      
+      <div class="form-container">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">{t.form.name}</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">{t.form.email}</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">{t.form.message}</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">{t.form.button}</button>
+        </form>
+        <p id="form-message" class="form-message"></p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ t }}>
+  document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const messageEl = document.getElementById('form-message');
+
+    // Hier würde normalerweise die Logik zum Senden des Formulars stehen.
+    // Wir simulieren hier nur den Erfolg.
+    if (messageEl) {
+      messageEl.textContent = t.form.successMessage;
+      messageEl.classList.add('success');
+      form.reset();
+
+      setTimeout(() => {
+        messageEl.textContent = '';
+        messageEl.classList.remove('success');
+      }, 6000);
+    }
+  });
+</script>
+
+<style>
+  .contact-page {
+    padding: 4rem 0;
+  }
+  .contact-page h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .contact-page .section-description {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+  }
+  .form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  }
+  .btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+  }
+  .form-message {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-weight: 500;
+    min-height: 1.5rem;
+  }
+  .form-message.success {
+    color: #16a34a;
+  }
+</style>

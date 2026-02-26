@@ -1,93 +1,18 @@
 ---
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.useCases;
+const useCasesList = Object.values(t.items);
+
 // Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
 const BASE_URL = import.meta.env.BASE_URL;
-
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    sectionTitle: "Deine persönliche Cloud",
-    sectionDescription: "Entdecke, was alles möglich ist. Wir installieren auf Wunsch diese und weitere Anwendungen für dich – sicher und nur für dich erreichbar.",
-    toggleLabel: "Für Technik-Fans: Was steckt unter der Haube?",
-    disclaimer: "Rechtlicher Hinweis: Freeshard ist ein unabhängiger Hosting-Anbieter. Wir stehen in keiner geschäftlichen Verbindung zu den Projekt-Teams von Immich, Paperless-ngx, Vaultwarden oder anderen hier genannten Anwendungen. Es besteht keine Partnerschaft, Unterstützung oder Sponsoring durch diese Projekte. Alle genannten Markennamen und Logos sind Eigentum der jeweiligen Rechteinhaber.",
-    useCases: {
-      photos: { 
-        simpleIcon: "🖼️",
-        techIcon: "/icons/apps/immich-logo.svg", 
-        title: "Private Fotoverwaltung", 
-        software: "Immich",
-        simpleDescription: "Alle deine Fotos sicher an einem Ort. Automatisch vom Handy gesichert und ganz einfach mit Freunden und Familie geteilt.",
-        techDescription: "Leistungsstarke, lokale Bild-Indizierung und Gesichtserkennung direkt auf deinem Shard. Volle Kontrolle über deine Metadaten."
-      },
-      documents: { 
-        simpleIcon: "📄",
-        techIcon: "/icons/apps/paperless-ngx.svg", 
-        title: "Digitales Dokumentenarchiv", 
-        software: "Paperless-ngx",
-        simpleDescription: "Nie wieder suchen. Scanne Dokumente einfach mit dem Handy. Die automatische Texterkennung findet jede Rechnung in Sekunden – perfekt für die Steuererklärung.",
-        techDescription: "Professionelles Dokumentenmanagement mit Tika OCR. Durchsuchbare PDFs, automatische Tagging-Regeln und Workflow-Automatisierung."
-      },
-      passwords: { 
-        simpleIcon: "🔑",
-        techIcon: "/icons/apps/vaultwarden.svg", 
-        title: "Sicherer Passwort-Safe", 
-        software: "Vaultwarden",
-        simpleDescription: "Ein sicherer Tresor für die ganze Familie. Teile WLAN-Passwörter oder Streaming-Zugänge sicher, ohne sie per WhatsApp zu schicken.",
-        techDescription: "Bitwarden-kompatibler Server mit Premium-Features: Organisationen, Policies, feingranulare Rechteverwaltung und Notfallzugriff inklusive."
-      },
-      recipes: {
-        simpleIcon: "🍲",
-        techIcon: "/icons/apps/kitchenowl.png", 
-        title: "Digitale Rezeptsammlung", 
-        software: "KitchenOwl",
-        simpleDescription: "Nie wieder was vergessen. Die gemeinsame Einkaufsliste synchronisiert sich sofort. Importiere Rezepte von Chefkoch & Co. mit einem Klick.",
-        techDescription: "Moderne Rezeptverwaltung mit nativen Apps für iOS und Android. Smarte Parsing-Engine für Importe und automatische Skalierung der Zutaten."
-      },
-      finances: {
-        simpleIcon: "💶",
-        techIcon: "/icons/apps/actual.png", 
-        title: "Persönliches Finanz-Cockpit", 
-        software: "Actual",
-        simpleDescription: "Behalte die volle Kontrolle über deine Einnahmen und Ausgaben. Plane Budgets und verstehe, wohin dein Geld fließt.",
-        techDescription: "Lokales Budgeting mit Zero-Knowledge-Verschlüsselung. Synchronisation über alle Geräte, aber die Datenhoheit bleibt bei dir."
-      },
-      notes: {
-        simpleIcon: "📝",
-        techIcon: "/icons/apps/memos.webp", 
-        title: "Schnelle Notizen & Ideen", 
-        software: "Memos",
-        simpleDescription: "Halte Gedanken und Ideen schnell und einfach fest. Dein persönliches, digitales Notizbuch für alles, was dir wichtig ist.",
-        techDescription: "Leichtgewichtiger Notiz-Service mit Markdown-Support. Perfekt für schnelle Gedanken, Code-Snippets und To-Do-Listen."
-      },
-      audiobooks: {
-        simpleIcon: "🎧",
-        techIcon: "/icons/apps/audiobookshelf.png", 
-        title: "Eigene Hörbuch-Bibliothek", 
-        software: "Audiobookshelf",
-        simpleDescription: "Verwalte und höre deine Hörbücher und Podcasts auf all deinen Geräten. Dein persönlicher Hörbuch-Streamingdienst.",
-        techDescription: "Self-hosted Hörbuch-Server mit App-Support. Merkt sich den Fortschritt über Geräte hinweg und unterstützt Podcasts."
-      },
-      files: {
-        simpleIcon: "📂",
-        techIcon: "/icons/apps/filebrowser.svg", 
-        title: "Sicherer Datei-Austausch", 
-        software: "Filebrowser",
-        simpleDescription: "Deine persönliche Alternative zu Dropbox. Greife von überall auf deine Dateien zu und teile sie sicher mit Freunden und Familie.",
-        techDescription: "Webbasierter Dateimanager. Erlaubt Uploads, Downloads und Sharing direkt über den Browser, ohne Client-Installation."
-      },
-      more: {
-        simpleIcon: "✨",
-        techIcon: "/icons/apps/opensource.svg", 
-        title: "Und vieles mehr...", 
-        software: "Open Source",
-        simpleDescription: "Die Welt der selbst gehosteten Anwendungen ist riesig. Wir finden und installieren die passende Lösung für deine individuellen Bedürfnisse.",
-        techDescription: "Dein Shard basiert auf Docker. Wir können fast jede containerisierte Anwendung für dich deployen und warten."
-      }
-    }
-  }
-};
-
-const t = content.de;
-const useCasesList = Object.values(t.useCases);
 
 // Hilfsfunktion um den korrekten Pfad zu generieren
 const getIconPath = (iconPath) => {
@@ -98,6 +23,26 @@ const getIconPath = (iconPath) => {
   const cleanBaseUrl = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`;
   return `${cleanBaseUrl}${cleanIconPath}`;
 };
+
+// Wir müssen die Icons hier manuell mappen, da sie nicht in den Übersetzungsdateien stehen sollten (technische Pfade)
+const icons = {
+  photos: { simple: "🖼️", tech: "/icons/apps/immich-logo.svg", software: "Immich" },
+  documents: { simple: "📄", tech: "/icons/apps/paperless-ngx.svg", software: "Paperless-ngx" },
+  passwords: { simple: "🔑", tech: "/icons/apps/vaultwarden.svg", software: "Vaultwarden" },
+  recipes: { simple: "🍲", tech: "/icons/apps/kitchenowl.png", software: "KitchenOwl" },
+  finances: { simple: "💶", tech: "/icons/apps/actual.png", software: "Actual" },
+  notes: { simple: "📝", tech: "/icons/apps/memos.webp", software: "Memos" },
+  audiobooks: { simple: "🎧", tech: "/icons/apps/audiobookshelf.png", software: "Audiobookshelf" },
+  files: { simple: "📂", tech: "/icons/apps/filebrowser.svg", software: "Filebrowser" },
+  more: { simple: "✨", tech: "/icons/apps/opensource.svg", software: "Open Source" }
+};
+
+// Wir mappen die übersetzten Texte auf die Icons
+const itemsWithIcons = Object.keys(t.items).map(key => {
+  const item = t.items[key as keyof typeof t.items];
+  const iconData = icons[key as keyof typeof icons];
+  return { ...item, ...iconData };
+});
 ---
 
 <section id="use-cases">
@@ -114,13 +59,13 @@ const getIconPath = (iconPath) => {
     </div>
     
     <div class="use-cases-grid" id="use-cases-grid">
-      {useCasesList.map(useCase => (
+      {itemsWithIcons.map(useCase => (
         <div class="use-case-card">
           <div class="card-header">
             <div class="icon-container">
-              <div class="simple-icon">{useCase.simpleIcon}</div>
+              <div class="simple-icon">{useCase.simple}</div>
               <div class="tech-icon">
-                <img src={getIconPath(useCase.techIcon)} alt={useCase.software} loading="lazy" />
+                <img src={getIconPath(useCase.tech)} alt={useCase.software} loading="lazy" />
               </div>
             </div>
             {useCase.software && <div class="software-badge">{useCase.software}</div>}
@@ -267,7 +212,6 @@ const getIconPath = (iconPath) => {
 
   .description-container {
     position: relative;
-    /* Wir brauchen hier keine feste Höhe, da wir die Elemente absolut positionieren und überblenden */
   }
 
   .simple-text, .tech-text {
@@ -280,17 +224,17 @@ const getIconPath = (iconPath) => {
   .simple-text {
     opacity: 1;
     transform: translateY(0);
-    position: relative; /* Nimmt Platz ein */
+    position: relative;
   }
 
   .tech-text {
     opacity: 0;
     transform: translateY(10px);
-    position: absolute; /* Liegt darüber */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    pointer-events: none; /* Klicks gehen durch, wenn unsichtbar */
+    pointer-events: none;
   }
 
   /* Tech-Mode Styles */
@@ -319,10 +263,9 @@ const getIconPath = (iconPath) => {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-    position: relative; /* Nimmt jetzt Platz ein */
+    position: relative;
   }
   
-  /* Trick: Wenn Tech aktiv ist, muss Simple absolut werden, damit Tech Platz nimmt */
   .use-cases-grid.show-tech .simple-text {
     position: absolute;
     top: 0;

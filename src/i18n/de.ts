@@ -1,0 +1,374 @@
+export const de = {
+  nav: {
+    features: "Vorteile",
+    screenshots: "Einblicke",
+    pricing: "Preise",
+    motivation: "Mission",
+    contact: "Kontakt"
+  },
+  footer: {
+    copyright: "© 2026 Freeshard. Alle Rechte vorbehalten.",
+    imprint: "Impressum",
+    privacy: "Datenschutz",
+    faq: "Häufige Fragen (FAQ)"
+  },
+  hero: {
+    titleLine1: "Dein Shard.",
+    titleLine2: "Deine Mini-Cloud. Deine Souveränität.",
+    description: "Ein Shard ist deine persönliche Mini-Cloud von Freeshard. Ein Ort für Apps, Daten und Identität. Keine Passwörter, kein Sync, digitale Souveränität ohne Technikstress.",
+    ctaPrimary: "Shard vormerken",
+    ctaSecondary: "Mehr erfahren"
+  },
+  realityCheck: {
+    teaser: "Freeshard empfohlen bekommen? Hier ist der Grund.",
+    close: "Vergleich schließen",
+    items: [
+      {
+        title: "Deine privaten Chats",
+        bigTechLabel: "Bei den Großen",
+        bigTechText: "Deine Nachrichten werden oft analysiert. Drohende Gesetze wie die Chatkontrolle könnten deine Privatsphäre komplett aushebeln. Wenn Dienste wie Signal den Markt verlassen, stehst du ohne Alternative da.",
+        freeshardLabel: "Auf deinem Shard",
+        freeshardText: "Du betreibst deinen eigenen Chat-Server (Matrix). Niemand scannt deine Nachrichten. Du bist immun gegen Chatkontrolle und unabhängig von Konzern-Entscheidungen."
+      },
+      {
+        title: "Deine Fotos & Erinnerungen",
+        bigTechLabel: "Bei den Großen",
+        bigTechText: "Deine Fotos werden oft gescannt, um Werbung zu personalisieren oder KI-Modelle zu trainieren. Deine privatesten Momente machen andere reich.",
+        freeshardLabel: "Auf deinem Shard",
+        freeshardText: "Deine Fotos gehören nur dir. Sie liegen sicher auf deinem Speicherplatz. Keine Analyse, keine Werbung. Anders als bei den Großen bist du hier der Kunde, nicht das Produkt."
+      },
+      {
+        title: "Dein digitales Hausrecht",
+        bigTechLabel: "Bei den Großen",
+        bigTechText: "Ein Algorithmus entscheidet, ob du bleiben darfst. Ein falscher Verdacht, und dein Konto wird gesperrt – oft ohne Ansprechpartner. Deine Daten sind dann weg.",
+        freeshardLabel: "Auf deinem Shard",
+        freeshardText: "Niemand kann dich aussperren. Du hast die Schlüssel. Und wenn du uns verlassen willst, nimmst du deine Daten einfach mit. Du bleibst immer der Chef."
+      }
+    ]
+  },
+  useCases: {
+    sectionTitle: "Deine persönliche Cloud",
+    sectionDescription: "Dein Shard ist deine Mini-Cloud. Wir installieren dir auf Wunsch passende Apps – sicher, privat und nur für dich erreichbar.",
+    toggleLabel: "Für Technik-Fans: Was steckt unter der Haube?",
+    disclaimer: "Rechtlicher Hinweis: Freeshard ist ein unabhängiger Hosting-Anbieter. Wir stehen in keiner geschäftlichen Verbindung zu den Projekt-Teams von Immich, Paperless-ngx, Vaultwarden oder anderen hier genannten Anwendungen. Es besteht keine Partnerschaft, Unterstützung oder Sponsoring durch diese Projekte. Alle genannten Markennamen und Logos sind Eigentum der jeweiligen Rechteinhaber.",
+    items: {
+      photos: { 
+        title: "Private Fotoverwaltung", 
+        simpleDescription: "Alle deine Fotos und Videos an einem sicheren Ort. Automatisch vom Handy gesichert und einfach mit der Familie geteilt – ganz ohne Google oder Apple.",
+        techDescription: "Leistungsstarke, lokale Bild-Indizierung und Gesichtserkennung direkt auf deinem Shard. Volle Kontrolle über deine Metadaten."
+      },
+      documents: { 
+        title: "Digitales Dokumentenarchiv", 
+        simpleDescription: "Nie wieder suchen. Scanne Dokumente einfach mit dem Handy. Die automatische Texterkennung findet jede Rechnung in Sekunden – perfekt für die Steuererklärung.",
+        techDescription: "Professionelles Dokumentenmanagement mit Tika OCR. Durchsuchbare PDFs, automatische Tagging-Regeln und Workflow-Automatisierung."
+      },
+      passwords: { 
+        title: "Sicherer Passwort-Safe", 
+        simpleDescription: "Ein sicherer Tresor für die ganze Familie. Teile WLAN-Passwörter oder Streaming-Zugänge sicher, ohne sie per WhatsApp zu schicken.",
+        techDescription: "Bitwarden-kompatibler Server mit Premium-Features: Organisationen, Policies, feingranulare Rechteverwaltung und Notfallzugriff inklusive."
+      },
+      recipes: {
+        title: "Digitale Rezeptsammlung", 
+        simpleDescription: "Nie wieder was vergessen. Die gemeinsame Einkaufsliste synchronisiert sich sofort. Importiere Rezepte von Chefkoch & Co. mit einem Klick.",
+        techDescription: "Moderne Rezeptverwaltung mit nativen Apps für iOS und Android. Smarte Parsing-Engine für Importe und automatische Skalierung der Zutaten."
+      },
+      finances: {
+        title: "Persönliches Finanz-Cockpit", 
+        simpleDescription: "Behalte die volle Kontrolle über deine Einnahmen und Ausgaben. Plane Budgets und verstehe, wohin dein Geld fließt.",
+        techDescription: "Lokales Budgeting mit Zero-Knowledge-Verschlüsselung. Synchronisation über alle Geräte, aber die Datenhoheit bleibt bei dir."
+      },
+      notes: {
+        title: "Schnelle Notizen & Ideen", 
+        simpleDescription: "Halte Gedanken und Ideen schnell und einfach fest. Dein persönliches, digitales Notizbuch für alles, was dir wichtig ist.",
+        techDescription: "Leichtgewichtiger Notiz-Service mit Markdown-Support. Perfekt für schnelle Gedanken, Code-Snippets und To-Do-Listen."
+      },
+      audiobooks: {
+        title: "Eigene Hörbuch-Bibliothek", 
+        simpleDescription: "Verwalte und höre deine Hörbücher und Podcasts auf all deinen Geräten. Dein persönlicher Hörbuch-Streamingdienst.",
+        techDescription: "Self-hosted Hörbuch-Server mit App-Support. Merkt sich den Fortschritt über Geräte hinweg und unterstützt Podcasts."
+      },
+      files: {
+        title: "Sicherer Datei-Austausch", 
+        simpleDescription: "Deine persönliche Alternative zu Dropbox. Greife von überall auf deine Dateien zu und teile sie sicher mit Freunden und Familie.",
+        techDescription: "Webbasierter Dateimanager. Erlaubt Uploads, Downloads und Sharing direkt über den Browser, ohne Client-Installation."
+      },
+      more: {
+        title: "Und vieles mehr...", 
+        simpleDescription: "Die Welt der selbst gehosteten Anwendungen ist riesig. Wir finden und installieren die passende Lösung für deine individuellen Bedürfnisse.",
+        techDescription: "Dein Shard basiert auf Docker. Wir können fast jede containerisierte Anwendung für dich deployen und warten."
+      }
+    }
+  },
+  features: {
+    sectionTitle: "Deine Vorteile",
+    sectionDescription: "Weniger Reibung, mehr Kontrolle. Dein Shard ist dein digitales Zentrum.",
+    items: {
+      independence: { 
+        title: "Digitale Souveränität", 
+        description: "Deine Daten, deine Regeln. Keine Plattform, die mitliest oder dich bindet." 
+      },
+      managed: { 
+        title: "Eine Identität statt vieler", 
+        description: "Dein Shard ist dein Zugang. Keine Passwortflut, keine Konto-Silos." 
+      },
+      privacy: { 
+        title: "Keine Reibung", 
+        description: "Backups, Updates und Sicherheit laufen automatisch im Hintergrund." 
+      },
+      central: { 
+        title: "Ein Ort, alle Geräte", 
+        description: "Installiere Apps einmal, nutze sie überall. Kein Sync, kein Export." 
+      },
+      fair: { 
+        title: "Dateien gehören dir", 
+        description: "Ein echtes Dateisystem statt App-Silos. Daten bleiben bei dir." 
+      },
+      support: { 
+        title: "Apps ohne Aufpreis", 
+        description: "Alle Apps sind kostenlos. Du zahlst nur für deinen Shard." 
+      }
+    }
+  },
+  screenshots: {
+    sectionTitle: "So einfach ist dein Shard",
+    sectionDescription: "Dein Shard ist deine persönliche Mini-Cloud. Ein Ort für Apps, Daten und Identität.",
+    cards: {
+      portal: {
+        placeholder: "Screenshot: Dashboard",
+        title: "Alles an einem Ort",
+        description: "Deine Apps, Dateien und Kontakte in einer klaren Übersicht."
+      },
+      mobile: {
+        placeholder: "Screenshot: Mobil",
+        title: "Auf jedem Gerät",
+        description: "Dein Shard läuft überall gleich. Kein Sync, keine App-Silos."
+      },
+      peace: {
+        placeholder: "Screenshot: Sicherheit",
+        title: "Souverän und automatisch",
+        description: "Backups und Updates laufen im Hintergrund. Du musst nichts tun."
+      }
+    }
+  },
+  pricing: {
+    pageTitle: "Preisrechner",
+    info: {
+      performanceTitle: "Was ist der Unterschied?",
+      performanceText: "Unsere Pakete unterscheiden sich durch Speicherplatz und Geschwindigkeit. In den günstigeren Paketen konzentriert sich dein System immer auf eine Aufgabe: Wenn du z.B. von der Fotoverwaltung zu deinen Dokumenten wechselst, muss das eine kurz pausieren, damit das andere starten kann. Das spart Kosten, dauert aber einen kleinen Moment. In den stärkeren Paketen läuft alles gleichzeitig – für einen sofortigen Wechsel ohne Wartezeit.",
+      flexibilityTitle: "Bleib flexibel",
+      flexibilityText: "Du kannst die Leistung deines Pakets monatlich anpassen – sowohl nach oben als auch nach unten. Lediglich beim Speicherplatz geht es technisch bedingt nur nach oben. Der Wechsel dauert nur ca. eine Minute, in der dein System kurz neu startet.",
+      trialText: "Tipp: Du bist unsicher? Einmal im Monat kannst du kostenlos für eine Stunde ein stärkeres Paket ausprobieren."
+    },
+    presetsTitle: "Unsere Empfehlungen",
+    presets: {
+      starter: { name: "Basis", description: "Perfekt für den Einstieg. Ideal, um deine Fotos und Dokumente sicher zu verwalten." },
+      collector: { name: "Standard", description: "Der Allrounder. Genug Leistung, damit deine Apps flüssig laufen und Spaß machen." },
+      family: { name: "Profi", description: "Für Familien & Vielnutzer. Wenn mehrere Personen gleichzeitig auf den Shard zugreifen." },
+      enthusiast: { name: "Experte", description: "Maximale Freiheit. Für große Mediensammlungen und intensive Nutzung ohne Kompromisse." }
+    },
+    toggleLabel: "Für Technik-Fans: Details anpassen",
+    calculator: {
+      vmLabel: "Leistung (vCPUs)",
+      diskLabel: "Speicherplatz (GB)",
+      vmCostLabel: "Kosten Leistung:",
+      diskCostLabel: "Kosten Speicher:"
+    },
+    summary: {
+      totalLabel: "Gesamtkosten pro Monat:",
+      pricePlaceholder: "Bald verfügbar",
+      ctaButton: "Benachrichtigung beim Start"
+    },
+    priceSuffix: "/Monat"
+  },
+  motivation: {
+    sectionTitle: "Unsere Mission",
+    sectionDescription: "Digitale Souveränität, klar und alltagstauglich.",
+    story: {
+      title: "Warum Freeshard",
+      paragraphs: [
+        "Wir wollten eine digitale Heimat, die nicht von Plattformen abhängt. Ein Shard gehört dir und bleibt dein Zentrum.",
+        "Digitale Souveränität ist gerade ein Trend, für uns ist es die Grundlage. Wir machen sie praktisch: ohne Technikstress und ohne Datensilos.",
+        "Transparenz gehört dazu. Unser Code ist <a href='/de/faq#fair-source'>Fair Source</a> und dein Shard bleibt portabel, wenn du ihn mitnehmen willst."
+      ]
+    },
+    values: {
+      location: { value: "EU", label: "Server-Standort", link: "/faq#data-location" },
+      code: { value: "Fair", label: "Fair Source Code", link: "/faq#fair-source" },
+      data: { value: "Deins", label: "Voller Daten-Export", link: "/faq#export" },
+      privacy: { value: "Privat", label: "Kein Tracking", link: "/faq#privacy" }
+    }
+  },
+  newsletter: {
+    sectionTitle: "Auf dem Laufenden bleiben",
+    sectionDescription: "Wenn dich digitale Souveränität interessiert, begleite uns. Wir teilen Fortschritte und neue Apps ohne Spam.",
+    form: {
+      placeholder: "Deine E-Mail-Adresse",
+      button: "Anmelden",
+      successMessage: "Vielen Dank für deine Anmeldung! Bitte prüfe dein Postfach."
+    }
+  },
+  miniFaq: {
+    title: "Mini-FAQ",
+    description: "Kurz beantwortet. Alles Weitere findest du im FAQ.",
+    linkText: "Zum vollständigen FAQ",
+    items: [
+      {
+        question: "Ist das SaaS?",
+        answer: "Nein. Ein Shard ist dein eigener Cloud-Computer, exklusiv für dich."
+      },
+      {
+        question: "Wer sieht meine Daten?",
+        answer: "Niemand. Dein Shard gehört dir."
+      },
+      {
+        question: "Sind Apps wirklich kostenlos?",
+        answer: "Ja. Alle Apps sind kostenlos, du zahlst nur für deinen Shard."
+      },
+      {
+        question: "Kann ich später skalieren?",
+        answer: "Ja. Skalierung ist auf der Roadmap."
+      }
+    ]
+  },
+  faq: {
+    title: "Häufige Fragen (FAQ)",
+    pageTitle: "Gut zu wissen",
+    intro: "Hier beantworten wir Fragen zur Technik, Sicherheit und unserer Philosophie.",
+    questions: [
+      {
+        id: "fair-source",
+        question: "Was bedeutet 'Fair Source'?",
+        answer: "Fair Source ist unser Weg, Transparenz und Nachhaltigkeit zu vereinen. Unser Code ist unter der 'Functional Source License, Version 1.1, ALv2 Future License' veröffentlicht. Das bedeutet: Du kannst den Code einsehen und prüfen – das schafft Sicherheit und Vertrauen. Wir würden gerne klassisches Open Source nutzen, müssen uns aber schützen: Wir wollen verhindern, dass große Hyperscaler (wie Amazon oder Google) unsere Arbeit einfach kopieren und als eigenes Produkt verkaufen. Das würde uns die Ressourcen entziehen, Freeshard für dich weiterzuentwickeln."
+      },
+      {
+        question: "Wo finde ich euren Code?",
+        answer: "Du findest unseren gesamten Quellcode auf GitHub: <a href='https://github.com/FreeshardBase/freeshard' target='_blank' rel='noopener noreferrer'>https://github.com/FreeshardBase/freeshard</a>. Schau gerne rein!"
+      },
+      {
+        question: "Verkauft ihr alles, wenn euch ein Investor Geld gibt?",
+        answer: "Nein, das haben wir nicht vor. Wir haben Freeshard aus Überzeugung heraus gestartet und nutzen es täglich selbst für unsere eigenen Daten. Es zu verkaufen, würde bedeuten, nicht nur eure, sondern auch unsere eigenen privaten Daten aus der Hand zu geben. Wir bauen Freeshard, um unabhängig zu bleiben – nicht, um schnell Kasse zu machen."
+      },
+      {
+        question: "Warum nehmt ihr Geld, wenn ich die Apps auch kostenlos nutzen kann?",
+        answer: "Das ist richtig: Die Apps selbst sind oft kostenlos. Aber sie zuverlässig unter einem Dach zu betreiben, erfordert viel Arbeit im Hintergrund: Hosting-Kosten, Installation, Speicherverwaltung, Backups und komplexe Datenbank-Migrationen bei Updates. Wir übernehmen diese technische 'Orchestrierung' für dich, damit alles reibungslos läuft, und entwickeln Freeshard ständig weiter. Wenn du das technische Know-how hast und Zeit investieren möchtest, kannst du natürlich auch kostenlos profitieren, indem du deinen Shard selbst hostest oder die Anwendungen einzeln selbst betreibst."
+      },
+      {
+        question: "Warum kann ich Freeshard nicht anonym nutzen?",
+        answer: "Ganz ehrlich: Eine anonyme Nutzung wäre uns am liebsten. Leider ist das in der Realität kaum machbar. Es gibt Menschen, die anonyme Dienste missbrauchen, um illegale Inhalte zu verbreiten, die jenseits von allem sind, was wir uns vorstellen oder tolerieren wollen. Als Betreiber müssten wir uns ständig mit Missbrauchsmeldungen und rechtlichen Konsequenzen auseinandersetzen, was in keinem Verhältnis zum Nutzen stünde. Wenn du deinen Shard wirklich komplett anonym betreiben möchtest, empfehlen wir dir, einen spezialisierten Hoster zu suchen, der genau darauf ausgelegt ist."
+      },
+      {
+        question: "Brauche ich technisches Wissen?",
+        answer: "Nein. Wir haben Freeshard so gebaut, dass es sich anfühlt wie die Apps, die du bereits kennst. Wir kümmern uns im Hintergrund um die Technik, Updates und Sicherheit."
+      },
+      {
+        question: "Warum nur PayPal und kein Wero oder Lastschrift?",
+        answer: "Das ist eine berechtigte Frage. Wir sind aktuell ein kleines, effizientes Team und müssen unsere Ressourcen bündeln. Mit PayPal erreichen wir die meisten Menschen einfach und sicher. Andere Zahlungsarten wie Wero oder Lastschrift stehen aber fest auf unserer Wunschliste für die Zukunft."
+      },
+      {
+        question: "Wie sind meine geteilten Inhalte (z.B. Fotoalben) erreichbar?",
+        answer: "Du wählst dir direkt zum Start deine eigene Wunsch-Adresse aus (solange sie noch frei ist), z.B. <code>mustermann.freeshard.net</code> oder <code>familie-meier.freeshard.net</code>. Unter dieser Adresse ist dein Shard dann erreichbar und du kannst Links zu deinen Fotoalben oder Dateien ganz einfach mit Freunden teilen."
+      },
+      {
+        question: "Was passiert mit meiner Adresse, wenn ich Freeshard verlasse?",
+        answer: "Du behältst deine Adresse (deinen Freeshard-Namen) kostenfrei und dauerhaft. Wir stellen dir ein Portal zur Verfügung, über das du deinen Namen einfach auf deinen selbst gehosteten Shard zeigen lassen kannst. Auch das passende Sicherheits-Zertifikat bekommst du von uns. Das alles ist für dich kostenlos – unter der einzigen Bedingung, dass du unter der Adresse auch wirklich einen Shard betreibst und nichts anderes."
+      },
+      {
+        id: "export",
+        question: "Kann ich meinen Shard wirklich mitnehmen?",
+        answer: "Ja, absolut. Das ist Teil unserer Philosophie der Unabhängigkeit. Wenn du Freeshard nicht mehr nutzen möchtest, kannst du dein gesamtes System – inklusive aller Daten und Einstellungen – exportieren und auf einem eigenen Server zu Hause oder bei einem anderen Anbieter betreiben."
+      },
+      {
+        question: "Kann ich mit einem exportierten Shard wieder zu euch zurück?",
+        answer: "Das ist technisch leider nicht möglich, da wir die Integrität unserer Systeme gewährleisten müssen. Unser Tipp: Du kannst dir deinen Shard herunterladen, um den Export zu testen, und deinen Vertrag bei uns einfach weiterlaufen lassen. So hast du beides."
+      },
+      {
+        id: "privacy",
+        question: "Was macht ihr mit meinen Daten?",
+        answer: "Nichts, außer sie für dich zu speichern und bereitzustellen. Wir scannen keine Fotos, lesen keine Dokumente und verkaufen absolut nichts an Werbefirmen. Wir tun nur das, womit du uns explizit beauftragt hast: Hosting."
+      },
+      {
+        question: "Sind meine Daten verschlüsselt?",
+        answer: "Ja, die Festplatten unserer Server sind verschlüsselt. Das bedeutet: Wenn jemand physisch die Festplatte stehlen würde, könnte er nichts damit anfangen. Es gibt jedoch aktuell keine Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hast."
+      },
+      {
+        question: "Könnt ihr auf meine Daten zugreifen?",
+        answer: "Technisch gesehen: Ja, da wir das System für dich warten. Aber: Wir tun es nicht. Erstens widerspricht es unserer Ethik. Zweitens verbieten wir es uns selbst in unseren AGB. Drittens wäre es ein schwerer Verstoß gegen die DSGVO. Und viertens – und das ist für uns am wichtigsten – wäre der damit verbundene Vertrauensverlust das sofortige Ende für uns. Dein Vertrauen ist unser wichtigstes Gut."
+      },
+      {
+        question: "Könnt ihr meine Passwörter sehen?",
+        answer: "Nein, niemals. Dein Passwort-Manager (Vaultwarden) verschlüsselt alle deine Daten bereits auf deinem Gerät (Handy oder Computer), bevor sie überhaupt an unseren Server gesendet werden. Wir speichern nur den verschlüsselten Datensalat. Ohne dein Master-Passwort – das nur du kennst – sind diese Daten für uns (und jeden anderen) absolut unlesbar."
+      },
+      {
+        question: "Ich möchte meinen Shard trotzdem selbst verschlüsseln. Geht das?",
+        answer: "Aktuell noch nicht. Wir hören aber genau auf unsere Community: Wenn sich viele Nutzer dieses Feature wünschen, werden wir prüfen, wie wir das technisch benutzerfreundlich umsetzen können."
+      },
+      {
+        question: "Was passiert, wenn Polizei oder Gericht meine Daten anfordern?",
+        answer: "Wir halten uns an geltendes Recht. Wenn eine behördliche Anfrage kommt, prüfen wir diese juristisch sehr genau. Nur wenn sie absolut rechtmäßig und unumgänglich ist, müssen wir ihr Folge leisten."
+      },
+      {
+        question: "Würde eine Ende-zu-Ende-Verschlüsselung mich davor schützen?",
+        answer: "Jein. Selbst wenn wir Ende-zu-Ende verschlüsseln würden, könnte ein Gericht uns theoretisch zwingen, die Software so anzupassen, dass Daten im Moment des Zugriffs (wenn sie entschlüsselt sind) ausgeleitet werden. Wenn das deine Sorge ist, ist das Selbst-Hosten auf eigener Hardware der einzig sichere Weg. Konsequenterweise müsstest du dann aber auch jedes einzelne Update prüfen, ob darin nicht eine Hintertür versteckt wurde, die die Verschlüsselung aufbricht. Das betrifft übrigens nicht nur uns, sondern ausnahmslos alle Anbieter solcher Lösungen."
+      },
+      {
+        question: "Es gab ein Urteil, dass OVH Daten an Kanada herausgeben muss. Sind meine Daten sicher?",
+        answer: "Das ist ein berechtigter Punkt und wir beobachten den Fall genau. Sollte es sich wirklich so entwickeln, dass OVH in Europa durch das kanadische Gerichtsurteil gezwungen werden kann, europäische Daten herauszugeben, werden wir die Situation neu betrachten müssen. Allerdings ist hierbei das letzte Wort noch lange nicht gesprochen, da dieses Thema sowohl in Kanada als auch in Frankreich jeweils auf der Ebene der Regierung angekommen ist. So oder so wird hier nichts überraschend kommen, sondern sich mit langem Vorlauf ankündigen und wir werden entsprechend reagieren."
+      },
+      {
+        question: "Warum bietet ihr keine E-Mail- oder Kalender-Funktionen an?",
+        answer: "Wir konzentrieren uns aktuell auf die Kernfunktionen. Wir beobachten aber die Wünsche unserer Nutzer genau – wenn die Nachfrage groß genug ist, werden wir das ergänzen."
+      },
+      {
+        question: "Warum bietet ihr kein Nextcloud an?",
+        answer: "Es gibt bereits sehr viele spezialisierte Nextcloud-Anbieter am Markt. Wir schließen es für die Zukunft nicht aus, wollen aber erst einmal Alternativen bieten, die oft schlanker und schneller sind."
+      },
+      {
+        id: "data-location",
+        question: "Wo liegen meine Daten?",
+        answer: "Deine Daten liegen ausschließlich auf Servern in der EU (aktuell nutzen wir Rechenzentren von OVH in Frankreich). Sie unterliegen damit den strengen europäischen Datenschutzgesetzen (DSGVO)."
+      }
+    ]
+  },
+  contact: {
+    title: "Kontakt",
+    pageTitle: "Kontaktiere uns",
+    description: "Hast du Fragen oder Anregungen? Wir freuen uns auf deine Nachricht. Fülle einfach das Formular aus und wir melden uns so schnell wie möglich bei dir.",
+    form: {
+      name: "Dein Name",
+      email: "Deine E-Mail-Adresse",
+      message: "Deine Nachricht",
+      button: "Nachricht senden",
+      successMessage: "Vielen Dank! Deine Nachricht wurde erfolgreich versendet."
+    }
+  },
+  imprint: {
+    title: "Impressum",
+    pageTitle: "Impressum",
+    contactLabel: "Angaben gemäß § 5 TMG:",
+    address: "Good For Business UG (haftungsbeschränkt)<br>Schwanthalerstr. 123<br>80339 München",
+    ceoLabel: "Vertreten durch:",
+    ceoName: "Max von Tettenborn",
+    contactInfoLabel: "Kontakt:",
+    contactInfo: "E-Mail: contact@freeshard.net",
+    registerLabel: "Registereintrag:",
+    registerInfo: "Registergericht: Amtsgericht München<br>Registernummer: HRB 285507",
+    vatLabel: "Umsatzsteuer-ID",
+    vatInfo: "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>[Bitte hier Ihre USt-IdNr. eintragen, falls vorhanden]",
+    responsibleLabel: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+    responsibleInfo: "[Bitte hier den Namen und die Anschrift des inhaltlich Verantwortlichen eintragen, falls abweichend]"
+  },
+  privacy: {
+    title: "Datenschutzerklärung",
+    pageTitle: "Datenschutzerklärung",
+    placeholder: {
+      heading: "Wichtiger Hinweis",
+      text: "Dies ist ein Platzhalter. Eine umfassende und rechtssichere Datenschutzerklärung ist essenziell. Bitte lassen Sie Ihre Datenschutzerklärung von einem spezialisierten Anwalt erstellen, um alle Anforderungen der DSGVO und anderer relevanter Gesetze zu erfüllen.",
+      topics: [
+        { title: "1. Datenschutz auf einen Blick", content: "Allgemeine Hinweise..." },
+        { title: "2. Hosting", content: "Details zu unserem Hosting-Anbieter und den Server-Log-Dateien..." },
+        { title: "3. Allgemeine Hinweise und Pflichtinformationen", content: "Verantwortliche Stelle, Widerruf Ihrer Einwilligung, etc...." },
+        { title: "4. Datenerfassung auf dieser Website", content: "Cookies, Kontaktformular, etc...." }
+      ]
+    }
+  }
+};

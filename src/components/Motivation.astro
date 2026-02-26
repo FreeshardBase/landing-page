@@ -1,32 +1,18 @@
 ---
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.motivation;
+const valuesList = Object.values(t.values);
+
 // Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
 const BASE_URL = import.meta.env.BASE_URL;
-
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    sectionTitle: "Unsere Mission",
-    sectionDescription: "Digitale Souveränität, klar und alltagstauglich.",
-    story: {
-      title: "Warum Freeshard",
-      paragraphs: [
-        "Wir wollten eine digitale Heimat, die nicht von Plattformen abhängt. Ein Shard gehört dir und bleibt dein Zentrum.",
-        "Digitale Souveränität ist gerade ein Trend, für uns ist es die Grundlage. Wir machen sie praktisch: ohne Technikstress und ohne Datensilos.",
-        "Transparenz gehört dazu. Unser Code ist <a href='" + BASE_URL + "/faq'>Fair Source</a> und dein Shard bleibt portabel, wenn du ihn mitnehmen willst."
-      ]
-    },
-    // Wir nutzen die Kacheln nun für unsere Kernwerte statt für Statistiken
-    values: {
-      location: { value: "EU", label: "Server-Standort", link: "/faq#data-location" },
-      code: { value: "Fair", label: "Fair Source Code", link: "/faq#fair-source" },
-      data: { value: "Deins", label: "Voller Daten-Export", link: "/faq#export" },
-      privacy: { value: "Privat", label: "Kein Tracking", link: "/faq#privacy" }
-    }
-  }
-};
-
-const t = content.de;
-const valuesList = Object.values(t.values);
 ---
 
 <section id="motivation">
@@ -40,7 +26,7 @@ const valuesList = Object.values(t.values);
       </div>
       <div class="motivation-stats">
         {valuesList.map(item => (
-          <a href={`${BASE_URL}${item.link}`} class="stat-card">
+          <a href={`${BASE_URL}/${lang}/faq#${item.link.split('#')[1]}`} class="stat-card">
             <div class="stat-number">{item.value}</div>
             <div class="stat-label">{item.label}</div>
             <div class="info-icon">ℹ️</div>

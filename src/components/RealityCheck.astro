@@ -1,48 +1,14 @@
 ---
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    teaser: "Freeshard empfohlen bekommen? Hier ist der Grund.",
-    close: "Vergleich schließen",
-    items: [
-      {
-        title: "Deine privaten Chats",
-        bigTech: {
-          label: "Bei den Großen",
-          text: "Deine Nachrichten werden oft analysiert. Drohende Gesetze wie die Chatkontrolle könnten deine Privatsphäre komplett aushebeln. Wenn Dienste wie Signal den Markt verlassen, stehst du ohne Alternative da."
-        },
-        freeshard: {
-          label: "Auf deinem Shard",
-          text: "Du betreibst deinen eigenen Chat-Server (Matrix). Niemand scannt deine Nachrichten. Du bist immun gegen Chatkontrolle und unabhängig von Konzern-Entscheidungen."
-        }
-      },
-      {
-        title: "Deine Fotos & Erinnerungen",
-        bigTech: {
-          label: "Bei den Großen",
-          text: "Deine Fotos werden oft gescannt, um Werbung zu personalisieren oder KI-Modelle zu trainieren. Deine privatesten Momente machen andere reich."
-        },
-        freeshard: {
-          label: "Auf deinem Shard",
-          text: "Deine Fotos gehören nur dir. Sie liegen sicher auf deinem Speicherplatz. Keine Analyse, keine Werbung. Anders als bei den Großen bist du hier der Kunde, nicht das Produkt."
-        }
-      },
-      {
-        title: "Dein digitales Hausrecht",
-        bigTech: {
-          label: "Bei den Großen",
-          text: "Ein Algorithmus entscheidet, ob du bleiben darfst. Ein falscher Verdacht, und dein Konto wird gesperrt – oft ohne Ansprechpartner. Deine Daten sind dann weg."
-        },
-        freeshard: {
-          label: "Auf deinem Shard",
-          text: "Niemand kann dich aussperren. Du hast die Schlüssel. Und wenn du uns verlassen willst, nimmst du deine Daten einfach mit. Du bleibst immer der Chef."
-        }
-      }
-    ]
-  }
-};
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
 
-const t = content.de;
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.realityCheck;
 ---
 
 <section id="reality-check" class="reality-check">
@@ -62,16 +28,16 @@ const t = content.de;
               <div class="card big-tech">
                 <div class="card-header">
                   <span class="icon">⚠️</span>
-                  <h4>{item.bigTech.label}</h4>
+                  <h4>{item.bigTechLabel}</h4>
                 </div>
-                <p>{item.bigTech.text}</p>
+                <p>{item.bigTechText}</p>
               </div>
               <div class="card freeshard">
                 <div class="card-header">
                   <span class="icon">🛡️</span>
-                  <h4>{item.freeshard.label}</h4>
+                  <h4>{item.freeshardLabel}</h4>
                 </div>
-                <p>{item.freeshard.text}</p>
+                <p>{item.freeshardText}</p>
               </div>
             </div>
           </div>

@@ -1,18 +1,14 @@
 ---
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    sectionTitle: "Auf dem Laufenden bleiben",
-    sectionDescription: "Wenn dich digitale Souveränität interessiert, begleite uns. Wir teilen Fortschritte und neue Apps ohne Spam.",
-    form: {
-      placeholder: "Deine E-Mail-Adresse",
-      button: "Anmelden",
-      successMessage: "Vielen Dank für deine Anmeldung! Bitte prüfe dein Postfach."
-    }
-  }
-};
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
 
-const t = content.de;
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.newsletter;
 ---
 
 <section id="newsletter">

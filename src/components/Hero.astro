@@ -1,18 +1,14 @@
 ---
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    titleLine1: "Dein Shard.",
-    titleLine2: "Deine Mini-Cloud. Deine Souveränität.",
-    description: "Ein Shard ist deine persönliche Mini-Cloud von Freeshard. Ein Ort für Apps, Daten und Identität. Keine Passwörter, kein Sync, digitale Souveränität ohne Technikstress.",
-    cta: {
-      primary: "Shard vormerken",
-      secondary: "Mehr erfahren"
-    }
-  }
-};
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
 
-const t = content.de;
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.hero;
 ---
 
 <section id="hero" class="hero">
@@ -24,8 +20,8 @@ const t = content.de;
       </h1>
       <p class="hero-description">{t.description}</p>
       <div class="hero-cta">
-        <a href="#pricing" class="btn btn-primary">{t.cta.primary}</a>
-        <a href="#features" class="btn btn-secondary">{t.cta.secondary}</a>
+        <a href="#pricing" class="btn btn-primary">{t.ctaPrimary}</a>
+        <a href="#features" class="btn btn-secondary">{t.ctaSecondary}</a>
       </div>
     </div>
   </div>

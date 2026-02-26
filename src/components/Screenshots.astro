@@ -1,30 +1,15 @@
 ---
-// --- Internationalisierungs-Setup (i18n) ---
-const content = {
-  de: {
-    sectionTitle: "So einfach ist dein Shard",
-    sectionDescription: "Dein Shard ist deine persönliche Mini-Cloud. Ein Ort für Apps, Daten und Identität.",
-    cards: {
-      portal: {
-        placeholder: "Screenshot: Dashboard",
-        title: "Alles an einem Ort",
-        description: "Deine Apps, Dateien und Kontakte in einer klaren Übersicht."
-      },
-      mobile: {
-        placeholder: "Screenshot: Mobil",
-        title: "Auf jedem Gerät",
-        description: "Dein Shard läuft überall gleich. Kein Sync, keine App-Silos."
-      },
-      peace: {
-        placeholder: "Screenshot: Sicherheit",
-        title: "Souverän und automatisch",
-        description: "Backups und Updates laufen im Hintergrund. Du musst nichts tun."
-      }
-    }
-  }
-};
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
 
-const t = content.de;
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const content = lang === 'en' ? en : de;
+const t = content.screenshots;
+const cards = Object.values(t.cards);
 ---
 
 <section id="screenshots">
@@ -32,27 +17,15 @@ const t = content.de;
     <h2>{t.sectionTitle}</h2>
     <p class="section-description">{t.sectionDescription}</p>
     <div class="screenshots-grid">
-      <div class="screenshot-card">
-        <div class="screenshot-placeholder">
-          <span>{t.cards.portal.placeholder}</span>
+      {cards.map(card => (
+        <div class="screenshot-card">
+          <div class="screenshot-placeholder">
+            <span>{card.placeholder}</span>
+          </div>
+          <h3>{card.title}</h3>
+          <p>{card.description}</p>
         </div>
-        <h3>{t.cards.portal.title}</h3>
-        <p>{t.cards.portal.description}</p>
-      </div>
-      <div class="screenshot-card">
-        <div class="screenshot-placeholder">
-          <span>{t.cards.mobile.placeholder}</span>
-        </div>
-        <h3>{t.cards.mobile.title}</h3>
-        <p>{t.cards.mobile.description}</p>
-      </div>
-      <div class="screenshot-card">
-        <div class="screenshot-placeholder">
-          <span>{t.cards.peace.placeholder}</span>
-        </div>
-        <h3>{t.cards.peace.title}</h3>
-        <p>{t.cards.peace.description}</p>
-      </div>
+      ))}
     </div>
   </div>
 </section>
