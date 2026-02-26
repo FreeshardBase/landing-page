@@ -104,26 +104,32 @@ export const en = {
     sectionDescription: "Less friction, more control. Your Shard is your digital center.",
     items: {
       independence: { 
+        icon: "🛡️",
         title: "Digital Sovereignty", 
         description: "Your data, your rules. No platform that reads along or ties you down." 
       },
       managed: { 
+        icon: "🧭",
         title: "One Identity Instead of Many", 
         description: "Your Shard is your access. No flood of passwords, no account silos." 
       },
       privacy: { 
+        icon: "⚡",
         title: "No Friction", 
         description: "Backups, updates, and security run automatically in the background." 
       },
       central: { 
+        icon: "💠",
         title: "One Place, All Devices", 
         description: "Install apps once, use them everywhere. No sync, no export." 
       },
       fair: { 
+        icon: "🗂️",
         title: "Files Belong to You", 
         description: "A real file system instead of app silos. Data stays with you." 
       },
       support: { 
+        icon: "🧩",
         title: "Apps at No Extra Cost", 
         description: "All apps are free. You only pay for your Shard." 
       }
