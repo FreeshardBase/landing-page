@@ -1,41 +1,25 @@
 ---
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
+
 interface Props {
   title: string;
   description?: string;
+  lang: string;
 }
 
-// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
+const { lang, title, description } = Astro.props;
+const t = lang === 'en' ? en : de;
+
 const BASE_URL = import.meta.env.BASE_URL;
-
-// --- i18n ---
-const content = {
-  de: {
-    defaultDescription: "Deine souveräne Software-Plattform – einfach, sicher, unabhängig.",
-    nav: {
-      features: "Vorteile",
-      screenshots: "Einblicke",
-      pricing: "Preise",
-      motivation: "Mission",
-      contact: "Kontakt"
-    },
-    footer: {
-      copyright: `© ${new Date().getFullYear()} Freeshard. Alle Rechte vorbehalten.`,
-      imprint: "Impressum",
-      privacy: "Datenschutz",
-      faq: "Häufige Fragen (FAQ)"
-    }
-  }
-};
-const t = content.de;
-
-const { title, description = t.defaultDescription } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <meta name="description" content={description || t.hero.description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -45,14 +29,15 @@ const { title, description = t.defaultDescription } = Astro.props;
       <nav class="navbar">
         <div class="container">
           <div class="logo">
-            <a href={BASE_URL} style="text-decoration: none;"><h1>Freeshard</h1></a>
+            <a href={`${BASE_URL}/${lang}/`} style="text-decoration: none;"><h1>Freeshard</h1></a>
           </div>
           <ul class="nav-links">
-            <li><a href={`${BASE_URL}/#features`}>{t.nav.features}</a></li>
-            <li><a href={`${BASE_URL}/#screenshots`}>{t.nav.screenshots}</a></li>
-            <li><a href={`${BASE_URL}/#pricing`}>{t.nav.pricing}</a></li>
-            <li><a href={`${BASE_URL}/#motivation`}>{t.nav.motivation}</a></li>
-            <li><a href={`${BASE_URL}/kontakt`}>{t.nav.contact}</a></li>
+            <li><a href={`${BASE_URL}/${lang}/#features`}>{t.nav.features}</a></li>
+            <li><a href={`${BASE_URL}/${lang}/#screenshots`}>{t.nav.screenshots}</a></li>
+            <li><a href={`${BASE_URL}/${lang}/#pricing`}>{t.nav.pricing}</a></li>
+            <li><a href={`${BASE_URL}/${lang}/#motivation`}>{t.nav.motivation}</a></li>
+            <li><a href={`${BASE_URL}/${lang}/kontakt`}>{t.nav.contact}</a></li>
+            <li class="lang-switcher-li"><LanguageSwitcher /></li>
           </ul>
         </div>
       </nav>
@@ -63,10 +48,10 @@ const { title, description = t.defaultDescription } = Astro.props;
     <footer>
       <div class="container">
         <div class="footer-links">
-          <a href={`${BASE_URL}/faq`}>{t.footer.faq}</a>
-          <a href={`${BASE_URL}/impressum`}>{t.footer.imprint}</a>
-          <a href={`${BASE_URL}/datenschutz`}>{t.footer.privacy}</a>
-          <a href={`${BASE_URL}/kontakt`}>{t.nav.contact}</a>
+          <a href={`${BASE_URL}/${lang}/faq`}>{t.footer.faq}</a>
+          <a href={`${BASE_URL}/${lang}/impressum`}>{t.footer.imprint}</a>
+          <a href={`${BASE_URL}/${lang}/datenschutz`}>{t.footer.privacy}</a>
+          <a href={`${BASE_URL}/${lang}/kontakt`}>{t.nav.contact}</a>
         </div>
         <p>{t.footer.copyright}</p>
       </div>
@@ -124,13 +109,14 @@ const { title, description = t.defaultDescription } = Astro.props;
       }
 
       .logo h1 {
-        font-size: 1.25rem; /* Reduziert von 1.5rem */
+        font-size: 1.25rem;
         font-weight: 700;
         color: var(--primary-color);
       }
 
       .nav-links {
         display: flex;
+        align-items: center; /* Wichtig für vertikale Ausrichtung */
         list-style: none;
         gap: 2rem;
       }
@@ -144,6 +130,10 @@ const { title, description = t.defaultDescription } = Astro.props;
 
       .nav-links a:hover {
         color: var(--primary-color);
+      }
+      
+      .lang-switcher-li {
+        margin-left: 1rem; /* Abstand zu den anderen Links */
       }
 
       footer {
@@ -210,11 +200,11 @@ const { title, description = t.defaultDescription } = Astro.props;
 
       @media (max-width: 768px) {
         .nav-links {
-          display: none; /* Hide nav links on mobile for simplicity, could be replaced with a burger menu */
+          display: none;
         }
 
         .navbar .container {
-          justify-content: center;
+          justify-content: space-between;
         }
 
         h2 {

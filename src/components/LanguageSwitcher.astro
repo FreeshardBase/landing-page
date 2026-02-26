@@ -1,0 +1,68 @@
+---
+import { languages, defaultLang } from '../i18n/ui';
+
+const { pathname } = Astro.url;
+const BASE_URL = import.meta.env.BASE_URL;
+
+const getLangFromUrl = (pathname: string) => {
+  // Pfad ohne Base-URL betrachten
+  const pathWithoutBase = BASE_URL === '/' ? pathname : pathname.replace(BASE_URL, '');
+  const langCode = pathWithoutBase.split('/')[1];
+  
+  if (langCode && Object.keys(languages).includes(langCode)) {
+    return langCode as keyof typeof languages;
+  }
+  return defaultLang;
+}
+
+const getTranslatedPath = (lang: string) => {
+  const pathWithoutBase = BASE_URL === '/' ? pathname : pathname.replace(BASE_URL, '');
+  const pathWithoutLang = pathWithoutBase.split('/').slice(2).join('/');
+  
+  // Base-URL und neue Sprache korrekt zusammensetzen
+  return `${BASE_URL}/${lang}/${pathWithoutLang}`;
+}
+
+const currentLang = getLangFromUrl(pathname);
+---
+
+<div class="lang-switch">
+  {Object.keys(languages).map((lang) => (
+    <a 
+      href={getTranslatedPath(lang)} 
+      class:list={{ active: lang === currentLang }}
+    >
+      {lang.toUpperCase()}
+    </a>
+  ))}
+</div>
+
+<style>
+  .lang-switch {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  .lang-switch a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+
+  .lang-switch a:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .lang-switch a.active {
+    color: var(--primary-color);
+    background-color: rgba(79, 70, 229, 0.1);
+    border-color: rgba(79, 70, 229, 0.2);
+  }
+</style>
