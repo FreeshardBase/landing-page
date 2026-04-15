@@ -1,5 +1,6 @@
 export const en = {
   nav: {
+    useCases: "Your Cloud",
     features: "Benefits",
     screenshots: "Insights",
     pricing: "Pricing",
@@ -13,42 +14,14 @@ export const en = {
     faq: "FAQ"
   },
   hero: {
-    titleLine1: "Your Shard.",
-    titleLine2: "Your Mini-Cloud. Your Sovereignty.",
+    subtitle: "Your personal sovereign mini-cloud",
     description: "A Shard is your personal mini-cloud from Freeshard. A place for apps, data, and identity. No passwords, no sync, digital sovereignty without the tech stress.",
     ctaPrimary: "Reserve Shard",
     ctaSecondary: "Learn More"
   },
-  realityCheck: {
-    teaser: "Recommended Freeshard? Here's why.",
-    close: "Close comparison",
-    items: [
-      {
-        title: "Your Private Chats",
-        bigTechLabel: "Big Tech",
-        bigTechText: "Your messages are often analyzed. Looming laws like Chat Control could completely undermine your privacy. If services like Signal leave the market, you're left with no alternative.",
-        freeshardLabel: "On Your Shard",
-        freeshardText: "You run your own chat server (Matrix). No one scans your messages. You are immune to Chat Control and independent of corporate decisions."
-      },
-      {
-        title: "Your Photos & Memories",
-        bigTechLabel: "Big Tech",
-        bigTechText: "Your photos are often scanned to personalize ads or train AI models. Your most private moments make others rich.",
-        freeshardLabel: "On Your Shard",
-        freeshardText: "Your photos belong only to you. They sit securely on your storage. No analysis, no ads. Unlike with the big players, here you are the customer, not the product."
-      },
-      {
-        title: "Your Digital Rights",
-        bigTechLabel: "Big Tech",
-        bigTechText: "An algorithm decides if you can stay. One wrong suspicion, and your account is locked – often with no one to talk to. Your data is then gone.",
-        freeshardLabel: "On Your Shard",
-        freeshardText: "No one can lock you out. You hold the keys. And if you want to leave us, you simply take your data with you. You remain the boss."
-      }
-    ]
-  },
   useCases: {
     sectionTitle: "Your Personal Cloud",
-    sectionDescription: "Your Shard is your mini-cloud. We install suitable apps for you upon request – secure, private, and accessible only to you.",
+    sectionDescription: "Your Shard is your mini-cloud. Choose and install apps from our app store – secure, private, and accessible only to you.",
     toggleLabel: "For Tech Fans: What's under the hood?",
     disclaimer: "Legal Notice: Freeshard is an independent hosting provider. We are not affiliated with, endorsed by, or sponsored by the project teams of Immich, Paperless-ngx, Vaultwarden, or other applications mentioned here. All trademarks and logos are the property of their respective owners.",
     items: {
@@ -62,10 +35,10 @@ export const en = {
         simpleDescription: "Stop searching. Simply scan documents with your phone. Automatic text recognition finds every invoice in seconds – perfect for tax season.",
         techDescription: "Professional document management with Tika OCR. Searchable PDFs, automatic tagging rules, and workflow automation."
       },
-      passwords: { 
-        title: "Secure Password Safe", 
-        simpleDescription: "A secure vault for the whole family. Share Wi-Fi passwords or streaming logins securely without sending them via WhatsApp.",
-        techDescription: "Bitwarden-compatible server with premium features: Organizations, policies, granular permission management, and emergency access included."
+      passwords: {
+        title: "Secure Password Safe",
+        simpleDescription: "Never remember a password again. All your logins are encrypted on your Shard and synced across all your devices. Generate strong, unique passwords with one click.",
+        techDescription: "End-to-end encrypted password management. Strong password generation, biometric unlock, and your passwords are encrypted before they ever leave your device."
       },
       recipes: {
         title: "Digital Recipe Collection", 
@@ -73,9 +46,9 @@ export const en = {
         techDescription: "Modern recipe management with native apps for iOS and Android. Smart parsing engine for imports and automatic ingredient scaling."
       },
       finances: {
-        title: "Personal Finance Cockpit", 
+        title: "Personal Finance Cockpit",
         simpleDescription: "Keep full control over your income and expenses. Plan budgets and understand where your money goes.",
-        techDescription: "Local budgeting with zero-knowledge encryption. Sync across all devices, but data sovereignty remains with you."
+        techDescription: "Envelope budgeting system for realistic planning. Track multiple accounts, generate custom reports, and see your net worth at a glance."
       },
       notes: {
         title: "Quick Notes & Ideas", 
@@ -198,10 +171,34 @@ export const en = {
       ]
     },
     values: {
-      location: { value: "EU", label: "Server Location", link: "/faq#data-location" },
-      code: { value: "Fair", label: "Fair Source Code", link: "/faq#fair-source" },
-      data: { value: "Yours", label: "Full Data Export", link: "/faq#export" },
-      privacy: { value: "Private", label: "No Tracking", link: "/faq#privacy" }
+      location: {
+        value: "EU",
+        label: "Server Location",
+        link: "data-location",
+        title: "Server Location",
+        explanation: "Your data is located exclusively on servers in the EU, specifically in France. It is therefore subject to strict European data protection laws (GDPR) that prioritize your privacy rights."
+      },
+      code: {
+        value: "Fair",
+        label: "Fair Source Code",
+        link: "fair-source",
+        title: "Fair Source",
+        explanation: "Our code is published and auditable for security and trust. We use Fair Source licensing to prevent large platforms from copying our work while remaining transparent. You can view and verify our entire codebase."
+      },
+      data: {
+        value: "Yours",
+        label: "Full Data Export",
+        link: "export",
+        title: "Data Portability",
+        explanation: "You can export your entire Shard – including all data and settings – and run it on your own server or with another provider. Your data is truly yours."
+      },
+      privacy: {
+        value: "Private",
+        label: "No Tracking",
+        link: "privacy",
+        title: "Your Privacy",
+        explanation: "We don't scan your photos, read your documents, or sell data to anyone. We only do what you hired us to do: hosting. Your trust is our most important asset."
+      }
     }
   },
   newsletter: {
@@ -210,7 +207,10 @@ export const en = {
     form: {
       placeholder: "Your Email Address",
       button: "Subscribe",
-      successMessage: "Thank you for subscribing! Please check your inbox."
+      successMessage: "Thank you for subscribing! Please check your inbox.",
+      errorMessage: "Something went wrong. Please try again.",
+      captchaMessage: "Please complete the security check.",
+      sendingMessage: "Sending..."
     }
   },
   miniFaq: {

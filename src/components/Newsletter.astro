@@ -17,15 +17,15 @@ const t = content.newsletter;
     <p class="section-description">{t.sectionDescription}</p>
     <div class="newsletter-form-container">
       <form id="newsletter-form" class="newsletter-form">
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
+        <input
+          type="email"
+          id="email"
+          name="contact[email]"
           placeholder={t.form.placeholder}
-          required 
+          required
           class="email-input"
         />
-        <button type="submit" class="submit-btn">{t.form.button}</button>
+        <button type="submit" class="submit-btn" id="submit-btn">{t.form.button}</button>
       </form>
       <p id="form-message" class="form-message"></p>
     </div>
@@ -33,22 +33,62 @@ const t = content.newsletter;
 </section>
 
 <script define:vars={{ t }}>
-  document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
+  const NEWSLETTER_URL = 'https://controller.freeshard.net/api/newsletter/subscribe';
+
+  document.getElementById('newsletter-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const emailInput = document.getElementById('email');
+    const submitBtn = document.getElementById('submit-btn');
     const message = document.getElementById('form-message');
-    
-    if (emailInput && message) {
-      // Simuliert eine erfolgreiche Anmeldung
-      message.textContent = t.form.successMessage;
-      message.classList.add('success');
-      emailInput.value = '';
-      
-      // Nachricht nach 5 Sekunden zurücksetzen
+
+    if (!emailInput || !message || !submitBtn) return;
+
+    // Validate email
+    if (!emailInput.value || !emailInput.validity.valid) {
+      message.textContent = t.form.errorMessage || 'Please enter a valid email.';
+      message.classList.remove('success');
+      message.classList.add('error');
+      return;
+    }
+
+    // Disable submit button and show loading state
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = t.form.sendingMessage || 'Sending...';
+    message.textContent = '';
+
+    try {
+      const response = await fetch(NEWSLETTER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailInput.value }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        message.textContent = t.form.successMessage;
+        message.classList.remove('error');
+        message.classList.add('success');
+        emailInput.value = '';
+      } else {
+        message.textContent = t.form.errorMessage || 'Subscription failed. Please try again.';
+        message.classList.remove('success');
+        message.classList.add('error');
+      }
+    } catch (_) {
+      message.textContent = t.form.errorMessage || 'An error occurred. Please try again.';
+      message.classList.remove('success');
+      message.classList.add('error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+
+      // Reset message after 5 seconds
       setTimeout(() => {
         message.textContent = '';
-        message.classList.remove('success');
+        message.classList.remove('success', 'error');
       }, 5000);
     }
   });
@@ -129,6 +169,15 @@ const t = content.newsletter;
 
   .form-message.success {
     color: #d1fae5; /* Helles Grün für Erfolg auf dunklem Hintergrund */
+  }
+
+  .form-message.error {
+    color: #fecaca; /* Helles Rot für Fehler auf dunklem Hintergrund */
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   @media (max-width: 768px) {

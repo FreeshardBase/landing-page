@@ -1,5 +1,6 @@
 export const de = {
   nav: {
+    useCases: "Deine Cloud",
     features: "Vorteile",
     screenshots: "Einblicke",
     pricing: "Preise",
@@ -13,42 +14,14 @@ export const de = {
     faq: "Häufige Fragen (FAQ)"
   },
   hero: {
-    titleLine1: "Dein Shard.",
-    titleLine2: "Deine Mini-Cloud. Deine Souveränität.",
+    subtitle: "Deine persönliche souveräne Mini-Cloud",
     description: "Ein Shard ist deine persönliche Mini-Cloud von Freeshard. Ein Ort für Apps, Daten und Identität. Keine Passwörter, kein Sync, digitale Souveränität ohne Technikstress.",
     ctaPrimary: "Shard vormerken",
     ctaSecondary: "Mehr erfahren"
   },
-  realityCheck: {
-    teaser: "Freeshard empfohlen bekommen? Hier ist der Grund.",
-    close: "Vergleich schließen",
-    items: [
-      {
-        title: "Deine privaten Chats",
-        bigTechLabel: "Bei den Großen",
-        bigTechText: "Deine Nachrichten werden oft analysiert. Drohende Gesetze wie die Chatkontrolle könnten deine Privatsphäre komplett aushebeln. Wenn Dienste wie Signal den Markt verlassen, stehst du ohne Alternative da.",
-        freeshardLabel: "Auf deinem Shard",
-        freeshardText: "Du betreibst deinen eigenen Chat-Server (Matrix). Niemand scannt deine Nachrichten. Du bist immun gegen Chatkontrolle und unabhängig von Konzern-Entscheidungen."
-      },
-      {
-        title: "Deine Fotos & Erinnerungen",
-        bigTechLabel: "Bei den Großen",
-        bigTechText: "Deine Fotos werden oft gescannt, um Werbung zu personalisieren oder KI-Modelle zu trainieren. Deine privatesten Momente machen andere reich.",
-        freeshardLabel: "Auf deinem Shard",
-        freeshardText: "Deine Fotos gehören nur dir. Sie liegen sicher auf deinem Speicherplatz. Keine Analyse, keine Werbung. Anders als bei den Großen bist du hier der Kunde, nicht das Produkt."
-      },
-      {
-        title: "Dein digitales Hausrecht",
-        bigTechLabel: "Bei den Großen",
-        bigTechText: "Ein Algorithmus entscheidet, ob du bleiben darfst. Ein falscher Verdacht, und dein Konto wird gesperrt – oft ohne Ansprechpartner. Deine Daten sind dann weg.",
-        freeshardLabel: "Auf deinem Shard",
-        freeshardText: "Niemand kann dich aussperren. Du hast die Schlüssel. Und wenn du uns verlassen willst, nimmst du deine Daten einfach mit. Du bleibst immer der Chef."
-      }
-    ]
-  },
   useCases: {
     sectionTitle: "Deine persönliche Cloud",
-    sectionDescription: "Dein Shard ist deine Mini-Cloud. Wir installieren dir auf Wunsch passende Apps – sicher, privat und nur für dich erreichbar.",
+    sectionDescription: "Dein Shard ist deine Mini-Cloud. Wähle und installiere Apps aus unserem App Store – sicher, privat und nur für dich erreichbar.",
     toggleLabel: "Für Technik-Fans: Was steckt unter der Haube?",
     disclaimer: "Rechtlicher Hinweis: Freeshard ist ein unabhängiger Hosting-Anbieter. Wir stehen in keiner geschäftlichen Verbindung zu den Projekt-Teams von Immich, Paperless-ngx, Vaultwarden oder anderen hier genannten Anwendungen. Es besteht keine Partnerschaft, Unterstützung oder Sponsoring durch diese Projekte. Alle genannten Markennamen und Logos sind Eigentum der jeweiligen Rechteinhaber.",
     items: {
@@ -62,10 +35,10 @@ export const de = {
         simpleDescription: "Nie wieder suchen. Scanne Dokumente einfach mit dem Handy. Die automatische Texterkennung findet jede Rechnung in Sekunden – perfekt für die Steuererklärung.",
         techDescription: "Professionelles Dokumentenmanagement mit Tika OCR. Durchsuchbare PDFs, automatische Tagging-Regeln und Workflow-Automatisierung."
       },
-      passwords: { 
-        title: "Sicherer Passwort-Safe", 
-        simpleDescription: "Ein sicherer Tresor für die ganze Familie. Teile WLAN-Passwörter oder Streaming-Zugänge sicher, ohne sie per WhatsApp zu schicken.",
-        techDescription: "Bitwarden-kompatibler Server mit Premium-Features: Organisationen, Policies, feingranulare Rechteverwaltung und Notfallzugriff inklusive."
+      passwords: {
+        title: "Sicherer Passwort-Safe",
+        simpleDescription: "Merke dir nie wieder ein Passwort. Alle deine Logins sind auf deinem Shard verschlüsselt und über alle Geräte synchronisiert. Generiere sichere, zufällige Passwörter mit einem Klick.",
+        techDescription: "Ende-zu-Ende-verschlüsselte Passwortverwaltung. Starke Passwortgenerierung, biometrisches Entsperren, und deine Passwörter sind verschlüsselt, bevor sie dein Gerät verlassen."
       },
       recipes: {
         title: "Digitale Rezeptsammlung", 
@@ -73,9 +46,9 @@ export const de = {
         techDescription: "Moderne Rezeptverwaltung mit nativen Apps für iOS und Android. Smarte Parsing-Engine für Importe und automatische Skalierung der Zutaten."
       },
       finances: {
-        title: "Persönliches Finanz-Cockpit", 
+        title: "Persönliches Finanz-Cockpit",
         simpleDescription: "Behalte die volle Kontrolle über deine Einnahmen und Ausgaben. Plane Budgets und verstehe, wohin dein Geld fließt.",
-        techDescription: "Lokales Budgeting mit Zero-Knowledge-Verschlüsselung. Synchronisation über alle Geräte, aber die Datenhoheit bleibt bei dir."
+        techDescription: "Envelope-Budgeting-System für realistische Planung. Verwalte mehrere Konten, erstelle benutzerdefinierte Berichte und sehe dein Vermögen auf einen Blick."
       },
       notes: {
         title: "Schnelle Notizen & Ideen", 
@@ -198,10 +171,34 @@ export const de = {
       ]
     },
     values: {
-      location: { value: "EU", label: "Server-Standort", link: "/faq#data-location" },
-      code: { value: "Fair", label: "Fair Source Code", link: "/faq#fair-source" },
-      data: { value: "Deins", label: "Voller Daten-Export", link: "/faq#export" },
-      privacy: { value: "Privat", label: "Kein Tracking", link: "/faq#privacy" }
+      location: {
+        value: "EU",
+        label: "Server-Standort",
+        link: "data-location",
+        title: "Server-Standort",
+        explanation: "Deine Daten befinden sich ausschließlich auf Servern in der EU, speziell in Frankreich. Sie unterliegen daher strengen europäischen Datenschutzgesetzen (DSGVO), die deine Privatsphäre schützen."
+      },
+      code: {
+        value: "Fair",
+        label: "Fair Source Code",
+        link: "fair-source",
+        title: "Fair Source",
+        explanation: "Unser Code ist veröffentlicht und überprüfbar für Sicherheit und Vertrauen. Wir nutzen Fair Source Lizenzierung, um zu verhindern, dass große Plattformen unsere Arbeit einfach kopieren, während wir transparent bleiben. Du kannst unseren gesamten Code einsehen und überprüfen."
+      },
+      data: {
+        value: "Deins",
+        label: "Voller Daten-Export",
+        link: "export",
+        title: "Datenportabilität",
+        explanation: "Du kannst deinen gesamten Shard – einschließlich aller Daten und Einstellungen – exportieren und auf deinem eigenen Server oder bei einem anderen Anbieter betreiben. Deine Daten gehören wirklich dir."
+      },
+      privacy: {
+        value: "Privat",
+        label: "Kein Tracking",
+        link: "privacy",
+        title: "Deine Privatsphäre",
+        explanation: "Wir scannen deine Fotos nicht, lesen deine Dokumente nicht und verkaufen Daten an niemanden. Wir tun nur das, wofür du uns beauftragt hast: Hosting. Dein Vertrauen ist unser wichtigstes Gut."
+      }
     }
   },
   newsletter: {
@@ -210,7 +207,10 @@ export const de = {
     form: {
       placeholder: "Deine E-Mail-Adresse",
       button: "Anmelden",
-      successMessage: "Vielen Dank für deine Anmeldung! Bitte prüfe dein Postfach."
+      successMessage: "Vielen Dank für deine Anmeldung! Bitte prüfe dein Postfach.",
+      errorMessage: "Es gab einen Fehler. Bitte versuche es später erneut.",
+      captchaMessage: "Bitte führe die Sicherheitsprüfung durch.",
+      sendingMessage: "Wird gesendet..."
     }
   },
   miniFaq: {

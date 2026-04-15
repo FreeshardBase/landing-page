@@ -2,6 +2,7 @@
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import { BRAND_MARK, BRAND_MARK_2X } from '../lib/branding';
 
 interface Props {
   title: string;
@@ -21,7 +22,7 @@ const BASE_URL = import.meta.env.BASE_URL;
     <meta charset="UTF-8" />
     <meta name="description" content={description || t.hero.description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href={BRAND_MARK} />
     <title>{title}</title>
   </head>
   <body>
@@ -29,14 +30,16 @@ const BASE_URL = import.meta.env.BASE_URL;
       <nav class="navbar">
         <div class="container">
           <div class="logo">
-            <a href={`${BASE_URL}/${lang}/`} style="text-decoration: none;"><h1>Freeshard</h1></a>
+            <a href={`${BASE_URL}/${lang}/`} style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+              <img src={BRAND_MARK} srcset={`${BRAND_MARK_2X} 2x`} alt="Freeshard" class="logo-mark" />
+              <h1>Freeshard</h1>
+            </a>
           </div>
           <ul class="nav-links">
+            <li><a href={`${BASE_URL}/${lang}/#use-cases`}>{t.nav.useCases}</a></li>
             <li><a href={`${BASE_URL}/${lang}/#features`}>{t.nav.features}</a></li>
-            <li><a href={`${BASE_URL}/${lang}/#screenshots`}>{t.nav.screenshots}</a></li>
             <li><a href={`${BASE_URL}/${lang}/#pricing`}>{t.nav.pricing}</a></li>
             <li><a href={`${BASE_URL}/${lang}/#motivation`}>{t.nav.motivation}</a></li>
-            <li><a href={`${BASE_URL}/${lang}/kontakt`}>{t.nav.contact}</a></li>
             <li class="lang-switcher-li"><LanguageSwitcher /></li>
           </ul>
         </div>
@@ -47,11 +50,12 @@ const BASE_URL = import.meta.env.BASE_URL;
     </main>
     <footer>
       <div class="container">
+        <img src={BRAND_MARK} alt="Freeshard" class="footer-logo" />
         <div class="footer-links">
-          <a href={`${BASE_URL}/${lang}/faq`}>{t.footer.faq}</a>
-          <a href={`${BASE_URL}/${lang}/impressum`}>{t.footer.imprint}</a>
-          <a href={`${BASE_URL}/${lang}/datenschutz`}>{t.footer.privacy}</a>
-          <a href={`${BASE_URL}/${lang}/kontakt`}>{t.nav.contact}</a>
+          <a href={`${BASE_URL}/${lang}/faq/`}>{t.footer.faq}</a>
+          <a href={`${BASE_URL}/${lang}/impressum/`}>{t.footer.imprint}</a>
+          <a href={`${BASE_URL}/${lang}/datenschutz/`}>{t.footer.privacy}</a>
+          <a href="mailto:contact@freeshard.net">{t.nav.contact}</a>
         </div>
         <p>{t.footer.copyright}</p>
       </div>
@@ -108,6 +112,11 @@ const BASE_URL = import.meta.env.BASE_URL;
         align-items: center;
       }
 
+      .logo-mark {
+        height: 32px;
+        width: auto;
+      }
+
       .logo h1 {
         font-size: 1.25rem;
         font-weight: 700;
@@ -144,6 +153,12 @@ const BASE_URL = import.meta.env.BASE_URL;
         margin-top: 4rem;
       }
       
+      .footer-logo {
+        width: 40px;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
       .footer-links {
         margin-bottom: 1rem;
         display: flex;

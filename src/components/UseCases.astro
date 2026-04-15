@@ -26,15 +26,15 @@ const getIconPath = (iconPath) => {
 
 // Wir müssen die Icons hier manuell mappen, da sie nicht in den Übersetzungsdateien stehen sollten (technische Pfade)
 const icons = {
-  photos: { simple: "🖼️", tech: "/icons/apps/immich-logo.svg", software: "Immich" },
-  documents: { simple: "📄", tech: "/icons/apps/paperless-ngx.svg", software: "Paperless-ngx" },
-  passwords: { simple: "🔑", tech: "/icons/apps/vaultwarden.svg", software: "Vaultwarden" },
-  recipes: { simple: "🍲", tech: "/icons/apps/kitchenowl.png", software: "KitchenOwl" },
-  finances: { simple: "💶", tech: "/icons/apps/actual.png", software: "Actual" },
-  notes: { simple: "📝", tech: "/icons/apps/memos.webp", software: "Memos" },
-  audiobooks: { simple: "🎧", tech: "/icons/apps/audiobookshelf.png", software: "Audiobookshelf" },
-  files: { simple: "📂", tech: "/icons/apps/filebrowser.svg", software: "Filebrowser" },
-  more: { simple: "✨", tech: "/icons/apps/opensource.svg", software: "Open Source" }
+  photos: { simple: "🖼️", tech: "/icons/apps/immich-logo.svg", software: "Immich", url: "https://immich.app/" },
+  documents: { simple: "📄", tech: "/icons/apps/paperless-ngx.svg", software: "Paperless-ngx", url: "https://docs.paperless-ngx.com/" },
+  passwords: { simple: "🔑", tech: "/icons/apps/vaultwarden.svg", software: "Vaultwarden", url: "https://github.com/dani-garcia/vaultwarden" },
+  recipes: { simple: "🍲", tech: "/icons/apps/kitchenowl.png", software: "KitchenOwl", url: "https://app.kitchenowl.org/" },
+  finances: { simple: "💶", tech: "/icons/apps/actual.png", software: "Actual", url: "https://actualbudget.org/" },
+  notes: { simple: "📝", tech: "/icons/apps/memos.webp", software: "Memos", url: "https://usememos.com" },
+  audiobooks: { simple: "🎧", tech: "/icons/apps/audiobookshelf.png", software: "Audiobookshelf", url: "https://www.audiobookshelf.org/" },
+  files: { simple: "📂", tech: "/icons/apps/filebrowser.svg", software: "Filebrowser", url: "https://filebrowser.org/" },
+  more: { simple: "✨", tech: "/icons/apps/opensource.svg", software: "Open Source", url: null }
 };
 
 // Wir mappen die übersetzten Texte auf die Icons
@@ -68,7 +68,15 @@ const itemsWithIcons = Object.keys(t.items).map(key => {
                 <img src={getIconPath(useCase.tech)} alt={useCase.software} loading="lazy" />
               </div>
             </div>
-            {useCase.software && <div class="software-badge">{useCase.software}</div>}
+            {useCase.software && (
+              useCase.url ? (
+                <a href={useCase.url} target="_blank" rel="noopener noreferrer" class="software-badge software-link">
+                  {useCase.software}
+                </a>
+              ) : (
+                <div class="software-badge">{useCase.software}</div>
+              )
+            )}
           </div>
           <h3>{useCase.title}</h3>
           <div class="description-container">
@@ -202,6 +210,20 @@ const itemsWithIcons = Object.keys(t.items).map(key => {
     opacity: 0;
     transform: translateX(20px);
     transition: all 0.4s ease;
+  }
+
+  .software-link {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .software-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateX(0) scale(1.05);
   }
 
   .use-case-card h3 {

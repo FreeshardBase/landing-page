@@ -1,6 +1,7 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import Modal from './Modal.astro';
 
 interface Props {
   lang: string;
@@ -26,11 +27,13 @@ const BASE_URL = import.meta.env.BASE_URL;
       </div>
       <div class="motivation-stats">
         {valuesList.map(item => (
-          <a href={`${BASE_URL}/${lang}/faq#${item.link.split('#')[1]}`} class="stat-card">
-            <div class="stat-number">{item.value}</div>
-            <div class="stat-label">{item.label}</div>
-            <div class="info-icon">ℹ️</div>
-          </a>
+          <>
+            <button class="stat-card" data-modal-trigger={item.link}>
+              <div class="stat-number">{item.value}</div>
+              <div class="stat-label">{item.label}</div>
+            </button>
+            <Modal id={item.link} title={item.title} content={item.explanation} />
+          </>
         ))}
       </div>
     </div>
@@ -80,9 +83,11 @@ const BASE_URL = import.meta.env.BASE_URL;
     text-align: center;
     border: 1px solid var(--border-color);
     transition: all 0.3s;
-    text-decoration: none; /* Link-Unterstreichung entfernen */
+    text-decoration: none;
     display: block;
     position: relative;
+    cursor: pointer;
+    font-family: inherit;
   }
 
   .stat-card:hover {
@@ -104,18 +109,6 @@ const BASE_URL = import.meta.env.BASE_URL;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  
-  .info-icon {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    font-size: 0.8rem;
-    opacity: 0.5;
-  }
-  
-  .stat-card:hover .info-icon {
-    opacity: 1;
-  }
 
   @media (max-width: 768px) {
     .motivation-content {
@@ -127,3 +120,19 @@ const BASE_URL = import.meta.env.BASE_URL;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('[data-modal-trigger]');
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const modalId = trigger.getAttribute('data-modal-trigger');
+        const modal = document.querySelector(`[data-modal-id="${modalId}"]`);
+        if (modal) {
+          modal.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
