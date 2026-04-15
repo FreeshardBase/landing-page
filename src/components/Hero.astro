@@ -1,6 +1,7 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import { BRAND_LOGO_DARK } from '../lib/branding';
 
 interface Props {
   lang: string;
@@ -14,10 +15,8 @@ const t = content.hero;
 <section id="hero" class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1>
-        <span class="highlight">{t.titleLine1}</span><br />
-        {t.titleLine2}
-      </h1>
+      <img src={BRAND_LOGO_DARK} alt="Freeshard Logo" class="hero-logo" />
+      <h1>{t.subtitle}</h1>
       <p class="hero-description">{t.description}</p>
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary">{t.ctaPrimary}</a>
@@ -28,6 +27,12 @@ const t = content.hero;
 </section>
 
 <style>
+  .hero-logo {
+    width: 240px;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
   .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -36,17 +41,11 @@ const t = content.hero;
   }
 
   .hero-content h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 600;
     margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-  
-  .hero-content h1 .highlight {
-    color: #a3bffa;
-    font-size: 4rem;
-    display: inline-block;
-    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    color: white;
   }
 
   .hero-description {
@@ -102,11 +101,11 @@ const t = content.hero;
     }
 
     .hero-content h1 {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
     }
-    
-    .hero-content h1 .highlight {
-      font-size: 3rem;
+
+    .hero-logo {
+      width: 160px;
     }
 
     .hero-description {

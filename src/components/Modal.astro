@@ -1,0 +1,146 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  content: string;
+}
+
+const { id, title, content } = Astro.props;
+---
+
+<div class="modal-overlay" data-modal-id={id}>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <h3>{title}</h3>
+    <p set:html={content} />
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-content {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: slideUp 0.3s ease-in-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-light);
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover {
+    color: var(--primary-color);
+  }
+
+  .modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+
+  .modal-content p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .modal-content p :global(a) {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+
+  .modal-content p :global(a:hover) {
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .modal-content {
+      max-width: 95%;
+      padding: 1.5rem;
+    }
+
+    .modal-close {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modals = document.querySelectorAll('.modal-overlay');
+
+    modals.forEach(modal => {
+      const closeBtn = modal.querySelector('.modal-close');
+
+      // Close on X button
+      closeBtn?.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+
+      // Close on overlay click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+  });
+</script>
