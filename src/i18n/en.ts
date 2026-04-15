@@ -363,6 +363,33 @@ export const en = {
     responsibleLabel: "Responsible for content according to § 55 Abs. 2 RStV",
     responsibleInfo: "[Please enter the name and address of the person responsible for content here if different]"
   },
+  realityCheck: {
+    teaser: "Reality Check: Big Tech vs. Your Shard",
+    close: "Close",
+    items: [
+      {
+        title: "Your Data",
+        bigTechLabel: "Big Tech",
+        bigTechText: "Your photos, documents, and messages are scanned, analyzed, and used to build your profile.",
+        freeshardLabel: "Your Shard",
+        freeshardText: "Your data is stored only for you. Nobody reads along. Not us, not algorithms."
+      },
+      {
+        title: "Your Identity",
+        bigTechLabel: "Big Tech",
+        bigTechText: "Dozens of accounts, dozens of passwords. Each platform knows a different version of you.",
+        freeshardLabel: "Your Shard",
+        freeshardText: "One identity, one access. Your Shard is your digital home for all apps."
+      },
+      {
+        title: "Your Control",
+        bigTechLabel: "Big Tech",
+        bigTechText: "Accounts get locked, services shut down, and your data can disappear overnight.",
+        freeshardLabel: "Your Shard",
+        freeshardText: "You own your Shard. Export it anytime and take it anywhere."
+      }
+    ]
+  },
   privacy: {
     title: "Privacy Policy",
     pageTitle: "Privacy Policy",
