@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import { languages } from '../../i18n/ui';
 import { de } from '../../i18n/de';
 import { en } from '../../i18n/en';
+import privacyDE from '../../content/datenschutz-de.html?raw';
+import privacyEN from '../../content/datenschutz-en.html?raw';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({ params: { lang } }));
@@ -10,26 +12,12 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const content = lang === 'en' ? en : de;
-const t = content.privacy;
 ---
 
-<Layout title={t.title} lang={lang}>
+<Layout title={content.privacy.title} lang={lang}>
   <section class="legal-page">
     <div class="container">
-      <h1>{t.pageTitle}</h1>
-      
-      <div class="warning-box">
-        <h2>{t.placeholder.heading}</h2>
-        <p>{t.placeholder.text}</p>
-      </div>
-      
-      {t.placeholder.topics.map(topic => (
-        <div class="privacy-section">
-          <h2>{topic.title}</h2>
-          <p>{topic.content}</p>
-        </div>
-      ))}
-
+      <div class="privacy-content" set:html={lang === 'de' ? privacyDE : privacyEN} />
     </div>
   </section>
 </Layout>
@@ -39,31 +27,84 @@ const t = content.privacy;
     padding: 4rem 0;
     min-height: 60vh;
   }
-  .legal-page h1 {
+
+  .privacy-content :global(h1) {
+    font-size: 2rem;
+    font-weight: 700;
     margin-bottom: 2rem;
     color: var(--primary-color);
   }
-  .warning-box {
-    background-color: #fffbe6;
-    border: 1px solid #fde047;
-    color: #713f12;
-    padding: 1.5rem;
+
+  .privacy-content :global(h2) {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    text-align: left;
+  }
+
+  .privacy-content :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .privacy-content :global(p) {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .privacy-content :global(ul) {
+    margin: 0.75rem 0 1rem 1.5rem;
+    line-height: 1.8;
+  }
+
+  .privacy-content :global(ul.index) {
+    list-style: none;
+    margin-left: 0;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-light);
     border-radius: 0.5rem;
-    margin-bottom: 3rem;
-  }
-  .warning-box h2 {
-    margin-top: 0;
-  }
-  .privacy-section {
     margin-bottom: 2rem;
   }
-  .privacy-section h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+
+  .privacy-content :global(ul.index li) {
+    margin-bottom: 0.25rem;
   }
-  .privacy-section p {
-    line-height: 1.8;
-    margin-bottom: 1rem;
+
+  .privacy-content :global(.index-link) {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .privacy-content :global(.index-link:hover) {
+    text-decoration: underline;
+  }
+
+  .privacy-content :global(ul.m-elements) {
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .privacy-content :global(ul.m-elements > li) {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .privacy-content :global(ul.m-elements > li:last-child) {
+    border-bottom: none;
+  }
+
+  .privacy-content :global(a) {
+    color: var(--primary-color);
+    word-break: break-word;
+  }
+
+  .privacy-content :global(.seal) {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
   }
 </style>
