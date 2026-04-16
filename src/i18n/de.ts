@@ -240,98 +240,122 @@ export const de = {
     title: "Häufige Fragen (FAQ)",
     pageTitle: "Gut zu wissen",
     intro: "Hier beantworten wir Fragen zur Technik, Sicherheit und unserer Philosophie.",
+    searchPlaceholder: "Fragen durchsuchen...",
+    noResults: "Keine Fragen gefunden.",
     questions: [
       {
         id: "fair-source",
         question: "Was bedeutet 'Fair Source'?",
-        answer: "Fair Source ist ein Weg, Transparenz und Nachhaltigkeit zu vereinen. Unser Code ist unter der 'Functional Source License, Version 1.1, ALv2 Future License' veröffentlicht. Das bedeutet: Du kannst den Code einsehen und prüfen – das schafft Sicherheit und Vertrauen. Wir würden gerne klassisches Open Source nutzen, müssen uns aber schützen: Wir wollen verhindern, dass große Hyperscaler (wie Amazon oder Google) unsere Arbeit einfach kopieren und als eigenes Produkt verkaufen. Das würde uns die Ressourcen entziehen, Freeshard für dich weiterzuentwickeln."
+        answer: "Fair Source ist ein Weg, Transparenz und Nachhaltigkeit zu vereinen. Unser Code ist unter der 'Functional Source License, Version 1.1, ALv2 Future License' veröffentlicht. Das bedeutet: Du kannst den Code einsehen und prüfen – das schafft Sicherheit und Vertrauen. Wir würden gerne klassisches Open Source nutzen, müssen uns aber schützen: Wir wollen verhindern, dass große Hyperscaler (wie Amazon oder Google) unsere Arbeit einfach kopieren und als eigenes Produkt verkaufen. Das würde uns die Ressourcen entziehen, Freeshard für dich weiterzuentwickeln.",
+        tags: ["quellcode", "lizenz", "transparenz", "open source"]
       },
       {
         question: "Wo finde ich euren Code?",
-        answer: "Du findest unseren gesamten Quellcode auf GitHub: <a href='https://github.com/FreeshardBase/freeshard' target='_blank' rel='noopener noreferrer'>https://github.com/FreeshardBase/freeshard</a>. Schau gerne rein!"
+        answer: "Du findest unseren gesamten Quellcode auf GitHub: <a href='https://github.com/FreeshardBase/freeshard' target='_blank' rel='noopener noreferrer'>https://github.com/FreeshardBase/freeshard</a>. Schau gerne rein!",
+        tags: ["quellcode", "transparenz"]
       },
       {
         question: "Verkauft ihr alles, wenn euch ein Investor Geld gibt?",
-        answer: "Nein, das haben wir nicht vor. Wir haben Freeshard aus Überzeugung heraus gestartet und nutzen es täglich selbst für unsere eigenen Daten. Es zu verkaufen, würde bedeuten, nicht nur eure, sondern auch unsere eigenen privaten Daten aus der Hand zu geben. Wir bauen Freeshard, um unabhängig zu bleiben – nicht, um schnell Kasse zu machen."
+        answer: "Nein, das haben wir nicht vor. Wir haben Freeshard aus Überzeugung heraus gestartet und nutzen es täglich selbst für unsere eigenen Daten. Es zu verkaufen, würde bedeuten, nicht nur eure, sondern auch unsere eigenen privaten Daten aus der Hand zu geben. Wir bauen Freeshard, um unabhängig zu bleiben – nicht, um schnell Kasse zu machen.",
+        tags: ["geschäftsmodell", "unabhängigkeit"]
       },
       {
         question: "Warum nehmt ihr Geld, wenn ich die Apps auch kostenlos nutzen kann?",
-        answer: "Das ist richtig: Die Apps selbst sind oft kostenlos. Aber sie zuverlässig unter einem Dach zu betreiben, erfordert viel Arbeit im Hintergrund: Hosting-Kosten, Installation, Speicherverwaltung, Backups und komplexe Datenbank-Migrationen bei Updates. Wir übernehmen diese technische 'Orchestrierung' für dich, damit alles reibungslos läuft, und entwickeln Freeshard ständig weiter. Wenn du das technische Know-how hast und Zeit investieren möchtest, kannst du natürlich auch kostenlos profitieren, indem du deinen Shard selbst hostest oder die Anwendungen einzeln selbst betreibst."
+        answer: "Das ist richtig: Die Apps selbst sind oft kostenlos. Aber sie zuverlässig unter einem Dach zu betreiben, erfordert viel Arbeit im Hintergrund: Hosting-Kosten, Installation, Speicherverwaltung, Backups und komplexe Datenbank-Migrationen bei Updates. Wir übernehmen diese technische 'Orchestrierung' für dich, damit alles reibungslos läuft, und entwickeln Freeshard ständig weiter. Wenn du das technische Know-how hast und Zeit investieren möchtest, kannst du natürlich auch kostenlos profitieren, indem du deinen Shard selbst hostest oder die Anwendungen einzeln selbst betreibst.",
+        tags: ["preise", "geschäftsmodell", "apps"]
       },
       {
         question: "Warum kann ich Freeshard nicht anonym nutzen?",
-        answer: "Ganz ehrlich: Eine anonyme Nutzung wäre uns am liebsten. Leider ist das in der Realität kaum machbar. Es gibt Menschen, die anonyme Dienste missbrauchen, um illegale Inhalte zu verbreiten, die jenseits von allem sind, was wir uns vorstellen oder tolerieren wollen. Als Betreiber müssten wir uns ständig mit Missbrauchsmeldungen und rechtlichen Konsequenzen auseinandersetzen, was in keinem Verhältnis zum Nutzen stünde. Wenn du deinen Shard wirklich komplett anonym betreiben möchtest, empfehlen wir dir, einen spezialisierten Hoster zu suchen, der genau darauf ausgelegt ist."
+        answer: "Ganz ehrlich: Eine anonyme Nutzung wäre uns am liebsten. Leider ist das in der Realität kaum machbar. Es gibt Menschen, die anonyme Dienste missbrauchen, um illegale Inhalte zu verbreiten, die jenseits von allem sind, was wir uns vorstellen oder tolerieren wollen. Als Betreiber müssten wir uns ständig mit Missbrauchsmeldungen und rechtlichen Konsequenzen auseinandersetzen, was in keinem Verhältnis zum Nutzen stünde. Wenn du deinen Shard wirklich komplett anonym betreiben möchtest, empfehlen wir dir, einen spezialisierten Hoster zu suchen, der genau darauf ausgelegt ist.",
+        tags: ["datenschutz", "recht", "anonymität"]
       },
       {
         question: "Brauche ich technisches Wissen?",
-        answer: "Nein. Wir haben Freeshard so gebaut, dass es sich anfühlt wie die Apps, die du bereits kennst. Wir kümmern uns im Hintergrund um die Technik, Updates und Sicherheit."
+        answer: "Nein. Wir haben Freeshard so gebaut, dass es sich anfühlt wie die Apps, die du bereits kennst. Wir kümmern uns im Hintergrund um die Technik, Updates und Sicherheit.",
+        tags: ["einstieg"]
       },
       {
         question: "Warum nur PayPal und kein Wero oder Lastschrift?",
-        answer: "Das ist eine berechtigte Frage. Wir sind aktuell ein kleines, effizientes Team und müssen unsere Ressourcen bündeln. Mit PayPal erreichen wir die meisten Menschen einfach und sicher. Andere Zahlungsarten wie Wero oder Lastschrift stehen aber fest auf unserer Wunschliste für die Zukunft."
+        answer: "Das ist eine berechtigte Frage. Wir sind aktuell ein kleines, effizientes Team und müssen unsere Ressourcen bündeln. Mit PayPal erreichen wir die meisten Menschen einfach und sicher. Andere Zahlungsarten wie Wero oder Lastschrift stehen aber fest auf unserer Wunschliste für die Zukunft.",
+        tags: ["zahlung", "preise"]
       },
       {
         question: "Wie sind meine geteilten Inhalte (z.B. Fotoalben) erreichbar?",
-        answer: "Dein Shard bekommt bei der Einrichtung automatisch eine eigene Subdomain auf <code>freeshard.cloud</code>. Unter dieser Adresse kannst du Links zu deinen Fotoalben oder Dateien ganz einfach mit Freunden teilen. Eigene Wunsch-Domains erkunden wir für die Zukunft."
+        answer: "Dein Shard bekommt bei der Einrichtung automatisch eine eigene Subdomain auf <code>freeshard.cloud</code>. Unter dieser Adresse kannst du Links zu deinen Fotoalben oder Dateien ganz einfach mit Freunden teilen. Eigene Wunsch-Domains erkunden wir für die Zukunft.",
+        tags: ["teilen", "domain"]
       },
       {
         question: "Was passiert mit meiner Adresse, wenn ich Freeshard verlasse?",
-        answer: "Die automatisch zugewiesene Subdomain ist an unsere Infrastruktur gebunden und kann leider nicht mitgenommen werden. Was du mitnehmen kannst: deinen gesamten Shard – alle Daten und Einstellungen – als Export, den du auf einem eigenen Server unter deiner eigenen Domain betreiben kannst."
+        answer: "Die automatisch zugewiesene Subdomain ist an unsere Infrastruktur gebunden und kann leider nicht mitgenommen werden. Was du mitnehmen kannst: deinen gesamten Shard – alle Daten und Einstellungen – als Export, den du auf einem eigenen Server unter deiner eigenen Domain betreiben kannst.",
+        tags: ["portabilität", "domain", "kündigung"]
       },
       {
         id: "export",
         question: "Kann ich meinen Shard wirklich mitnehmen?",
-        answer: "Ja, absolut. Das ist Teil unserer Philosophie der Unabhängigkeit. Wenn du Freeshard nicht mehr nutzen möchtest, kannst du über unseren Support einen Export deines gesamten Systems anfordern – inklusive aller Daten und Einstellungen – und ihn auf einem eigenen Server zu Hause oder bei einem anderen Anbieter betreiben. Ein Self-Service-Export ist für die Zukunft geplant."
+        answer: "Ja, absolut. Das ist Teil unserer Philosophie der Unabhängigkeit. Wenn du Freeshard nicht mehr nutzen möchtest, kannst du über unseren Support einen Export deines gesamten Systems anfordern – inklusive aller Daten und Einstellungen – und ihn auf einem eigenen Server zu Hause oder bei einem anderen Anbieter betreiben. Ein Self-Service-Export ist für die Zukunft geplant.",
+        tags: ["portabilität", "export", "unabhängigkeit"]
       },
       {
         question: "Kann ich mit einem exportierten Shard wieder zu euch zurück?",
-        answer: "Das ist technisch leider nicht möglich, da wir die Integrität unserer Systeme gewährleisten müssen. Unser Tipp: Du kannst dir deinen Shard herunterladen, um den Export zu testen, und deinen Vertrag bei uns einfach weiterlaufen lassen. So hast du beides."
+        answer: "Das ist technisch leider nicht möglich, da wir die Integrität unserer Systeme gewährleisten müssen. Unser Tipp: Du kannst dir deinen Shard herunterladen, um den Export zu testen, und deinen Vertrag bei uns einfach weiterlaufen lassen. So hast du beides.",
+        tags: ["portabilität", "export"]
       },
       {
         id: "privacy",
         question: "Was macht ihr mit meinen Daten?",
-        answer: "Nichts, außer sie für dich zu speichern und bereitzustellen. Wir scannen keine Fotos, lesen keine Dokumente und verkaufen absolut nichts an Werbefirmen. Wir tun nur das, womit du uns explizit beauftragt hast: Hosting."
+        answer: "Nichts, außer sie für dich zu speichern und bereitzustellen. Wir scannen keine Fotos, lesen keine Dokumente und verkaufen absolut nichts an Werbefirmen. Wir tun nur das, womit du uns explizit beauftragt hast: Hosting.",
+        tags: ["datenschutz", "datensicherheit"]
       },
       {
         question: "Sind meine Daten verschlüsselt?",
-        answer: "Ja, die Festplatten unserer Server sind verschlüsselt. Das bedeutet: Wenn jemand physisch die Festplatte stehlen würde, könnte er nichts damit anfangen. Es gibt jedoch aktuell keine Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hast. Das ist nicht nur eine Einschränkung unsererseits – es ist eine grundlegende technische Grenze: Weil dein Shard echte Anwendungen ausführt (und nicht nur passiv Daten speichert), muss der Server deine Daten lesen und verarbeiten können, um zu funktionieren. Wahre Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hältst, ist mit dem aktuellen Stand der Technik grundsätzlich nicht vereinbar damit, Software in deinem Auftrag auszuführen."
+        answer: "Ja, die Festplatten unserer Server sind verschlüsselt. Das bedeutet: Wenn jemand physisch die Festplatte stehlen würde, könnte er nichts damit anfangen. Es gibt jedoch aktuell keine Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hast. Das ist nicht nur eine Einschränkung unsererseits – es ist eine grundlegende technische Grenze: Weil dein Shard echte Anwendungen ausführt (und nicht nur passiv Daten speichert), muss der Server deine Daten lesen und verarbeiten können, um zu funktionieren. Wahre Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hältst, ist mit dem aktuellen Stand der Technik grundsätzlich nicht vereinbar damit, Software in deinem Auftrag auszuführen.",
+        tags: ["sicherheit", "verschlüsselung"]
       },
       {
         question: "Könnt ihr auf meine Daten zugreifen?",
-        answer: "Technisch gesehen: Ja, da wir das System für dich warten. Aber: Wir tun es nicht. Erstens widerspricht es unserer Ethik. Zweitens verbieten wir es uns selbst in unseren AGB. Drittens wäre es ein schwerer Verstoß gegen die DSGVO. Und viertens – und das ist für uns am wichtigsten – wäre der damit verbundene Vertrauensverlust das sofortige Ende für uns. Dein Vertrauen ist unser wichtigstes Gut."
+        answer: "Technisch gesehen: Ja, da wir das System für dich warten. Aber: Wir tun es nicht. Erstens widerspricht es unserer Ethik. Zweitens verbieten wir es uns selbst in unseren AGB. Drittens wäre es ein schwerer Verstoß gegen die DSGVO. Und viertens – und das ist für uns am wichtigsten – wäre der damit verbundene Vertrauensverlust das sofortige Ende für uns. Dein Vertrauen ist unser wichtigstes Gut.",
+        tags: ["datenschutz", "sicherheit", "vertrauen"]
       },
       {
         question: "Könnt ihr meine Passwörter sehen?",
-        answer: "Nein, niemals. Dein Passwort-Manager (Vaultwarden) verschlüsselt alle deine Daten bereits auf deinem Gerät (Handy oder Computer), bevor sie überhaupt an unseren Server gesendet werden. Wir speichern nur den verschlüsselten Datensalat. Ohne dein Master-Passwort – das nur du kennst – sind diese Daten für uns (und jeden anderen) absolut unlesbar."
+        answer: "Nein, niemals. Dein Passwort-Manager (Vaultwarden) verschlüsselt alle deine Daten bereits auf deinem Gerät (Handy oder Computer), bevor sie überhaupt an unseren Server gesendet werden. Wir speichern nur den verschlüsselten Datensalat. Ohne dein Master-Passwort – das nur du kennst – sind diese Daten für uns (und jeden anderen) absolut unlesbar.",
+        tags: ["sicherheit", "verschlüsselung", "passwörter"]
       },
       {
         question: "Ich möchte meinen Shard trotzdem selbst verschlüsseln. Geht das?",
-        answer: "Aktuell noch nicht. Wir hören aber genau auf unsere Community: Wenn sich viele Nutzer dieses Feature wünschen, werden wir prüfen, wie wir das technisch benutzerfreundlich umsetzen können."
+        answer: "Aktuell noch nicht. Wir hören aber genau auf unsere Community: Wenn sich viele Nutzer dieses Feature wünschen, werden wir prüfen, wie wir das technisch benutzerfreundlich umsetzen können.",
+        tags: ["sicherheit", "verschlüsselung"]
       },
       {
         question: "Was passiert, wenn Polizei oder Gericht meine Daten anfordern?",
-        answer: "Wir halten uns an geltendes Recht. Wenn eine behördliche Anfrage kommt, prüfen wir diese juristisch sehr genau. Nur wenn sie absolut rechtmäßig und unumgänglich ist, müssen wir ihr Folge leisten."
+        answer: "Wir halten uns an geltendes Recht. Wenn eine behördliche Anfrage kommt, prüfen wir diese juristisch sehr genau. Nur wenn sie absolut rechtmäßig und unumgänglich ist, müssen wir ihr Folge leisten.",
+        tags: ["recht", "datenschutz"]
       },
       {
         question: "Würde eine Ende-zu-Ende-Verschlüsselung mich davor schützen?",
-        answer: "Jein. Selbst wenn wir Ende-zu-Ende verschlüsseln würden, könnten Behörden versuchen, uns zu zwingen, die Software so anzupassen, dass Daten im Moment des Zugriffs (wenn sie entschlüsselt sind) ausgeleitet werden. Wenn das deine Sorge ist, ist das Selbst-Hosten auf eigener Hardware der einzig sichere Weg. Konsequenterweise müsstest du dann aber auch jedes einzelne Update prüfen, ob darin nicht eine Hintertür versteckt wurde, die die Verschlüsselung aufbricht. Das betrifft übrigens nicht nur uns, sondern ausnahmslos alle Anbieter solcher Lösungen."
+        answer: "Jein. Selbst wenn wir Ende-zu-Ende verschlüsseln würden, könnten Behörden versuchen, uns zu zwingen, die Software so anzupassen, dass Daten im Moment des Zugriffs (wenn sie entschlüsselt sind) ausgeleitet werden. Wenn das deine Sorge ist, ist das Selbst-Hosten auf eigener Hardware der einzig sichere Weg. Konsequenterweise müsstest du dann aber auch jedes einzelne Update prüfen, ob darin nicht eine Hintertür versteckt wurde, die die Verschlüsselung aufbricht. Das betrifft übrigens nicht nur uns, sondern ausnahmslos alle Anbieter solcher Lösungen.",
+        tags: ["recht", "verschlüsselung", "sicherheit"]
       },
       {
         question: "Es gab ein Urteil, dass OVH Daten an Kanada herausgeben muss. Sind meine Daten sicher?",
-        answer: "Das ist ein berechtigter Punkt und wir beobachten den Fall genau. Sollte es sich wirklich so entwickeln, dass OVH in Europa durch das kanadische Gerichtsurteil gezwungen werden kann, europäische Daten herauszugeben, werden wir die Situation neu betrachten müssen. Allerdings ist hierbei das letzte Wort noch lange nicht gesprochen, da dieses Thema sowohl in Kanada als auch in Frankreich jeweils auf der Ebene der Regierung angekommen ist. So oder so wird hier nichts überraschend kommen, sondern sich mit langem Vorlauf ankündigen und wir werden entsprechend reagieren."
+        answer: "Das ist ein berechtigter Punkt und wir beobachten den Fall genau. Sollte es sich wirklich so entwickeln, dass OVH in Europa durch das kanadische Gerichtsurteil gezwungen werden kann, europäische Daten herauszugeben, werden wir die Situation neu betrachten müssen. Allerdings ist hierbei das letzte Wort noch lange nicht gesprochen, da dieses Thema sowohl in Kanada als auch in Frankreich jeweils auf der Ebene der Regierung angekommen ist. So oder so wird hier nichts überraschend kommen, sondern sich mit langem Vorlauf ankündigen und wir werden entsprechend reagieren.",
+        tags: ["recht", "serverstandort"]
       },
       {
         question: "Warum bietet ihr keine E-Mail- oder Kalender-Funktionen an?",
-        answer: "E-Mail und Kalender sind eigentlich Kernfunktionen, die wir sehr gerne anbieten würden – der Grund, warum wir es nicht tun, ist rein technischer Natur. E-Mail-Hosting ist notorisch schwierig: E-Mails zuverlässig zuzustellen, ohne von großen Anbietern als Spam gefiltert zu werden, erfordert Infrastruktur und Reputationsmanagement, das schwer zu meistern ist. Beim Kalender ist das Problem ein anderes: Es gibt schlicht noch keine selbst-gehostete Kalender-Lösung, die wir für gut genug halten – das ist eine echte Lücke im Ökosystem. Wir behalten beide Bereiche im Blick und werden sie ergänzen, sobald wir sicher sind, dass wir es wirklich gut umsetzen können."
+        answer: "E-Mail und Kalender sind eigentlich Kernfunktionen, die wir sehr gerne anbieten würden – der Grund, warum wir es nicht tun, ist rein technischer Natur. E-Mail-Hosting ist notorisch schwierig: E-Mails zuverlässig zuzustellen, ohne von großen Anbietern als Spam gefiltert zu werden, erfordert Infrastruktur und Reputationsmanagement, das schwer zu meistern ist. Beim Kalender ist das Problem ein anderes: Es gibt schlicht noch keine selbst-gehostete Kalender-Lösung, die wir für gut genug halten – das ist eine echte Lücke im Ökosystem. Wir behalten beide Bereiche im Blick und werden sie ergänzen, sobald wir sicher sind, dass wir es wirklich gut umsetzen können.",
+        tags: ["apps", "roadmap"]
       },
       {
         question: "Warum bietet ihr kein Nextcloud an?",
-        answer: "Es gibt bereits sehr viele spezialisierte Nextcloud-Anbieter am Markt. Wir schließen es für die Zukunft nicht aus, wollen aber erst einmal Alternativen bieten, die oft schlanker und schneller sind."
+        answer: "Es gibt bereits sehr viele spezialisierte Nextcloud-Anbieter am Markt. Wir schließen es für die Zukunft nicht aus, wollen aber erst einmal Alternativen bieten, die oft schlanker und schneller sind.",
+        tags: ["apps"]
       },
       {
         id: "data-location",
         question: "Wo liegen meine Daten?",
-        answer: "Dein Shard läuft auf OVH-Servern in der EU (Frankreich). Verschlüsselte Backups werden separat, ebenfalls in EU-Rechenzentren, gespeichert. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO)."
+        answer: "Dein Shard läuft auf OVH-Servern in der EU (Frankreich). Verschlüsselte Backups werden separat, ebenfalls in EU-Rechenzentren, gespeichert. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO).",
+        tags: ["serverstandort", "EU", "DSGVO", "datenschutz"]
       }
     ]
   },
@@ -359,9 +383,9 @@ export const de = {
     registerLabel: "Registereintrag:",
     registerInfo: "Registergericht: Amtsgericht München<br>Registernummer: HRB 285507",
     vatLabel: "Umsatzsteuer-ID",
-    vatInfo: "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>[Bitte hier Ihre USt-IdNr. eintragen, falls vorhanden]",
+    vatInfo: "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>DE363918779",
     responsibleLabel: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
-    responsibleInfo: "[Bitte hier den Namen und die Anschrift des inhaltlich Verantwortlichen eintragen, falls abweichend]"
+    responsibleInfo: "Max von Tettenborn<br>Good For Business UG (haftungsbeschränkt)<br>Schwanthalerstr. 123<br>80339 München"
   },
   realityCheck: {
     teaser: "Reality Check: Big Tech vs. dein Shard",
