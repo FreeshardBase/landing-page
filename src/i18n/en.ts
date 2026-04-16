@@ -33,7 +33,7 @@ export const en = {
       documents: { 
         title: "Digital Document Archive", 
         simpleDescription: "Stop searching. Simply scan documents with your phone. Automatic text recognition finds every invoice in seconds – perfect for tax season.",
-        techDescription: "Professional document management with Tika OCR. Searchable PDFs, automatic tagging rules, and workflow automation."
+        techDescription: "Professional document management with OCR. Searchable PDFs, automatic tagging rules, and workflow automation."
       },
       passwords: {
         title: "Secure Password Safe",
@@ -176,7 +176,7 @@ export const en = {
         label: "Server Location",
         link: "data-location",
         title: "Server Location",
-        explanation: "Your data is located exclusively on servers in the EU, specifically in France. It is therefore subject to strict European data protection laws (GDPR) that prioritize your privacy rights."
+        explanation: "Your Shard runs on OVH servers in the EU (France). Encrypted backups are stored separately, also within EU data centers. All data is subject to strict European data protection laws (GDPR)."
       },
       code: {
         value: "Fair",
@@ -220,11 +220,11 @@ export const en = {
     items: [
       {
         question: "Is this SaaS?",
-        answer: "No. A Shard is your own cloud computer, exclusively for you."
+        answer: "Not in the traditional sense — it's closer to IaaS. Your data lives on a dedicated machine that only you control, not shared software running on someone else's infrastructure."
       },
       {
         question: "Who sees my data?",
-        answer: "Nobody. Your Shard belongs to you."
+        answer: "Nobody. We host your Shard but we don't access your data."
       },
       {
         question: "Are apps really free?",
@@ -244,7 +244,7 @@ export const en = {
       {
         id: "fair-source",
         question: "What does 'Fair Source' mean?",
-        answer: "Fair Source is our way of combining transparency and sustainability. Our code is published under the 'Functional Source License, Version 1.1, ALv2 Future License'. This means: You can view and audit the code – creating security and trust. We would love to use classic Open Source, but we must protect ourselves: We want to prevent large hyperscalers (like Amazon or Google) from simply copying our work and selling it as their own product. That would drain the resources we need to develop Freeshard for you."
+        answer: "Fair Source is a way of combining transparency and sustainability. Our code is published under the 'Functional Source License, Version 1.1, ALv2 Future License'. This means: You can view and audit the code – creating security and trust. We would love to use classic Open Source, but we must protect ourselves: We want to prevent large hyperscalers (like Amazon or Google) from simply copying our work and selling it as their own product. That would drain the resources we need to develop Freeshard for you."
       },
       {
         question: "Where can I find your code?",
@@ -272,16 +272,16 @@ export const en = {
       },
       {
         question: "How is my shared content (e.g., photo albums) accessible?",
-        answer: "You choose your own desired address right at the start (as long as it's free), e.g., <code>mustermann.freeshard.net</code> or <code>family-smith.freeshard.net</code>. Your Shard is accessible under this address, and you can easily share links to your photo albums or files with friends."
+        answer: "Your Shard gets its own subdomain on <code>freeshard.cloud</code> automatically at signup. Under that address you can share links to your photo albums or files with friends. We're exploring custom domain names for the future."
       },
       {
         question: "What happens to my address if I leave Freeshard?",
-        answer: "We won't leave you hanging. You keep your address (your Freeshard name) free of charge and permanently. We provide a portal where you can simply point your name to your self-hosted Shard. You also get the matching security certificate from us. All this is free for you – under the sole condition that you actually run a Shard under the address and nothing else."
+        answer: "Your auto-assigned subdomain is tied to our infrastructure, so it can't follow you. What you can do is export your entire Shard — all data and settings — and run it yourself under your own domain. Your data is truly portable."
       },
       {
         id: "export",
         question: "Can I really take my Shard with me?",
-        answer: "Yes, absolutely. That is part of our philosophy of independence. If you no longer want to use Freeshard, you can export your entire system – including all data and settings – and run it on your own server at home or with another provider."
+        answer: "Yes, absolutely. That is part of our philosophy of independence. If you no longer want to use Freeshard, you can request an export of your entire system — including all data and settings — via our support, and run it on your own server at home or with another provider. Self-service export is planned for the future."
       },
       {
         question: "Can I come back to you with an exported Shard?",
@@ -294,7 +294,7 @@ export const en = {
       },
       {
         question: "Is my data encrypted?",
-        answer: "Yes, the hard drives of our servers are encrypted. This means: If someone were to physically steal the hard drive, they couldn't do anything with it. However, there is currently no end-to-end encryption where only you have the key."
+        answer: "Yes, the hard drives of our servers are encrypted. This means: If someone were to physically steal the hard drive, they couldn't do anything with it. However, there is currently no end-to-end encryption where only you have the key. This is not just a limitation of ours — it is a fundamental technical constraint: because your Shard runs actual applications (not just passive storage), the server must be able to read and process your data to function. True end-to-end encryption, where only you hold the key, is essentially incompatible with running software on your behalf with current technology."
       },
       {
         question: "Can you access my data?",
@@ -314,7 +314,7 @@ export const en = {
       },
       {
         question: "Would end-to-end encryption protect me from that?",
-        answer: "Yes and no. Even if we encrypted end-to-end, a court could theoretically force us to adapt the software so that data is diverted at the moment of access (when it is decrypted). If that is your concern, self-hosting on your own hardware is the only secure way. Consequently, you would then also have to check every single update to see if a backdoor has been hidden in it that breaks the encryption. Incidentally, this applies not only to us, but to all providers of such solutions without exception."
+        answer: "Yes and no. Even if we encrypted end-to-end, authorities could attempt to compel us to adapt the software so that data is diverted at the moment of access (when it is decrypted). If that is your concern, self-hosting on your own hardware is the only secure way. Consequently, you would then also have to check every single update to see if a backdoor has been hidden in it that breaks the encryption. Incidentally, this applies not only to us, but to all providers of such solutions without exception."
       },
       {
         question: "There was a ruling that OVH must hand over data to Canada. Is my data safe?",
@@ -322,7 +322,7 @@ export const en = {
       },
       {
         question: "Why don't you offer email or calendar functions?",
-        answer: "We are currently focusing on core functions. However, we are watching our users' wishes closely – if the demand is high enough, we will add that."
+        answer: "Email and calendar are actually core functions we would love to offer — the reason we don't is purely technical. Email hosting is notoriously difficult: getting emails reliably delivered without being filtered as spam by major providers requires a level of infrastructure and reputation management that is genuinely hard to get right. For calendar, the problem is different: there simply are no self-hosted calendar solutions we consider good enough yet — that is a real gap in the ecosystem. We are keeping a close eye on both areas and will add them as soon as we are confident we can do it well."
       },
       {
         question: "Why don't you offer Nextcloud?",
@@ -331,7 +331,7 @@ export const en = {
       {
         id: "data-location",
         question: "Where is my data located?",
-        answer: "Your data is located exclusively on servers in the EU (currently we use OVH data centers in France). It is therefore subject to strict European data protection laws (GDPR)."
+        answer: "Your Shard runs on OVH servers in the EU (France). Encrypted backups are stored separately, also within EU data centers. All data is subject to strict European data protection laws (GDPR)."
       }
     ]
   },

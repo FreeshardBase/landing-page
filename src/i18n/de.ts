@@ -33,7 +33,7 @@ export const de = {
       documents: { 
         title: "Digitales Dokumentenarchiv", 
         simpleDescription: "Nie wieder suchen. Scanne Dokumente einfach mit dem Handy. Die automatische Texterkennung findet jede Rechnung in Sekunden – perfekt für die Steuererklärung.",
-        techDescription: "Professionelles Dokumentenmanagement mit Tika OCR. Durchsuchbare PDFs, automatische Tagging-Regeln und Workflow-Automatisierung."
+        techDescription: "Professionelles Dokumentenmanagement mit OCR-Texterkennung. Durchsuchbare PDFs, automatische Tagging-Regeln und Workflow-Automatisierung."
       },
       passwords: {
         title: "Sicherer Passwort-Safe",
@@ -135,7 +135,7 @@ export const de = {
       performanceTitle: "Was ist der Unterschied?",
       performanceText: "Unsere Pakete unterscheiden sich durch Speicherplatz und Geschwindigkeit. In den günstigeren Paketen konzentriert sich dein System immer auf eine Aufgabe: Wenn du z.B. von der Fotoverwaltung zu deinen Dokumenten wechselst, muss das eine kurz pausieren, damit das andere starten kann. Das spart Kosten, dauert aber einen kleinen Moment. In den stärkeren Paketen läuft alles gleichzeitig – für einen sofortigen Wechsel ohne Wartezeit.",
       flexibilityTitle: "Bleib flexibel",
-      flexibilityText: "Du kannst die Leistung deines Pakets monatlich anpassen – sowohl nach oben als auch nach unten. Lediglich beim Speicherplatz geht es technisch bedingt nur nach oben. Der Wechsel dauert nur ca. eine Minute, in der dein System kurz neu startet.",
+      flexibilityText: "Du kannst Leistung und Speicherplatz jederzeit nach oben skalieren – ganz ohne Neuinstallation oder Datenverlust, wie es bei echter Hardware der Fall wäre. Der Wechsel dauert nur ca. eine Minute, in der dein System kurz neu startet.",
       trialText: "Tipp: Du bist unsicher? Einmal im Monat kannst du kostenlos für eine Stunde ein stärkeres Paket ausprobieren."
     },
     presetsTitle: "Unsere Empfehlungen",
@@ -176,7 +176,7 @@ export const de = {
         label: "Server-Standort",
         link: "data-location",
         title: "Server-Standort",
-        explanation: "Deine Daten befinden sich ausschließlich auf Servern in der EU, speziell in Frankreich. Sie unterliegen daher strengen europäischen Datenschutzgesetzen (DSGVO), die deine Privatsphäre schützen."
+        explanation: "Dein Shard läuft auf OVH-Servern in der EU (Frankreich). Verschlüsselte Backups werden separat, ebenfalls in EU-Rechenzentren, gespeichert. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO)."
       },
       code: {
         value: "Fair",
@@ -220,11 +220,11 @@ export const de = {
     items: [
       {
         question: "Ist das SaaS?",
-        answer: "Nein. Ein Shard ist dein eigener Cloud-Computer, exklusiv für dich."
+        answer: "Nicht im klassischen Sinne – es ist eher IaaS. Deine Daten liegen auf einem dedizierten Rechner, der nur dir gehört, nicht auf gemeinsam genutzter Infrastruktur unter fremder Kontrolle."
       },
       {
         question: "Wer sieht meine Daten?",
-        answer: "Niemand. Dein Shard gehört dir."
+        answer: "Niemand. Wir hosten deinen Shard, greifen aber nicht auf deine Daten zu."
       },
       {
         question: "Sind Apps wirklich kostenlos?",
@@ -244,7 +244,7 @@ export const de = {
       {
         id: "fair-source",
         question: "Was bedeutet 'Fair Source'?",
-        answer: "Fair Source ist unser Weg, Transparenz und Nachhaltigkeit zu vereinen. Unser Code ist unter der 'Functional Source License, Version 1.1, ALv2 Future License' veröffentlicht. Das bedeutet: Du kannst den Code einsehen und prüfen – das schafft Sicherheit und Vertrauen. Wir würden gerne klassisches Open Source nutzen, müssen uns aber schützen: Wir wollen verhindern, dass große Hyperscaler (wie Amazon oder Google) unsere Arbeit einfach kopieren und als eigenes Produkt verkaufen. Das würde uns die Ressourcen entziehen, Freeshard für dich weiterzuentwickeln."
+        answer: "Fair Source ist ein Weg, Transparenz und Nachhaltigkeit zu vereinen. Unser Code ist unter der 'Functional Source License, Version 1.1, ALv2 Future License' veröffentlicht. Das bedeutet: Du kannst den Code einsehen und prüfen – das schafft Sicherheit und Vertrauen. Wir würden gerne klassisches Open Source nutzen, müssen uns aber schützen: Wir wollen verhindern, dass große Hyperscaler (wie Amazon oder Google) unsere Arbeit einfach kopieren und als eigenes Produkt verkaufen. Das würde uns die Ressourcen entziehen, Freeshard für dich weiterzuentwickeln."
       },
       {
         question: "Wo finde ich euren Code?",
@@ -272,16 +272,16 @@ export const de = {
       },
       {
         question: "Wie sind meine geteilten Inhalte (z.B. Fotoalben) erreichbar?",
-        answer: "Du wählst dir direkt zum Start deine eigene Wunsch-Adresse aus (solange sie noch frei ist), z.B. <code>mustermann.freeshard.net</code> oder <code>familie-meier.freeshard.net</code>. Unter dieser Adresse ist dein Shard dann erreichbar und du kannst Links zu deinen Fotoalben oder Dateien ganz einfach mit Freunden teilen."
+        answer: "Dein Shard bekommt bei der Einrichtung automatisch eine eigene Subdomain auf <code>freeshard.cloud</code>. Unter dieser Adresse kannst du Links zu deinen Fotoalben oder Dateien ganz einfach mit Freunden teilen. Eigene Wunsch-Domains erkunden wir für die Zukunft."
       },
       {
         question: "Was passiert mit meiner Adresse, wenn ich Freeshard verlasse?",
-        answer: "Du behältst deine Adresse (deinen Freeshard-Namen) kostenfrei und dauerhaft. Wir stellen dir ein Portal zur Verfügung, über das du deinen Namen einfach auf deinen selbst gehosteten Shard zeigen lassen kannst. Auch das passende Sicherheits-Zertifikat bekommst du von uns. Das alles ist für dich kostenlos – unter der einzigen Bedingung, dass du unter der Adresse auch wirklich einen Shard betreibst und nichts anderes."
+        answer: "Die automatisch zugewiesene Subdomain ist an unsere Infrastruktur gebunden und kann leider nicht mitgenommen werden. Was du mitnehmen kannst: deinen gesamten Shard – alle Daten und Einstellungen – als Export, den du auf einem eigenen Server unter deiner eigenen Domain betreiben kannst."
       },
       {
         id: "export",
         question: "Kann ich meinen Shard wirklich mitnehmen?",
-        answer: "Ja, absolut. Das ist Teil unserer Philosophie der Unabhängigkeit. Wenn du Freeshard nicht mehr nutzen möchtest, kannst du dein gesamtes System – inklusive aller Daten und Einstellungen – exportieren und auf einem eigenen Server zu Hause oder bei einem anderen Anbieter betreiben."
+        answer: "Ja, absolut. Das ist Teil unserer Philosophie der Unabhängigkeit. Wenn du Freeshard nicht mehr nutzen möchtest, kannst du über unseren Support einen Export deines gesamten Systems anfordern – inklusive aller Daten und Einstellungen – und ihn auf einem eigenen Server zu Hause oder bei einem anderen Anbieter betreiben. Ein Self-Service-Export ist für die Zukunft geplant."
       },
       {
         question: "Kann ich mit einem exportierten Shard wieder zu euch zurück?",
@@ -294,7 +294,7 @@ export const de = {
       },
       {
         question: "Sind meine Daten verschlüsselt?",
-        answer: "Ja, die Festplatten unserer Server sind verschlüsselt. Das bedeutet: Wenn jemand physisch die Festplatte stehlen würde, könnte er nichts damit anfangen. Es gibt jedoch aktuell keine Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hast."
+        answer: "Ja, die Festplatten unserer Server sind verschlüsselt. Das bedeutet: Wenn jemand physisch die Festplatte stehlen würde, könnte er nichts damit anfangen. Es gibt jedoch aktuell keine Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hast. Das ist nicht nur eine Einschränkung unsererseits – es ist eine grundlegende technische Grenze: Weil dein Shard echte Anwendungen ausführt (und nicht nur passiv Daten speichert), muss der Server deine Daten lesen und verarbeiten können, um zu funktionieren. Wahre Ende-zu-Ende-Verschlüsselung, bei der nur du den Schlüssel hältst, ist mit dem aktuellen Stand der Technik grundsätzlich nicht vereinbar damit, Software in deinem Auftrag auszuführen."
       },
       {
         question: "Könnt ihr auf meine Daten zugreifen?",
@@ -314,7 +314,7 @@ export const de = {
       },
       {
         question: "Würde eine Ende-zu-Ende-Verschlüsselung mich davor schützen?",
-        answer: "Jein. Selbst wenn wir Ende-zu-Ende verschlüsseln würden, könnte ein Gericht uns theoretisch zwingen, die Software so anzupassen, dass Daten im Moment des Zugriffs (wenn sie entschlüsselt sind) ausgeleitet werden. Wenn das deine Sorge ist, ist das Selbst-Hosten auf eigener Hardware der einzig sichere Weg. Konsequenterweise müsstest du dann aber auch jedes einzelne Update prüfen, ob darin nicht eine Hintertür versteckt wurde, die die Verschlüsselung aufbricht. Das betrifft übrigens nicht nur uns, sondern ausnahmslos alle Anbieter solcher Lösungen."
+        answer: "Jein. Selbst wenn wir Ende-zu-Ende verschlüsseln würden, könnten Behörden versuchen, uns zu zwingen, die Software so anzupassen, dass Daten im Moment des Zugriffs (wenn sie entschlüsselt sind) ausgeleitet werden. Wenn das deine Sorge ist, ist das Selbst-Hosten auf eigener Hardware der einzig sichere Weg. Konsequenterweise müsstest du dann aber auch jedes einzelne Update prüfen, ob darin nicht eine Hintertür versteckt wurde, die die Verschlüsselung aufbricht. Das betrifft übrigens nicht nur uns, sondern ausnahmslos alle Anbieter solcher Lösungen."
       },
       {
         question: "Es gab ein Urteil, dass OVH Daten an Kanada herausgeben muss. Sind meine Daten sicher?",
@@ -322,7 +322,7 @@ export const de = {
       },
       {
         question: "Warum bietet ihr keine E-Mail- oder Kalender-Funktionen an?",
-        answer: "Wir konzentrieren uns aktuell auf die Kernfunktionen. Wir beobachten aber die Wünsche unserer Nutzer genau – wenn die Nachfrage groß genug ist, werden wir das ergänzen."
+        answer: "E-Mail und Kalender sind eigentlich Kernfunktionen, die wir sehr gerne anbieten würden – der Grund, warum wir es nicht tun, ist rein technischer Natur. E-Mail-Hosting ist notorisch schwierig: E-Mails zuverlässig zuzustellen, ohne von großen Anbietern als Spam gefiltert zu werden, erfordert Infrastruktur und Reputationsmanagement, das schwer zu meistern ist. Beim Kalender ist das Problem ein anderes: Es gibt schlicht noch keine selbst-gehostete Kalender-Lösung, die wir für gut genug halten – das ist eine echte Lücke im Ökosystem. Wir behalten beide Bereiche im Blick und werden sie ergänzen, sobald wir sicher sind, dass wir es wirklich gut umsetzen können."
       },
       {
         question: "Warum bietet ihr kein Nextcloud an?",
@@ -331,7 +331,7 @@ export const de = {
       {
         id: "data-location",
         question: "Wo liegen meine Daten?",
-        answer: "Deine Daten liegen ausschließlich auf Servern in der EU (aktuell nutzen wir Rechenzentren von OVH in Frankreich). Sie unterliegen damit den strengen europäischen Datenschutzgesetzen (DSGVO)."
+        answer: "Dein Shard läuft auf OVH-Servern in der EU (Frankreich). Verschlüsselte Backups werden separat, ebenfalls in EU-Rechenzentren, gespeichert. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO)."
       }
     ]
   },
