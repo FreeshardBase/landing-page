@@ -19,9 +19,21 @@ const t = content.faq;
       <h1>{t.pageTitle}</h1>
       <p class="section-description">{t.intro}</p>
       
+      <div class="faq-search-wrapper">
+        <input
+          id="faq-search"
+          type="search"
+          placeholder={t.searchPlaceholder}
+          autofocus
+          autocomplete="off"
+          aria-label={t.searchPlaceholder}
+        />
+      </div>
+      <p id="faq-no-results" hidden>{t.noResults}</p>
+
       <div class="faq-grid">
         {t.questions.map(faq => (
-          <div class="faq-item" id={faq.id}>
+          <div class="faq-item" id={faq.id} data-tags={faq.tags.join(' ')}>
             <h3>{faq.question}</h3>
             <p set:html={faq.answer} />
           </div>
@@ -46,6 +58,30 @@ const t = content.faq;
     max-width: 600px;
     margin: 0 auto 3rem auto;
     color: var(--text-light);
+  }
+  .faq-search-wrapper {
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+  }
+  #faq-search {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  #faq-search:focus {
+    border-color: var(--primary-color);
+  }
+  #faq-no-results {
+    color: var(--text-light);
+    text-align: center;
+    padding: 2rem 0;
   }
   .faq-grid {
     max-width: 800px;
@@ -100,3 +136,22 @@ const t = content.faq;
     font-size: 0.9em;
   }
 </style>
+
+<script>
+  const input = document.getElementById('faq-search') as HTMLInputElement;
+  const items = document.querySelectorAll<HTMLElement>('.faq-item');
+  const noResults = document.getElementById('faq-no-results') as HTMLElement;
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    items.forEach(item => {
+      const text = item.textContent?.toLowerCase() ?? '';
+      const tags = (item.dataset.tags ?? '').toLowerCase();
+      const match = !q || text.includes(q) || tags.includes(q);
+      item.hidden = !match;
+      if (match) visible++;
+    });
+    noResults.hidden = visible > 0 || !q;
+  });
+</script>
