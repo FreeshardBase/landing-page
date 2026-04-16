@@ -16,8 +16,8 @@ export const de = {
   hero: {
     subtitle: "Deine persönliche souveräne Mini-Cloud",
     description: "Ein Shard ist deine persönliche Mini-Cloud von Freeshard. Ein Ort für Apps, Daten und Identität. Keine Passwörter, kein Sync, digitale Souveränität ohne Technikstress.",
-    ctaPrimary: "Shard vormerken",
-    ctaSecondary: "Mehr erfahren"
+    ctaPrimary: "24h kostenlos testen",
+    ctaSecondary: "Auf dem Laufenden bleiben"
   },
   useCases: {
     sectionTitle: "Deine persönliche Cloud",
@@ -132,11 +132,8 @@ export const de = {
   pricing: {
     pageTitle: "Preisrechner",
     info: {
-      performanceTitle: "Was ist der Unterschied?",
-      performanceText: "Unsere Pakete unterscheiden sich durch Speicherplatz und Geschwindigkeit. In den günstigeren Paketen konzentriert sich dein System immer auf eine Aufgabe: Wenn du z.B. von der Fotoverwaltung zu deinen Dokumenten wechselst, muss das eine kurz pausieren, damit das andere starten kann. Das spart Kosten, dauert aber einen kleinen Moment. In den stärkeren Paketen läuft alles gleichzeitig – für einen sofortigen Wechsel ohne Wartezeit.",
-      flexibilityTitle: "Bleib flexibel",
-      flexibilityText: "Du kannst Leistung und Speicherplatz jederzeit nach oben skalieren – ganz ohne Neuinstallation oder Datenverlust, wie es bei echter Hardware der Fall wäre. Der Wechsel dauert nur ca. eine Minute, in der dein System kurz neu startet.",
-      trialText: "Tipp: Du bist unsicher? Einmal im Monat kannst du kostenlos für eine Stunde ein stärkeres Paket ausprobieren."
+      introText: "Abonnements sind bald verfügbar. Der Rechner unten gibt dir eine Vorstellung davon, was ein Shard kosten könnte.",
+      trialCta: "Freeshard 24 Stunden kostenlos testen →"
     },
     presetsTitle: "Unsere Empfehlungen",
     presets: {

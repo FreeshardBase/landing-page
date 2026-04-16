@@ -15,16 +15,9 @@ const t = content.pricing;
   <div class="container">
     <h2>{t.pageTitle}</h2>
     
-    <div class="pricing-info">
-      <div class="info-block">
-        <h3>{t.info.performanceTitle}</h3>
-        <p>{t.info.performanceText}</p>
-      </div>
-      <div class="info-block">
-        <h3>{t.info.flexibilityTitle}</h3>
-        <p>{t.info.flexibilityText}</p>
-        <p class="highlight-text">{t.info.trialText}</p>
-      </div>
+    <div class="pricing-intro">
+      <p>{t.info.introText}</p>
+      <a href="https://trial.freeshard.net/" target="_blank" rel="noopener noreferrer" class="trial-link">{t.info.trialCta}</a>
     </div>
     
     <div class="pricing-container">
@@ -160,10 +153,6 @@ const t = content.pricing;
     });
   });
 
-  detailToggle?.addEventListener('change', () => {
-    calculatorWrapper?.classList.toggle('is-hidden', !detailToggle.checked);
-  });
-
   // --- Initialisierung ---
   document.addEventListener('DOMContentLoaded', () => {
     // Start with 30 GB (index 1)
@@ -176,33 +165,32 @@ const t = content.pricing;
 <style>
   .pricing-container { max-width: 900px; margin: 0 auto; }
   
-  .pricing-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+  .pricing-intro {
+    text-align: center;
     margin-bottom: 3rem;
-    text-align: left;
   }
-  
-  .info-block h3 {
-    color: var(--primary-color);
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .info-block p {
+
+  .pricing-intro p {
     color: var(--text-light);
+    font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
-  
-  .highlight-text {
-    font-weight: 600;
-    color: var(--primary-color) !important;
-    background-color: var(--bg-light);
-    padding: 0.75rem;
+
+  .trial-link {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.75rem;
     border-radius: 0.5rem;
-    border-left: 4px solid var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .trial-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 
   .presets { margin-bottom: 2rem; text-align: center; }

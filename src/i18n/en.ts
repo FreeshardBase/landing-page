@@ -16,8 +16,8 @@ export const en = {
   hero: {
     subtitle: "Your personal sovereign mini-cloud",
     description: "A Shard is your personal mini-cloud from Freeshard. A place for apps, data, and identity. No passwords, no sync, digital sovereignty without the tech stress.",
-    ctaPrimary: "Reserve Shard",
-    ctaSecondary: "Learn More"
+    ctaPrimary: "Try Free for 24h",
+    ctaSecondary: "Stay Updated"
   },
   useCases: {
     sectionTitle: "Your Personal Cloud",
@@ -132,11 +132,8 @@ export const en = {
   pricing: {
     pageTitle: "Price Calculator",
     info: {
-      performanceTitle: "What's the difference?",
-      performanceText: "Currently, there is one Shard size. The examples below show how costs might develop later with more performance and storage.",
-      flexibilityTitle: "Apps Included",
-      flexibilityText: "All apps are free. You only pay for your Shard.",
-      trialText: "Note: These are sample calculations. Scaling is on the roadmap."
+      introText: "Subscriptions are coming soon. The calculator below gives you a feel for what a Shard might cost.",
+      trialCta: "Try Freeshard free for 24 hours →"
     },
     presetsTitle: "Our Recommendations",
     presets: {
