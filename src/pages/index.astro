@@ -1,5 +1,4 @@
 ---
-// Statischer Redirect als Fallback
 import { defaultLang } from '../i18n/ui';
 ---
 
@@ -7,24 +6,12 @@ import { defaultLang } from '../i18n/ui';
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content={`0;url=/${defaultLang}/`}>
+    <noscript><meta http-equiv="refresh" content={`0;url=/${defaultLang}/`}></noscript>
     <script is:inline>
-        // Spracherkennung
         var lang = navigator.language || navigator.userLanguage;
-        var target = 'de';
-        if (lang.startsWith('en')) {
-            target = 'en';
-        }
-        
-        // Wir leiten auf den entsprechenden Unterordner weiter
-        // Da wir im Root sind, ist das einfach /de/ oder /en/
-        // Der Browser kümmert sich um den Base-Path, wenn wir relative Pfade nutzen würden,
-        // aber hier ist es sicherer, den Pfad explizit zu bauen.
-        
-        // Wenn die Seite unter /landing-page/ läuft, ist window.location.pathname /landing-page/
+        var target = lang.startsWith('en') ? 'en' : 'de';
         var path = window.location.pathname;
         if (!path.endsWith('/')) path += '/';
-        
         window.location.replace(path + target + '/');
     </script>
 </head>
