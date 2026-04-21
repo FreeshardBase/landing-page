@@ -11,7 +11,9 @@ export const de = {
     copyright: "© 2026 Freeshard. Alle Rechte vorbehalten.",
     imprint: "Impressum",
     privacy: "Datenschutz",
-    faq: "Häufige Fragen (FAQ)"
+    faq: "Häufige Fragen (FAQ)",
+    trial: "Kostenlos testen",
+    activate: "Mit Promo-Code aktivieren"
   },
   hero: {
     subtitle: "Deine persönliche souveräne Mini-Cloud",
@@ -433,6 +435,9 @@ export const de = {
     codeChecking: "Prüfe Code...",
     codeValid: "Code ist gültig.",
     codeInvalid: "Code ist ungültig oder bereits verwendet.",
+    codeNotFound: "Dieser Code existiert nicht.",
+    codeInactive: "Dieser Code ist nicht aktiv.",
+    codeExhausted: "Dieser Code wurde bereits vollständig eingelöst.",
     emailPlaceholder: "Deine E-Mail-Adresse",
     emailHint: "Wir senden dir den Zugang zum Shard und Status-Updates. Deine E-Mail wird nur so lange gespeichert, wie dein Shard existiert.",
     emailInvalid: "Bitte gib eine gültige E-Mail-Adresse ein.",

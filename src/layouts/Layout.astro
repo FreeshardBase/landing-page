@@ -52,6 +52,8 @@ const BASE_URL = import.meta.env.BASE_URL;
       <div class="container">
         <img src={BRAND_MARK} alt="Freeshard" class="footer-logo" />
         <div class="footer-links">
+          <a href={`${BASE_URL}/${lang}/trial/`}>{t.footer.trial}</a>
+          <a href={`${BASE_URL}/${lang}/activate/`}>{t.footer.activate}</a>
           <a href={`${BASE_URL}/${lang}/faq/`}>{t.footer.faq}</a>
           <a href={`${BASE_URL}/${lang}/impressum/`}>{t.footer.imprint}</a>
           <a href={`${BASE_URL}/${lang}/datenschutz/`}>{t.footer.privacy}</a>
@@ -86,6 +88,17 @@ const BASE_URL = import.meta.env.BASE_URL;
         color: var(--text-color);
         line-height: 1.6;
         background-color: var(--bg-color);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto;
+      }
+
+      footer {
+        flex-shrink: 0;
       }
 
       .container {
@@ -150,7 +163,6 @@ const BASE_URL = import.meta.env.BASE_URL;
         border-top: 1px solid var(--border-color);
         padding: 2rem 0;
         text-align: center;
-        margin-top: 4rem;
       }
       
       .footer-logo {

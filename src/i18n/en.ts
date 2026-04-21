@@ -11,7 +11,9 @@ export const en = {
     copyright: "© 2026 Freeshard. All rights reserved.",
     imprint: "Imprint",
     privacy: "Privacy Policy",
-    faq: "FAQ"
+    faq: "FAQ",
+    trial: "Free Trial",
+    activate: "Activate using Promo-Code"
   },
   hero: {
     subtitle: "Your personal sovereign mini-cloud",
@@ -433,6 +435,9 @@ export const en = {
     codeChecking: "Checking code...",
     codeValid: "Code is valid.",
     codeInvalid: "Code is invalid or already used.",
+    codeNotFound: "This code does not exist.",
+    codeInactive: "This code is not active.",
+    codeExhausted: "This code has already been fully redeemed.",
     emailPlaceholder: "Your email address",
     emailHint: "We use your email to send you the link to your shard and keep you informed about its status. We only store it for as long as your shard exists.",
     emailInvalid: "Please enter a valid email address.",

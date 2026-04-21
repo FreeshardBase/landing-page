@@ -106,11 +106,6 @@ const t = (lang === 'en' ? en : de).signup;
         });
       }
       this.setSubmitEnabled(false);
-
-      // DEV: ?preview=result renders success state with fake shard. Remove before merge.
-      if (new URLSearchParams(location.search).get('preview') === 'result') {
-        this.showResult({ hash_id: 'abc123deadbeef', domain: 'example.shard', code: '042137' });
-      }
     }
 
     private reflectEmailState() {
@@ -144,9 +139,13 @@ const t = (lang === 'en' ? en : de).signup;
       try {
         const res = await fetch(`${this.api}/promo_codes/${encodeURIComponent(value)}/validate`);
         if (!res.ok) {
-          const body = await res.json().catch(() => ({ detail: this.t.codeInvalid }));
           this.codeValid = false;
-          this.setMsg(msg, { text: body.detail || this.t.codeInvalid, ok: false });
+          const text = {
+            401: this.t.codeNotFound,
+            412: this.t.codeInactive,
+            410: this.t.codeExhausted,
+          }[res.status] ?? this.t.codeInvalid;
+          this.setMsg(msg, { text, ok: false });
         } else {
           const body = await res.json().catch(() => ({}));
           this.codeValid = true;
