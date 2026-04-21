@@ -44,6 +44,18 @@ const t = (lang === 'en' ? en : de).signup;
           <small class="muted">{t.emailHint}</small>
         </div>
 
+        <div class="field legal-field" data-role="legal-field" hidden={mode === 'activate'}>
+          <label class="checkbox-label">
+            <input type="checkbox" data-role="legal-consent" />
+            <span class="checkbox-text" set:html={t.legalConsentLabel} />
+          </label>
+          <p data-role="legal-msg" class="msg"></p>
+        </div>
+
+        {mode === 'activate' && (
+          <p class="muted small early-start-notice">{t.earlyStartNotice}</p>
+        )}
+
         <button type="submit" data-role="submit" class="btn-primary">
           <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
             <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
@@ -95,6 +107,12 @@ const t = (lang === 'en' ? en : de).signup;
       const email = this.q<HTMLInputElement>('[data-role=email]');
       email.addEventListener('input', () => {
         this.reflectEmailState();
+        this.updateSubmitState();
+      });
+
+      const legal = this.q<HTMLInputElement>('[data-role=legal-consent]');
+      legal.addEventListener('change', () => {
+        this.setMsg(this.q<HTMLElement>('[data-role=legal-msg]'), { text: '', ok: null });
         this.updateSubmitState();
       });
 
@@ -160,6 +178,7 @@ const t = (lang === 'en' ? en : de).signup;
         this.setMsg(msg, { text: (err as Error).message, ok: false });
       }
       this.q<HTMLElement>('[data-role=email-field]').hidden = this.codeValid !== true;
+      this.q<HTMLElement>('[data-role=legal-field]').hidden = this.codeValid !== true;
       this.updateSubmitState();
     }
 
@@ -168,12 +187,17 @@ const t = (lang === 'en' ? en : de).signup;
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
     }
 
+    private legalAccepted(): boolean {
+      return this.q<HTMLInputElement>('[data-role=legal-consent]').checked;
+    }
+
     private updateSubmitState() {
       const emailOk = this.emailValid();
+      const legalOk = this.legalAccepted();
       if (this.mode === 'trial') {
-        this.setSubmitEnabled(emailOk);
+        this.setSubmitEnabled(emailOk && legalOk);
       } else {
-        this.setSubmitEnabled(this.codeValid === true && emailOk);
+        this.setSubmitEnabled(this.codeValid === true && emailOk && legalOk);
       }
     }
 
@@ -185,6 +209,10 @@ const t = (lang === 'en' ? en : de).signup;
       const email = this.q<HTMLInputElement>('[data-role=email]').value.trim();
       if (!this.emailValid()) {
         this.showError(this.t.emailInvalid);
+        return;
+      }
+      if (!this.legalAccepted()) {
+        this.setMsg(this.q<HTMLElement>('[data-role=legal-msg]'), { text: this.t.legalConsentRequired, ok: false });
         return;
       }
 
@@ -259,7 +287,9 @@ const t = (lang === 'en' ? en : de).signup;
       email.classList.remove('ok', 'err');
       if (this.mode === 'activate') {
         this.q<HTMLElement>('[data-role=email-field]').hidden = true;
+        this.q<HTMLElement>('[data-role=legal-field]').hidden = true;
       }
+      this.setMsg(this.q<HTMLElement>('[data-role=legal-msg]'), { text: '', ok: null });
       this.setSubmitEnabled(false);
       this.q<HTMLElement>('[data-role=promo]').hidden = true;
     }
@@ -310,4 +340,17 @@ const t = (lang === 'en' ? en : de).signup;
   .pair-code { font-size: 1.25rem; letter-spacing: 0.15em; }
   .promo { white-space: pre-line; margin-top: 1rem; padding: 0.75rem;
            background: var(--bg-light); border-radius: 0.5rem; }
+  .legal-field { margin-top: 1rem; }
+  .checkbox-label {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.9rem; line-height: 1.5; cursor: pointer;
+  }
+  .checkbox-label input[type="checkbox"] {
+    margin-top: 0.2rem; flex-shrink: 0; width: 1.1rem; height: 1.1rem; cursor: pointer;
+  }
+  .checkbox-text :global(a) { color: var(--primary-color); }
+  .checkbox-text :global(a:hover) { text-decoration: underline; }
+  .early-start-notice {
+    font-size: 0.8rem; line-height: 1.5; margin: 1rem 0; text-align: left;
+  }
 </style>
