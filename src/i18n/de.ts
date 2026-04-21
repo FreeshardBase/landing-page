@@ -424,5 +424,24 @@ export const de = {
         { title: "4. Datenerfassung auf dieser Website", content: "Cookies, Kontaktformular, etc...." }
       ]
     }
+  },
+  signup: {
+    trialTitle: "Erstelle dein Test-Shard",
+    trialSubtitle: "Dein Test-Shard wird nach 24 Stunden automatisch gelöscht.",
+    activateTitle: "Erstelle dein Shard",
+    codePlaceholder: "Code eingeben",
+    codeChecking: "Prüfe Code...",
+    codeValid: "Code ist gültig.",
+    codeInvalid: "Code ist ungültig oder bereits verwendet.",
+    emailPlaceholder: "Deine E-Mail-Adresse",
+    emailHint: "Wir senden dir den Zugang zum Shard und Status-Updates. Deine E-Mail wird nur so lange gespeichert, wie dein Shard existiert.",
+    emailInvalid: "Bitte gib eine gültige E-Mail-Adresse ein.",
+    submit: "Shard erstellen",
+    submitting: "Erstelle...",
+    shardReady: "Wir haben dieses Shard für dich erstellt:",
+    pair: "Diesen Browser koppeln",
+    manualPairingHint: "Falls die Weiterleitung nicht funktioniert, gib diesen Kopplungscode auf dem Kopplungsbildschirm deines Shards ein:",
+    noStandby: "Aktuell sind keine neuen Shards verfügbar. Bitte versuche es in ein paar Minuten erneut.",
+    reset: "Zurück"
   }
 };

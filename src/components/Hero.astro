@@ -1,7 +1,7 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
-import { BRAND_LOGO_DARK } from '../lib/branding';
+import { BRAND_LOGO_DARK, BASE_URL } from '../lib/branding';
 
 interface Props {
   lang: string;
@@ -19,7 +19,7 @@ const t = content.hero;
       <h1>{t.subtitle}</h1>
       <p class="hero-description">{t.description}</p>
       <div class="hero-cta">
-        <a href="https://trial.freeshard.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t.ctaPrimary}</a>
+        <a href={`${BASE_URL}/${lang}/trial/`} class="btn btn-primary">{t.ctaPrimary}</a>
         <a href="#newsletter" class="btn btn-secondary">{t.ctaSecondary}</a>
       </div>
     </div>

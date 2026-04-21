@@ -1,0 +1,314 @@
+---
+import ShardIdBadge from './ShardIdBadge.astro';
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
+import { BRAND_LOGO_LIGHT, BRAND_LOGO_LIGHT_2X, BRAND_LOGO_LIGHT_4X } from '../lib/branding';
+
+interface Props {
+  lang: string;
+  mode: 'trial' | 'activate';
+}
+
+const { lang, mode } = Astro.props;
+const t = (lang === 'en' ? en : de).signup;
+---
+
+<ShardIdBadge />
+
+<signup-form
+  data-mode={mode}
+  data-api="https://controller.freeshard.net/api"
+  data-t={JSON.stringify(t)}
+>
+  <section class="signup">
+    <div class="container signup-card">
+      <img
+        src={BRAND_LOGO_LIGHT}
+        srcset={`${BRAND_LOGO_LIGHT_2X} 2x, ${BRAND_LOGO_LIGHT_4X} 4x`}
+        alt="Freeshard"
+        class="signup-logo"
+      />
+      <h1>{mode === 'trial' ? t.trialTitle : t.activateTitle}</h1>
+      {mode === 'trial' && <p class="muted">{t.trialSubtitle}</p>}
+
+      <form data-role="form" novalidate>
+        {mode === 'activate' && (
+          <div class="field">
+            <input type="text" data-role="code" placeholder={t.codePlaceholder} autocomplete="off" />
+            <p data-role="code-msg" class="msg"></p>
+          </div>
+        )}
+
+        <div class="field" data-role="email-field" hidden={mode === 'activate'}>
+          <input type="email" data-role="email" placeholder={t.emailPlaceholder} required />
+          <small class="muted">{t.emailHint}</small>
+        </div>
+
+        <button type="submit" data-role="submit" class="btn-primary">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
+          </svg>
+          <span data-role="submit-label">{t.submit}</span>
+        </button>
+      </form>
+
+      <div data-role="result" class="result" hidden>
+        <p>{t.shardReady}</p>
+        <shard-id-badge data-role="badge" class="result-badge"></shard-id-badge>
+        <a data-role="pair-link" class="btn-primary" target="_blank">{t.pair}</a>
+        <p class="muted small manual-hint">{t.manualPairingHint}</p>
+        <p data-role="pair-code" class="mono pair-code"></p>
+      </div>
+
+      <div data-role="error" class="error" hidden>
+        <p data-role="error-msg"></p>
+        <button type="button" data-role="reset" class="btn-secondary">{t.reset}</button>
+      </div>
+
+      <p data-role="promo" class="promo" hidden></p>
+    </div>
+  </section>
+</signup-form>
+
+<script>
+  type Msg = { text: string; ok: boolean | null };
+  type Translations = Record<string, string>;
+
+  class SignupFormElement extends HTMLElement {
+    private mode!: 'trial' | 'activate';
+    private api!: string;
+    private t!: Translations;
+    private codeValid: boolean | null = null;
+    private codeDebounce?: number;
+
+    connectedCallback() {
+      this.mode = (this.dataset.mode as 'trial' | 'activate') ?? 'trial';
+      this.api = this.dataset.api ?? '';
+      this.t = JSON.parse(this.dataset.t ?? '{}');
+
+      this.q<HTMLFormElement>('[data-role=form]').addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.submit();
+      });
+      this.q<HTMLButtonElement>('[data-role=reset]')?.addEventListener('click', () => this.reset());
+
+      const email = this.q<HTMLInputElement>('[data-role=email]');
+      email.addEventListener('input', () => {
+        this.reflectEmailState();
+        this.updateSubmitState();
+      });
+
+      if (this.mode === 'activate') {
+        const code = this.q<HTMLInputElement>('[data-role=code]');
+        code.addEventListener('input', () => {
+          window.clearTimeout(this.codeDebounce);
+          this.codeDebounce = window.setTimeout(() => this.checkCode(code.value.trim()), 500);
+        });
+      }
+      this.setSubmitEnabled(false);
+
+      // DEV: ?preview=result renders success state with fake shard. Remove before merge.
+      if (new URLSearchParams(location.search).get('preview') === 'result') {
+        this.showResult({ hash_id: 'abc123deadbeef', domain: 'example.shard', code: '042137' });
+      }
+    }
+
+    private reflectEmailState() {
+      const el = this.q<HTMLInputElement>('[data-role=email]');
+      const empty = el.value.trim() === '';
+      el.classList.toggle('ok', !empty && this.emailValid());
+      el.classList.toggle('err', !empty && !this.emailValid());
+    }
+
+    private q<T extends Element>(sel: string): T {
+      return this.querySelector(sel) as T;
+    }
+
+    private setMsg(el: HTMLElement, msg: Msg) {
+      el.textContent = msg.text;
+      el.classList.toggle('ok', msg.ok === true);
+      el.classList.toggle('err', msg.ok === false);
+    }
+
+    private async checkCode(value: string) {
+      const msg = this.q<HTMLElement>('[data-role=code-msg]');
+      const promo = this.q<HTMLElement>('[data-role=promo]');
+      promo.hidden = true;
+      if (!value) {
+        this.codeValid = null;
+        this.setMsg(msg, { text: '', ok: null });
+        this.updateSubmitState();
+        return;
+      }
+      this.setMsg(msg, { text: this.t.codeChecking, ok: null });
+      try {
+        const res = await fetch(`${this.api}/promo_codes/${encodeURIComponent(value)}/validate`);
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({ detail: this.t.codeInvalid }));
+          this.codeValid = false;
+          this.setMsg(msg, { text: body.detail || this.t.codeInvalid, ok: false });
+        } else {
+          const body = await res.json().catch(() => ({}));
+          this.codeValid = true;
+          this.setMsg(msg, { text: this.t.codeValid, ok: true });
+          if (body.display_text) {
+            promo.textContent = body.display_text;
+            promo.hidden = false;
+          }
+        }
+      } catch (err) {
+        this.codeValid = false;
+        this.setMsg(msg, { text: (err as Error).message, ok: false });
+      }
+      this.q<HTMLElement>('[data-role=email-field]').hidden = this.codeValid !== true;
+      this.updateSubmitState();
+    }
+
+    private emailValid(): boolean {
+      const el = this.q<HTMLInputElement>('[data-role=email]');
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+    }
+
+    private updateSubmitState() {
+      const emailOk = this.emailValid();
+      if (this.mode === 'trial') {
+        this.setSubmitEnabled(emailOk);
+      } else {
+        this.setSubmitEnabled(this.codeValid === true && emailOk);
+      }
+    }
+
+    private setSubmitEnabled(enabled: boolean) {
+      this.q<HTMLButtonElement>('[data-role=submit]').disabled = !enabled;
+    }
+
+    private async submit() {
+      const email = this.q<HTMLInputElement>('[data-role=email]').value.trim();
+      if (!this.emailValid()) {
+        this.showError(this.t.emailInvalid);
+        return;
+      }
+
+      const submitBtn = this.q<HTMLButtonElement>('[data-role=submit]');
+      const label = this.q<HTMLElement>('[data-role=submit-label]');
+      submitBtn.disabled = true;
+      const origLabel = label.textContent;
+      label.textContent = this.t.submitting;
+
+      try {
+        const url = this.mode === 'trial'
+          ? `${this.api}/shards/assign_trial`
+          : `${this.api}/shards/assign`;
+        const code = this.mode === 'activate'
+          ? this.q<HTMLInputElement>('[data-role=code]').value.trim()
+          : undefined;
+        const body = this.mode === 'trial'
+          ? { owner_email: email }
+          : { promo_code: code, owner_email: email };
+
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (!res.ok) {
+          if (res.status === 503) {
+            this.showError(this.t.noStandby);
+          } else {
+            const detail = await res.text();
+            this.showError(detail || `HTTP ${res.status}`);
+          }
+          return;
+        }
+
+        const shard = await res.json();
+        this.showResult(shard);
+      } catch (err) {
+        this.showError((err as Error).message);
+      } finally {
+        submitBtn.disabled = false;
+        label.textContent = origLabel;
+      }
+    }
+
+    private showResult(shard: { hash_id: string; domain: string; code: string }) {
+      this.q<HTMLFormElement>('[data-role=form]').hidden = true;
+      const result = this.q<HTMLElement>('[data-role=result]');
+      result.hidden = false;
+      const badge = this.q<HTMLElement>('[data-role=badge]');
+      badge.setAttribute('shard-id', shard.hash_id.substring(0, 6));
+      const link = this.q<HTMLAnchorElement>('[data-role=pair-link]');
+      link.href = `http://${shard.domain}/#/pair?code=${shard.code}`;
+      this.q<HTMLElement>('[data-role=pair-code]').textContent = shard.code;
+    }
+
+    private showError(text: string) {
+      this.q<HTMLFormElement>('[data-role=form]').hidden = true;
+      const err = this.q<HTMLElement>('[data-role=error]');
+      err.hidden = false;
+      this.q<HTMLElement>('[data-role=error-msg]').textContent = text;
+    }
+
+    private reset() {
+      this.q<HTMLElement>('[data-role=error]').hidden = true;
+      this.q<HTMLElement>('[data-role=result]').hidden = true;
+      this.q<HTMLFormElement>('[data-role=form]').hidden = false;
+      this.q<HTMLFormElement>('[data-role=form]').reset();
+      this.codeValid = null;
+      const email = this.q<HTMLInputElement>('[data-role=email]');
+      email.classList.remove('ok', 'err');
+      if (this.mode === 'activate') {
+        this.q<HTMLElement>('[data-role=email-field]').hidden = true;
+      }
+      this.setSubmitEnabled(false);
+      this.q<HTMLElement>('[data-role=promo]').hidden = true;
+    }
+  }
+
+  if (!customElements.get('signup-form')) {
+    customElements.define('signup-form', SignupFormElement);
+  }
+</script>
+
+<style>
+  .signup { padding: 4rem 0; }
+  .signup-card { max-width: 32rem; text-align: center; }
+  .signup-logo { width: min(240px, 60%); height: auto; margin-bottom: 2rem; }
+  .signup-card h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .signup-card .muted { color: var(--text-light); }
+  .signup-card .small { font-size: 0.875rem; }
+  .signup-card .mono { font-family: ui-monospace, monospace; }
+  .field { margin: 1.25rem 0; text-align: left; }
+  .field input {
+    width: 100%; padding: 0.75rem 1rem; font-size: 1rem;
+    border: 1px solid var(--border-color); border-radius: 0.5rem; outline: none;
+  }
+  .field input:focus { border-color: var(--primary-color); }
+  .field input.ok { border-color: #059669; }
+  .field input.err { border-color: #dc2626; }
+  .msg { margin-top: 0.25rem; font-size: 0.875rem; min-height: 1rem; }
+  .msg.ok { color: #059669; }
+  .msg.err { color: #dc2626; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem; font-size: 1rem; font-weight: 600;
+    background: var(--primary-color); color: #fff; border: none; border-radius: 0.5rem;
+    cursor: pointer; text-decoration: none;
+  }
+  .btn-icon { flex-shrink: 0; }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-secondary {
+    padding: 0.5rem 1rem; background: transparent; color: var(--text-light);
+    border: 1px solid var(--border-color); border-radius: 0.5rem; cursor: pointer;
+  }
+  .error { color: #dc2626; margin-top: 1rem; }
+  .result { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 2rem; }
+  .result[hidden] { display: none; }
+  .result p { margin: 0; }
+  .result-badge { --shard-badge-size: 1.75rem; }
+  .manual-hint { margin-top: 1.5rem !important; max-width: 32ch; }
+  .pair-code { font-size: 1.25rem; letter-spacing: 0.15em; }
+  .promo { white-space: pre-line; margin-top: 1rem; padding: 0.75rem;
+           background: var(--bg-light); border-radius: 0.5rem; }
+</style>

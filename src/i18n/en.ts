@@ -424,5 +424,24 @@ export const en = {
         { title: "4. Data Collection on this Website", content: "Cookies, contact form, etc...." }
       ]
     }
+  },
+  signup: {
+    trialTitle: "Create your trial shard",
+    trialSubtitle: "Your trial shard will be deleted automatically after 24 hours.",
+    activateTitle: "Create your shard",
+    codePlaceholder: "Enter code",
+    codeChecking: "Checking code...",
+    codeValid: "Code is valid.",
+    codeInvalid: "Code is invalid or already used.",
+    emailPlaceholder: "Your email address",
+    emailHint: "We use your email to send you the link to your shard and keep you informed about its status. We only store it for as long as your shard exists.",
+    emailInvalid: "Please enter a valid email address.",
+    submit: "Create shard",
+    submitting: "Creating...",
+    shardReady: "We created this shard for you:",
+    pair: "Pair this browser",
+    manualPairingHint: "If your browser does not redirect correctly, use this pairing code on your shard's pairing screen:",
+    noStandby: "There are currently no new shards on standby. Please try again in a few minutes.",
+    reset: "Back"
   }
 };

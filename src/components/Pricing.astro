@@ -1,6 +1,7 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import { BASE_URL } from '../lib/branding';
 
 interface Props {
   lang: string;
@@ -17,7 +18,7 @@ const t = content.pricing;
     
     <div class="pricing-intro">
       <p>{t.info.introText}</p>
-      <a href="https://trial.freeshard.net/" target="_blank" rel="noopener noreferrer" class="trial-link">{t.info.trialCta}</a>
+      <a href={`${BASE_URL}/${lang}/trial/`} class="trial-link">{t.info.trialCta}</a>
     </div>
     
     <div class="pricing-container">

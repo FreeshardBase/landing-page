@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SignupForm from '../../components/SignupForm.astro';
+import { languages } from '../../i18n/ui';
+import { de } from '../../i18n/de';
+import { en } from '../../i18n/en';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const t = (lang === 'en' ? en : de).signup;
+---
+
+<Layout title={t.trialTitle} lang={lang!}>
+  <SignupForm lang={lang!} mode="trial" />
+</Layout>
