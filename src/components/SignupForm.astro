@@ -53,7 +53,7 @@ const t = (lang === 'en' ? en : de).signup;
         </div>
 
         {mode === 'activate' && (
-          <p class="muted small early-start-notice">{t.earlyStartNotice}</p>
+          <p class="muted small early-start-notice" data-role="early-start-notice" hidden>{t.earlyStartNotice}</p>
         )}
 
         <button type="submit" data-role="submit" class="btn-primary">
@@ -179,6 +179,8 @@ const t = (lang === 'en' ? en : de).signup;
       }
       this.q<HTMLElement>('[data-role=email-field]').hidden = this.codeValid !== true;
       this.q<HTMLElement>('[data-role=legal-field]').hidden = this.codeValid !== true;
+      const earlyNotice = this.q<HTMLElement>('[data-role=early-start-notice]');
+      if (earlyNotice) earlyNotice.hidden = this.codeValid !== true;
       this.updateSubmitState();
     }
 
@@ -288,6 +290,8 @@ const t = (lang === 'en' ? en : de).signup;
       if (this.mode === 'activate') {
         this.q<HTMLElement>('[data-role=email-field]').hidden = true;
         this.q<HTMLElement>('[data-role=legal-field]').hidden = true;
+        const earlyNotice = this.q<HTMLElement>('[data-role=early-start-notice]');
+        if (earlyNotice) earlyNotice.hidden = true;
       }
       this.setMsg(this.q<HTMLElement>('[data-role=legal-msg]'), { text: '', ok: null });
       this.setSubmitEnabled(false);
