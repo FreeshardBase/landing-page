@@ -11,9 +11,6 @@ const { lang } = Astro.props;
 const content = lang === 'en' ? en : de;
 const t = content.motivation;
 const valuesList = Object.values(t.values);
-
-// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
-const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <section id="motivation">

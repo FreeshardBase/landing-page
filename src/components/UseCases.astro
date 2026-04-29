@@ -11,19 +11,6 @@ const content = lang === 'en' ? en : de;
 const t = content.useCases;
 const useCasesList = Object.values(t.items);
 
-// Der `BASE_URL` wird automatisch aus der `astro.config.mjs` gelesen.
-const BASE_URL = import.meta.env.BASE_URL;
-
-// Hilfsfunktion um den korrekten Pfad zu generieren
-const getIconPath = (iconPath) => {
-  if (BASE_URL === '/' || BASE_URL === '') {
-    return iconPath;
-  }
-  const cleanIconPath = iconPath.startsWith('/') ? iconPath.substring(1) : iconPath;
-  const cleanBaseUrl = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`;
-  return `${cleanBaseUrl}${cleanIconPath}`;
-};
-
 // Wir müssen die Icons hier manuell mappen, da sie nicht in den Übersetzungsdateien stehen sollten (technische Pfade)
 const icons = {
   photos: { simple: "🖼️", tech: "/icons/apps/immich-logo.svg", software: "Immich", url: "https://immich.app/" },
@@ -65,7 +52,7 @@ const itemsWithIcons = Object.keys(t.items).map(key => {
             <div class="icon-container">
               <div class="simple-icon">{useCase.simple}</div>
               <div class="tech-icon">
-                <img src={getIconPath(useCase.tech)} alt={useCase.software} loading="lazy" />
+                <img src={useCase.tech} alt={useCase.software} loading="lazy" />
               </div>
             </div>
             {useCase.software && (

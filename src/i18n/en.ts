@@ -1,5 +1,3 @@
-const BASE_URL = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
-
 export const en = {
   nav: {
     useCases: "Your Cloud",
@@ -172,7 +170,7 @@ export const en = {
       paragraphs: [
         "We wanted a digital home that doesn't depend on platforms. A Shard belongs to you and remains your center.",
         "Digital sovereignty is a trend right now, for us it is the foundation. We make it practical: without tech stress and without data silos.",
-        `Transparency is part of it. Our code is <a href='${BASE_URL}/en/faq#fair-source'>Fair Source</a> and your Shard remains portable if you want to take it with you.`
+        `Transparency is part of it. Our code is <a href='/en/faq#fair-source'>Fair Source</a> and your Shard remains portable if you want to take it with you.`
       ]
     },
     values: {
@@ -454,7 +452,7 @@ export const en = {
     manualPairingHint: "If your browser does not redirect correctly, use this pairing code on your shard's pairing screen:",
     noStandby: "There are currently no new shards on standby. Please try again in a few minutes.",
     reset: "Back",
-    legalConsentLabel: `I accept the <a href="${BASE_URL}/en/agb/" target=\"_blank\" rel=\"noopener\">Terms</a> and <a href=\"${BASE_URL}/en/datenschutz/" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>.`,
+    legalConsentLabel: `I accept the <a href="/en/agb/" target=\"_blank\" rel=\"noopener\">Terms</a> and <a href=\"/en/datenschutz/" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>.`,
     legalConsentRequired: "Please accept the Terms and Privacy Policy.",
     earlyStartNotice: "By clicking \"Create shard\" I request immediate performance and acknowledge that my right of withdrawal expires once the service is fully provided."
   }
