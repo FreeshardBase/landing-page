@@ -12,8 +12,6 @@ interface Props {
 
 const { lang, title, description } = Astro.props;
 const t = lang === 'en' ? en : de;
-
-const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -30,16 +28,16 @@ const BASE_URL = import.meta.env.BASE_URL;
       <nav class="navbar">
         <div class="container">
           <div class="logo">
-            <a href={`${BASE_URL}/${lang}/`} style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+            <a href={`/${lang}/`} style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
               <img src={BRAND_MARK} srcset={`${BRAND_MARK_2X} 2x`} alt="Freeshard" class="logo-mark" />
               <h1>Freeshard</h1>
             </a>
           </div>
           <ul class="nav-links">
-            <li><a href={`${BASE_URL}/${lang}/#use-cases`}>{t.nav.useCases}</a></li>
-            <li><a href={`${BASE_URL}/${lang}/#features`}>{t.nav.features}</a></li>
-            <li><a href={`${BASE_URL}/${lang}/#pricing`}>{t.nav.pricing}</a></li>
-            <li><a href={`${BASE_URL}/${lang}/#motivation`}>{t.nav.motivation}</a></li>
+            <li><a href={`/${lang}/#use-cases`}>{t.nav.useCases}</a></li>
+            <li><a href={`/${lang}/#features`}>{t.nav.features}</a></li>
+            <li><a href={`/${lang}/#pricing`}>{t.nav.pricing}</a></li>
+            <li><a href={`/${lang}/#motivation`}>{t.nav.motivation}</a></li>
             <li class="lang-switcher-li"><LanguageSwitcher /></li>
           </ul>
         </div>
@@ -52,12 +50,12 @@ const BASE_URL = import.meta.env.BASE_URL;
       <div class="container">
         <img src={BRAND_MARK} alt="Freeshard" class="footer-logo" />
         <div class="footer-links">
-          <a href={`${BASE_URL}/${lang}/trial/`}>{t.footer.trial}</a>
-          <a href={`${BASE_URL}/${lang}/activate/`}>{t.footer.activate}</a>
-          <a href={`${BASE_URL}/${lang}/faq/`}>{t.footer.faq}</a>
-          <a href={`${BASE_URL}/${lang}/impressum/`}>{t.footer.imprint}</a>
-          <a href={`${BASE_URL}/${lang}/datenschutz/`}>{t.footer.privacy}</a>
-          <a href={`${BASE_URL}/${lang}/agb/`}>{t.footer.terms}</a>
+          <a href={`/${lang}/trial/`}>{t.footer.trial}</a>
+          <a href={`/${lang}/activate/`}>{t.footer.activate}</a>
+          <a href={`/${lang}/faq/`}>{t.footer.faq}</a>
+          <a href={`/${lang}/impressum/`}>{t.footer.imprint}</a>
+          <a href={`/${lang}/datenschutz/`}>{t.footer.privacy}</a>
+          <a href={`/${lang}/agb/`}>{t.footer.terms}</a>
           <a href="mailto:contact@freeshard.net">{t.nav.contact}</a>
         </div>
         <p>{t.footer.copyright}</p>

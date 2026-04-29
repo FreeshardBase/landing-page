@@ -1,8 +1,6 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
-import { BASE_URL } from '../lib/branding';
-
 interface Props {
   lang: string;
 }
@@ -15,10 +13,10 @@ const t = content.pricing;
 <section id="pricing">
   <div class="container">
     <h2>{t.pageTitle}</h2>
-    
+
     <div class="pricing-intro">
       <p>{t.info.introText}</p>
-      <a href={`${BASE_URL}/${lang}/trial/`} class="trial-link">{t.info.trialCta}</a>
+      <a href={`/${lang}/trial/`} class="trial-link">{t.info.trialCta}</a>
     </div>
     
     <div class="pricing-container">
