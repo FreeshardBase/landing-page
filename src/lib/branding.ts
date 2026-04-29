@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.BASE_URL;
+export const BASE_URL = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
 export const BRAND_LOGO_LIGHT = `${BASE_URL}/freeshard_logos/Freeshard_logo_for_light.png`;
 export const BRAND_LOGO_LIGHT_2X = `${BASE_URL}/freeshard_logos/Freeshard_logo_for_light@2x.png`;
