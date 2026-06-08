@@ -110,8 +110,7 @@ const t = content.pricing;
     const diskSize = getDiskSizeFromSlider(sliderIndex);
     const vmCost = vmPricing[currentVMTier];
     const diskCost = diskSize * diskPricePerGB;
-    const managementCost = 3.00;
-    const totalCost = (vmCost + diskCost + managementCost) * 1.5;
+    const totalCost = (vmCost + diskCost) * 1.5 * 1.19; // *1.5 markup, *1.19 German VAT
 
     document.getElementById('total-price').textContent = `€${totalCost.toFixed(2)}`;
   }
