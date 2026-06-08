@@ -74,6 +74,7 @@ const t = content.pricing;
           <span>{t.summary.totalLabel}</span>
           <span id="total-price" class="total-badge">€12.45</span>
         </div>
+        <div id="vat-note" class="vat-note"></div>
         <div class="cta-wrapper">
           <a href="#newsletter" class="cta-button">{t.summary.ctaButton}</a>
         </div>
@@ -113,6 +114,12 @@ const t = content.pricing;
     const totalCost = (vmCost + diskCost) * 1.5 * 1.19; // *1.5 markup, *1.19 German VAT
 
     document.getElementById('total-price').textContent = `€${totalCost.toFixed(2)}`;
+
+    // VAT share of the gross price (gross already includes 19% VAT)
+    const grossCents = Math.round(totalCost * 100);
+    const vatCents = grossCents - Math.round(grossCents / 1.19);
+    document.getElementById('vat-note').textContent =
+      t.summary.vatNote.replace('{amount}', `€${(vatCents / 100).toFixed(2)}`);
   }
 
   function updateActiveCard() {
@@ -216,7 +223,8 @@ const t = content.pricing;
   .slider-markers { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-light); }
   
   .price-summary { margin-top: 2rem; padding: 2rem; border-radius: 0.75rem; background-color: var(--bg-color); border: 1px solid var(--border-color); text-align: center; }
-  .breakdown-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 1.5rem; }
+  .breakdown-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.4rem; }
+  .vat-note { font-size: 0.8rem; font-weight: 400; color: var(--text-light); text-align: right; margin-bottom: 1.5rem; }
   .total-badge { color: white; background: var(--primary-color); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 1.25rem; }
   
   .cta-wrapper { margin-top: 1rem; }
