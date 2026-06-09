@@ -157,6 +157,7 @@ export const de = {
     },
     summary: {
       totalLabel: "Gesamtkosten pro Monat:",
+      vatNote: "inkl. 19% MwSt. ({amount})",
       pricePlaceholder: "Bald verfügbar",
       ctaButton: "Benachrichtigung beim Start"
     },
