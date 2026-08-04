@@ -8,19 +8,35 @@ interface Props {
   title: string;
   description?: string;
   lang: string;
+  ogImage?: string;
+  ogType?: string;
+  rssHref?: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, ogImage, ogType = 'website', rssHref } = Astro.props;
 const t = lang === 'en' ? en : de;
+const metaDescription = description || t.hero.description;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description || t.hero.description} />
+    <meta name="description" content={metaDescription} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={BRAND_MARK} />
+    <link rel="canonical" href={canonical} />
+    {rssHref && <link rel="alternate" type="application/rss+xml" title={t.blog.title} href={rssHref} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'de_DE'} />
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <title>{title}</title>
   </head>
   <body>
@@ -38,6 +54,7 @@ const t = lang === 'en' ? en : de;
             <li><a href={`/${lang}/#features`}>{t.nav.features}</a></li>
             <li><a href={`/${lang}/#pricing`}>{t.nav.pricing}</a></li>
             <li><a href={`/${lang}/#motivation`}>{t.nav.motivation}</a></li>
+            <li><a href={`/${lang}/blog/`}>{t.nav.blog}</a></li>
             <li class="lang-switcher-li"><LanguageSwitcher /></li>
           </ul>
         </div>

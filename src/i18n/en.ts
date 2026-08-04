@@ -5,7 +5,25 @@ export const en = {
     screenshots: "Insights",
     pricing: "Pricing",
     motivation: "Mission",
+    blog: "Blog",
     contact: "Contact"
+  },
+  blog: {
+    title: "Blog — Freeshard",
+    pageTitle: "Blog",
+    intro: "Notes from building Freeshard: what we are making, why we made it that way, and what went wrong along the way.",
+    readMore: "Read more",
+    backToOverview: "Back to all posts",
+    publishedOn: "Published on",
+    by: "by",
+    updatedOn: "Updated on",
+    newerPosts: "Newer posts",
+    olderPosts: "Older posts",
+    rss: "RSS feed",
+    empty: "Nothing here yet. Check back soon.",
+    aiTranslated: "This post was machine-translated. The English original is authoritative.",
+    preRebrand: "This post predates the April 2025 rename. Back then Freeshard was called “Portal”, and a shard was called a “Portal” too. The text is preserved unchanged.",
+    readOriginal: "Read the English original"
   },
   footer: {
     copyright: "© 2026 Freeshard. All rights reserved.",
