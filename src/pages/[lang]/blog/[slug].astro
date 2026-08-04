@@ -97,6 +97,10 @@ const related = (await getPosts(lang)).filter((p) => p.id !== post.id).slice(0, 
 </Layout>
 
 <style>
+  .post {
+    padding: 3rem 0 4rem;
+  }
+
   .post .container {
     max-width: 820px;
   }
