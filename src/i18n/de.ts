@@ -138,7 +138,7 @@ export const de = {
   pricing: {
     pageTitle: "Preisrechner",
     info: {
-      introText: "Abonnements sind verfügbar, monatlich kündbar. Der Rechner unten zeigt dir, was dein Shard kosten würde.",
+      introText: "Der Rechner unten zeigt dir, was dein Shard kosten würde.",
       trialCta: "Freeshard 24 Stunden kostenlos testen →"
     },
     presetsTitle: "Unsere Empfehlungen",
