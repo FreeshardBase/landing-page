@@ -138,7 +138,7 @@ export const de = {
   pricing: {
     pageTitle: "Preisrechner",
     info: {
-      introText: "Abonnements sind bald verfügbar. Der Rechner unten gibt dir eine Vorstellung davon, was ein Shard kosten könnte.",
+      introText: "Der Rechner unten zeigt dir, was dein Shard kosten würde.",
       trialCta: "Freeshard 24 Stunden kostenlos testen →"
     },
     presetsTitle: "Unsere Empfehlungen",
@@ -159,7 +159,7 @@ export const de = {
       totalLabel: "Gesamtkosten pro Monat:",
       vatNote: "inkl. 19% MwSt. ({amount})",
       pricePlaceholder: "Bald verfügbar",
-      ctaButton: "Benachrichtigung beim Start"
+      ctaButton: "Jetzt loslegen →"
     },
     priceSuffix: "/Monat"
   },

@@ -138,7 +138,7 @@ export const en = {
   pricing: {
     pageTitle: "Price Calculator",
     info: {
-      introText: "Subscriptions are coming soon. The calculator below gives you a feel for what a Shard might cost.",
+      introText: "The calculator below shows what your Shard would cost.",
       trialCta: "Try Freeshard free for 24 hours →"
     },
     presetsTitle: "Our Recommendations",
@@ -159,7 +159,7 @@ export const en = {
       totalLabel: "Total cost per month:",
       vatNote: "incl. 19% VAT ({amount})",
       pricePlaceholder: "Coming Soon",
-      ctaButton: "Notify me at launch"
+      ctaButton: "Get started →"
     },
     priceSuffix: "/Month"
   },
