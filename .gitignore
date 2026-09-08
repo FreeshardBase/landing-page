@@ -23,3 +23,7 @@ pnpm-debug.log*
 
 .idea
 _wip/
+
+# local agent state
+.worktrees/
+.claude/worktrees/
