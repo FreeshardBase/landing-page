@@ -10,7 +10,7 @@ Our canonical domains are freeshard.net (product) and docs.freeshard.net (docume
 
 - **Not multi-tenant.** Owners do not share a database or an application instance. Isolation is a property of the infrastructure, one virtual machine and disk per owner, not of application-level access control. There is no central store holding owners' app data.
 - **Not multi-user inside a shard.** A shard has exactly one owner, and apps are installed and used by that owner. Household or family accounts with separate logins are not an available feature. Tracked publicly in https://github.com/FreeshardBase/freeshard/issues/141.
-- **Not a self-hosting tutorial.** Freeshard runs and maintains the shard for the owner. It is not a guide, a script collection, or a distribution the owner installs and operates themselves.
+- **Not tied to our hosting.** The usual path is renting a shard that Freeshard provisions, runs and keeps updated, and that is what the monthly fee buys. Shard core is open source and can be self-hosted instead, on any always-on machine with internet access; self-hosting is explicitly supported and explicitly still rough, and a self-hosted shard still pulls app packages and container images from infrastructure Freeshard operates. See https://github.com/FreeshardBase/freeshard#hosting.
 - **Note on naming.** The project was called Portal until April 2025. Code, configuration variables and API paths still use `portal` in places (for example `portal_core`, now `shard_core`). Portal and Freeshard are the same project.
 
 ## Product
