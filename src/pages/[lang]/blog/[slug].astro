@@ -1,0 +1,287 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { languages } from '../../../i18n/ui';
+import { de } from '../../../i18n/de';
+import { en } from '../../../i18n/en';
+import { getPosts, slugOf, urlOf, formatDate, isPreRebrand, coverOf, type BlogPost } from '../../../lib/blog';
+
+type Props = { post: BlogPost };
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const routes = [];
+  for (const lang of Object.keys(languages)) {
+    for (const post of await getPosts(lang)) {
+      routes.push({ params: { lang, slug: slugOf(post) }, props: { post } });
+    }
+  }
+  return routes;
+};
+
+const { post } = Astro.props;
+const lang = Astro.params.lang as string;
+const t = (lang === 'en' ? en : de).blog;
+const { Content } = await render(post);
+const related = (await getPosts(lang)).filter((p) => p.id !== post.id).slice(0, 3);
+---
+
+<Layout
+  title={`${post.data.title} — Freeshard`}
+  lang={lang}
+  description={post.data.description}
+  ogImage={post.data.cover?.src}
+  ogType="article"
+  rssHref={`/${lang}/blog/rss.xml`}
+>
+  <article class="post">
+    <div class="container">
+      <header class="post-header">
+        <h1>{post.data.title}</h1>
+        <p class="post-meta">
+          <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, lang)}</time>
+          <span class="post-meta-sep">·</span>
+          <span>{t.by} {post.data.author}</span>
+          {post.data.updatedDate && (
+            <>
+              <span class="post-meta-sep">·</span>
+              <span>{t.updatedOn} {formatDate(post.data.updatedDate, lang)}</span>
+            </>
+          )}
+        </p>
+      </header>
+
+      {post.data.cover && (
+        <Image
+          class="post-cover"
+          src={coverOf(post)!}
+          alt={post.data.coverAlt ?? ''}
+          widths={[720, 1440]}
+          sizes="(max-width: 820px) 100vw, 800px"
+        />
+      )}
+
+      {post.data.aiTranslated && (
+        <aside class="post-notice">
+          {t.aiTranslated}
+          <a href={`/en/blog/${slugOf(post)}/`}>{t.readOriginal}</a>
+        </aside>
+      )}
+
+      {isPreRebrand(post) && <aside class="post-notice">{t.preRebrand}</aside>}
+
+      <div class="post-body">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <a href={`/${lang}/blog/`} class="post-back">← {t.backToOverview}</a>
+      </footer>
+
+      {related.length > 0 && (
+        <section class="related">
+          <h2>{t.pageTitle}</h2>
+          <ul>
+            {related.map((p) => (
+              <li>
+                <a href={urlOf(p)}>{p.data.title}</a>
+                <span class="related-date">{formatDate(p.data.pubDate, lang)}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .post {
+    padding: 3rem 0 4rem;
+  }
+
+  .post .container {
+    max-width: 820px;
+  }
+
+  .post-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .post-meta-sep {
+    margin: 0 0.4rem;
+  }
+
+  .post-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+  }
+
+  .post-notice {
+    background-color: var(--bg-light);
+    border-left: 3px solid var(--secondary-color);
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .post-notice a {
+    color: var(--primary-color);
+    margin-left: 0.5rem;
+  }
+
+  .post-body :global(h1),
+  .post-body :global(h2),
+  .post-body :global(h3) {
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-body :global(h1) {
+    font-size: 1.875rem;
+    font-weight: 700;
+  }
+
+  .post-body :global(h2) {
+    font-size: 1.5rem;
+  }
+
+  .post-body :global(h3) {
+    font-size: 1.25rem;
+  }
+
+  .post-body :global(p),
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    padding-left: 1.5rem;
+  }
+
+  .post-body :global(li) {
+    margin-bottom: 0.35rem;
+  }
+
+  .post-body :global(a) {
+    color: var(--primary-color);
+  }
+
+  .post-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+  }
+
+  .post-body :global(blockquote) {
+    border-left: 3px solid var(--border-color);
+    padding-left: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body :global(pre) {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body :global(code) {
+    font-size: 0.9em;
+  }
+
+  .post-body :global(:not(pre) > code) {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .post-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body :global(th),
+  .post-body :global(td) {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .post-back {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .related {
+    margin-top: 3rem;
+  }
+
+  .related h2 {
+    font-size: 1.25rem;
+    text-align: left;
+    margin-bottom: 0.75rem;
+  }
+
+  .related ul {
+    list-style: none;
+  }
+
+  .related li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .related a {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  .related a:hover {
+    color: var(--primary-color);
+  }
+
+  .related-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+</style>

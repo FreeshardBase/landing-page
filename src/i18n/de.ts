@@ -5,7 +5,25 @@ export const de = {
     screenshots: "Einblicke",
     pricing: "Preise",
     motivation: "Mission",
+    blog: "Blog",
     contact: "Kontakt"
+  },
+  blog: {
+    title: "Blog — Freeshard",
+    pageTitle: "Blog",
+    intro: "Berichte aus der Entwicklung von Freeshard: was wir bauen, warum wir es so bauen, und was dabei schiefgeht.",
+    readMore: "Weiterlesen",
+    backToOverview: "Zurück zur Übersicht",
+    publishedOn: "Veröffentlicht am",
+    by: "von",
+    updatedOn: "Aktualisiert am",
+    newerPosts: "Neuere Beiträge",
+    olderPosts: "Ältere Beiträge",
+    rss: "RSS-Feed",
+    empty: "Hier ist noch nichts. Schau bald wieder vorbei.",
+    aiTranslated: "Dieser Beitrag wurde maschinell aus dem Englischen übersetzt. Maßgeblich ist das englische Original.",
+    preRebrand: "Dieser Beitrag stammt aus der Zeit vor der Umbenennung im April 2025. Damals hieß Freeshard noch „Portal“, und ein Shard hieß ebenfalls „Portal“. Der Text ist unverändert erhalten.",
+    readOriginal: "Zum englischen Original"
   },
   footer: {
     copyright: "© 2026 Freeshard. Alle Rechte vorbehalten.",
