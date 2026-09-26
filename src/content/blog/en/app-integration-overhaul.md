@@ -11,7 +11,7 @@ Each change should have a clear scope that is easy to reason about, to test, and
 Side effects should be avoided as much as possible.
 With the latest update, I did the opposite of that.
 
-# The Inciting Incident
+## The Inciting Incident
 
 I wanted to include Overleaf in our app store.
 Overleaf is a web-based LaTeX editor that is very popular among scientists and students
@@ -27,7 +27,7 @@ But that can be tricky and error-prone and goes against the idea of Docker conta
 So it was a good time to tackle a task that has been sitting in the backlog for quite some time:
 overhauling the app integration system.
 
-# Taking it all Apart
+## Taking it all Apart
 
 ![Mechanic and disassembled machine](./app-integration-overhaul/mechanic.jpg)
 
@@ -38,9 +38,9 @@ So I had to touch a lot of different modules, pull them apart and put them back 
 
 The rest of this post goes over the major changes - planned, and unplanned, and opportunistic ones - that I made along the way.
 
-# What is an App?
+## What is an App?
 
-## Before
+### Before
 
 Before the overhaul, an app was essentially three things: 
 
@@ -56,7 +56,7 @@ Over time, it turned out that the format of the `app.json` more and more resembl
 Many values that need to be rendered into the `docker-compose.yml` had to be present in the `app.json` file.
 I reinvented the wheel but in a more limited way, most importantly with the one-container-per-app limitation.
 
-## After
+### After
 
 So it was an obvious choice to just use `docker-compose.yml` files directly.
 Each app now has its own `docker-compose.yml` file and Portal just starts it.
@@ -94,9 +94,9 @@ The docs contain all the details about the new app format [here](https://docs.fr
 
 And by the way, I of course also had to migrate all existing apps to the new format - or at least those that actually were used.
 
-# App Store
+## App Store
 
-## Before
+### Before
 
 Changing the app format meant that I also had an opportunity to change the app store backend.
 Before, the app store was a GitLab repository that contained the `app.json` files and icons of all apps.
@@ -110,7 +110,7 @@ Second, the GitLab API was never meant for hundreds or thousands of clients quer
 which is after all what we are aiming for.
 I was afraid that we would hit some rate limits at some point.
 
-## After
+### After
 
 The obvious solution was to move the app store to a CDN.
 The app store is just a bunch of static files after all and CDNs are very good at serving those with low latency and high throughput.
@@ -127,9 +127,9 @@ With a growing app store, I would also like to add a search feature for apps by 
 I am not sure yet, if, and how that could work with a backend that is just a bunch of static files.
 If you have any ideas, please let me know!
 
-# App Installation
+## App Installation
 
-## Before
+### Before
 
 I describe above how before the overhaul, installed apps were put into a large `docker-compose.yml` file, containing all apps.
 The Portal core rendered this file but since it was itself a docker container, it could not directly start it - or so I thought at the time.
@@ -140,7 +140,7 @@ In particular, installing multiple apps in rapid succession often lead to errors
 With the new system, there is now one `docker-compose.yml` file per app,
 so I had to redo the starting of apps anyway.
 
-## After
+### After
 
 What I did not realize at the time and would have saved a lot of work is that
 by mounting the docker socket, the Portal core container can control the docker daemon directly.
@@ -168,17 +168,17 @@ enabling a few more useful features.
 Of course the last three items need some kind of push mechanism to update the UI.
 And you probably know where this is going.
 
-# Websockets
+## Websockets
 
 This next section is so obvious, the AI-copilot even suggested the correct heading.
 
-## Before
+### Before
 
 Until now, there was no websocket integration at all.
 I just did not see it as a priority and the very few times it was needed, polling was good enough.
 Now with the changes to the app installation process, I really wanted to show users what is happening in real time.
 
-## After
+### After
 
 Fortunately, FastAPI has built-in support and makes websockets really easy to add.
 I also took the additional step and integrated websockets with the [Python blinker library](https://blinker.readthedocs.io/en/stable/#),
@@ -190,7 +190,7 @@ The frontend which is built with Vue.js reacts to websocket events by publishing
 and by updating the VueX store if needed.
 This allows me to use the same list of event names and payload schemas across the whole application.
 
-# Misc
+## Misc
 
 These were the large changes, but there were also a few smaller ones that were needed or just made sense to do at the same time.
 
@@ -211,7 +211,7 @@ These were the large changes, but there were also a few smaller ones that were n
 * App developers must be informed about the new app system and how to use it.
     So I overhauled all the pages of the documentation that were related to the changes (which were almost all of them).
 
-# Conclusion
+## Conclusion
 
 The tasks described above were only the ones that warranted a note on the ever-growing and ever-changing section of todos for this feature.
 So all in all, this was a large undertaking, one that took me about two months to complete.

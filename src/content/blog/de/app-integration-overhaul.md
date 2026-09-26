@@ -9,7 +9,7 @@ aiTranslated: true
 
 Wenn man Software entwickelt, kommt man am stetigsten und nachhaltigsten voran, indem man in kleinen, in sich geschlossenen Schritten arbeitet. Jede Änderung sollte einen klaren Umfang haben, den man leicht überblicken, testen und bei Bedarf zurückrollen kann. Nebenwirkungen sollte man so gut es geht vermeiden. Beim letzten Update habe ich genau das Gegenteil gemacht.
 
-# Der Auslöser
+## Der Auslöser
 
 Ich wollte Overleaf in unseren App Store aufnehmen. Overleaf ist ein webbasierter LaTeX-Editor, der in Wissenschaft und Studium sehr beliebt ist und eine großartige Ergänzung wäre. Er ist besonders nützlich, weil das Schreiben mit LaTeX quälend technisch sein kann und Overleaf einem die meisten Details abnimmt.
 
@@ -17,7 +17,7 @@ Es stellte sich allerdings heraus, dass Overleaf ein paar Voraussetzungen mitbri
 
 Es war also ein guter Zeitpunkt, eine Aufgabe anzugehen, die schon eine ganze Weile im Backlog lag: die Generalüberholung des App-Integrationssystems.
 
-# Alles auseinandernehmen
+## Alles auseinandernehmen
 
 ![Mechanik-Arbeitsplatz mit zerlegter Maschine](../en/app-integration-overhaul/mechanic.jpg)
 
@@ -25,9 +25,9 @@ Apps zu verwalten ist eine der Hauptaufgaben von Portal, und deshalb ist das tie
 
 Der Rest dieses Posts geht die großen Änderungen durch – geplante, ungeplante und Gelegenheitsänderungen –, die ich unterwegs gemacht habe.
 
-# Was ist eine App?
+## Was ist eine App?
 
-## Vorher
+### Vorher
 
 Vor dem Umbau war eine App im Wesentlichen dreierlei:
 
@@ -39,7 +39,7 @@ Bei der Installation wurde eine große `docker-compose.yml` aktualisiert, die al
 
 Mit der Zeit stellte sich heraus, dass das Format der `app.json` dem Format einer `docker-compose.yml` immer ähnlicher wurde. Viele Werte, die in die `docker-compose.yml` gerendert werden mussten, mussten auch in der `app.json` stehen. Ich hatte das Rad neu erfunden, nur eingeschränkter – vor allem durch die Begrenzung auf einen Container pro App.
 
-## Nachher
+### Nachher
 
 Es lag also nahe, einfach direkt `docker-compose.yml`-Dateien zu verwenden. Jede App hat jetzt ihre eigene `docker-compose.yml`, und Portal startet sie einfach. Damit war das Hauptziel sofort erreicht: Jede App kann aus mehreren Containern bestehen. Als Bonus lässt sich viel Konfiguration direkt in der `docker-compose.yml` in einem bekannten Format ausdrücken und aus der `app.json` herauswerfen.
 
@@ -62,15 +62,15 @@ Alle Details zum neuen App-Format stehen [hier](https://docs.freeshard.net/devel
 
 Und nebenbei: Natürlich musste ich auch alle bestehenden Apps auf das neue Format migrieren – zumindest die, die tatsächlich genutzt wurden.
 
-# App Store
+## App Store
 
-## Vorher
+### Vorher
 
 Das geänderte App-Format war zugleich die Gelegenheit, das App-Store-Backend zu ändern. Vorher war der App Store ein GitLab-Repository mit den `app.json`-Dateien und Icons aller Apps. Portal hat über die GitLab-API den App Store abgefragt und die Dateien heruntergeladen. Das schien damals eine gute Idee, weil es leicht umzusetzen war.
 
 Dieser Ansatz hatte allerdings ein paar Probleme. Erstens ist die GitLab-API nicht besonders schnell. Nach dem Öffnen des App Stores hing ein Portal ein paar Sekunden in Abfragen fest. Zweitens war die GitLab-API nie dafür gedacht, dass Hunderte oder Tausende Clients sie ständig abfragen – und genau darauf zielen wir ja ab. Ich hatte die Befürchtung, dass wir irgendwann in Rate Limits laufen.
 
-## Nachher
+### Nachher
 
 Die naheliegende Lösung war, den App Store auf ein CDN umzuziehen. Der App Store ist am Ende nur eine Ansammlung statischer Dateien, und CDNs sind sehr gut darin, so etwas mit niedriger Latenz und hohem Durchsatz auszuliefern.
 
@@ -78,15 +78,15 @@ Jetzt gibt es also eine CI/CD-Pipeline, die aus dem App-Store-Repository ein paa
 
 Mit wachsendem App Store hätte ich gern auch eine Suche nach Name, Beschreibung oder Schlagwort. Ob und wie das mit einem Backend funktionieren kann, das nur aus statischen Dateien besteht, weiß ich noch nicht. Wenn du Ideen hast, sag Bescheid!
 
-# App-Installation
+## App-Installation
 
-## Vorher
+### Vorher
 
 Oben beschreibe ich, wie installierte Apps vor dem Umbau in eine große `docker-compose.yml` mit allen Apps geschrieben wurden. Der Portal-Kern hat diese Datei gerendert, konnte sie aber, weil er selbst ein Docker-Container war, nicht direkt starten – dachte ich zumindest damals. Stattdessen lief auf dem Host ein systemd-Service, der die Datei auf Änderungen beobachtete und bei einer Änderung `docker-compose up` ausführte. Das funktionierte irgendwie, war aber seltsam, überraschend und nicht besonders robust. Vor allem führte es oft zu Fehlern, wenn man mehrere Apps kurz hintereinander installierte.
 
 Mit dem neuen System gibt es jetzt eine `docker-compose.yml` pro App, ich musste das Starten von Apps also ohnehin neu bauen.
 
-## Nachher
+### Nachher
 
 Was mir damals nicht klar war und mir viel Arbeit erspart hätte: Wenn man den Docker-Socket mountet, kann der Portal-Core-Container den Docker-Daemon direkt steuern. Es braucht kein systemd, um Docker-Kommandos aufzurufen. Damit kann der Portal-Core-Container jetzt selbst docker-compose-Kommandos absetzen, um Apps zu starten und zu stoppen, und alles andere Nötige erledigen.
 
@@ -108,21 +108,21 @@ Weil der Portal-Kern jetzt alles selbst macht, gibt es deutlich mehr Kontrolle u
 
 Für die letzten drei Punkte braucht es natürlich irgendeinen Push-Mechanismus, um die UI zu aktualisieren. Und du ahnst wahrscheinlich schon, worauf das hinausläuft.
 
-# Websockets
+## Websockets
 
 Dieser nächste Abschnitt ist so naheliegend, dass der KI-Copilot sogar die richtige Überschrift vorgeschlagen hat.
 
-## Vorher
+### Vorher
 
 Bis jetzt gab es überhaupt keine Websocket-Integration. Ich hielt sie schlicht nicht für vordringlich, und in den ganz wenigen Fällen, in denen sie nötig war, reichte Polling. Mit den Änderungen am Installationsablauf wollte ich nun aber wirklich in Echtzeit zeigen, was gerade passiert.
 
-## Nachher
+### Nachher
 
 Zum Glück bringt FastAPI das eingebaut mit und macht es wirklich leicht, Websockets zu ergänzen. Ich bin noch einen Schritt weitergegangen und habe Websockets mit der [Python-Bibliothek blinker](https://blinker.readthedocs.io/en/stable/#) verbunden, die ich schon eine Weile für interne Signale nutze. Jetzt gibt es also so etwas wie einen sehr leichtgewichtigen internen Event-Bus auf Basis von blinker, wobei eine Teilmenge der Events zusätzlich auf Websockets veröffentlicht wird.
 
 Das Frontend, gebaut mit Vue.js, reagiert auf Websocket-Events, indem es sie auf einem globalen Event-Bus veröffentlicht und bei Bedarf den VueX-Store aktualisiert. So kann ich in der ganzen Anwendung dieselbe Liste von Event-Namen und Payload-Schemata verwenden.
 
-# Verschiedenes
+## Verschiedenes
 
 Das waren die großen Änderungen, aber es gab auch ein paar kleinere, die nötig waren oder sich einfach anboten.
 
@@ -132,7 +132,7 @@ Das waren die großen Änderungen, aber es gab auch ein paar kleinere, die nöti
 * Weil der Umbau so viele tiefgreifende Änderungen umfasste, ließen sich bestehende Portals mit den vorhandenen Mitteln nicht automatisch aktualisieren. Ich habe daher ein Migrationswerkzeug gebaut, das ein Portal auf das neue Format hebt. Hoffentlich kann ich es bei künftigen tiefgreifenden Änderungen als Vorlage nutzen.
 * Die App-Entwicklung muss über das neue App-System und seine Nutzung informiert werden. Also habe ich alle Doku-Seiten überarbeitet, die von den Änderungen betroffen waren (also praktisch alle).
 
-# Fazit
+## Fazit
 
 Die oben beschriebenen Aufgaben waren nur die, die einen Eintrag in der stetig wachsenden und sich stetig ändernden Todo-Liste für dieses Feature verdient hatten. Alles in allem war das ein großes Unterfangen, für das ich rund zwei Monate gebraucht habe. Die Änderungen verteilen sich auf 48 Commits, der erste vom 22.05.2023, der letzte vom 18.07.2023, und betreffen 103 Dateien.
 

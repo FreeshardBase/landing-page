@@ -284,4 +284,46 @@ const related = (await getPosts(lang)).filter((p) => p.id !== post.id).slice(0, 
     font-size: 0.9rem;
     white-space: nowrap;
   }
+
+  .post-body :global(.mermaid-diagram) {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    overflow-x: auto;
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .post-body :global(.mermaid-diagram svg) {
+    max-width: 100%;
+    height: auto;
+  }
 </style>
+
+<script>
+  const mermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"]');
+  if (mermaidBlocks.length > 0) {
+    const { default: mermaid } = await import('mermaid');
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'neutral',
+      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+    });
+    for (const [index, pre] of Array.from(mermaidBlocks).entries()) {
+      const code = pre.textContent?.trim() ?? '';
+      const container = document.createElement('div');
+      container.className = 'mermaid-diagram';
+      pre.parentNode?.replaceChild(container, pre);
+      try {
+        const { svg } = await mermaid.render(`mermaid-svg-${index}`, code);
+        container.innerHTML = svg;
+      } catch (err) {
+        console.error('Mermaid render error:', err);
+        container.appendChild(pre);
+      }
+    }
+  }
+</script>
+

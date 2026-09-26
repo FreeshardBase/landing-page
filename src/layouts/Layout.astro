@@ -46,7 +46,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
           <div class="logo">
             <a href={`/${lang}/`} style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
               <img src={BRAND_MARK} srcset={`${BRAND_MARK_2X} 2x`} alt="Freeshard" class="logo-mark" />
-              <h1>Freeshard</h1>
+              <span class="logo-text">Freeshard</span>
             </a>
           </div>
           <ul class="nav-links">
@@ -146,6 +146,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         width: auto;
       }
 
+      .logo .logo-text,
       .logo h1 {
         font-size: 1.25rem;
         font-weight: 700;

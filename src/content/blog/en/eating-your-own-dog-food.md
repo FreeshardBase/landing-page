@@ -105,12 +105,12 @@ http {
       listen 80;
       server_name localhost;
 
-      location /api { ## (1)!
+      location /api { # (1)
           rewrite ^/api/(.*)$ /internal/call_backend/api/$1 break;
           proxy_pass http://portal_core;
       }
 
-      location / { ## (2)!
+      location / { # (2)
           root /usr/share/nginx/html;
           index index.html;
       }
