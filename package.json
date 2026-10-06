@@ -14,7 +14,8 @@
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.15.8",
-    "mermaid": "^11.17.2"
+    "mermaid": "^11.17.2",
+    "remark-emoji": "^5.0.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.3.0",
