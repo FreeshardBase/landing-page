@@ -1,16 +1,10 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { languages } from '../../../i18n/ui';
-import { de } from '../../../i18n/de';
-import { en } from '../../../i18n/en';
-import { getPosts, urlOf } from '../../../lib/blog';
+import { de } from '../i18n/de';
+import { en } from '../i18n/en';
+import { getPosts, urlOf } from './blog';
 
-export function getStaticPaths() {
-  return Object.keys(languages).map((lang) => ({ params: { lang } }));
-}
-
-export async function GET(context: APIContext) {
-  const lang = context.params.lang as string;
+export async function buildRss(lang: string, context: APIContext) {
   const t = (lang === 'en' ? en : de).blog;
   const posts = await getPosts(lang);
 
