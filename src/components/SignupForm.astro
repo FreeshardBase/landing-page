@@ -122,6 +122,11 @@ const t = (lang === 'en' ? en : de).signup;
           window.clearTimeout(this.codeDebounce);
           this.codeDebounce = window.setTimeout(() => this.checkCode(code.value.trim()), 500);
         });
+        const prefill = new URLSearchParams(window.location.search).get('code')?.trim();
+        if (prefill) {
+          code.value = prefill;
+          code.dispatchEvent(new Event('input'));
+        }
       }
       this.setSubmitEnabled(false);
     }
