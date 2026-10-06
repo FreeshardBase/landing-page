@@ -40,7 +40,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
     <title>{title}</title>
   </head>
   <body>
-    <header>
+    <header class="site-header">
       <nav class="navbar">
         <div class="container">
           <div class="logo">
@@ -63,7 +63,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
     <main>
       <slot />
     </main>
-    <footer>
+    <footer class="site-footer">
       <div class="container">
         <img src={BRAND_MARK} alt="Freeshard" class="footer-logo" />
         <div class="footer-links">
@@ -113,7 +113,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         flex: 1 0 auto;
       }
 
-      footer {
+      .site-footer {
         flex-shrink: 0;
       }
 
@@ -123,7 +123,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         padding: 0 2rem;
       }
 
-      header {
+      .site-header {
         background-color: var(--bg-color);
         border-bottom: 1px solid var(--border-color);
         position: sticky;
@@ -175,7 +175,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         margin-left: 1rem; /* Abstand zu den anderen Links */
       }
 
-      footer {
+      .site-footer {
         background-color: var(--bg-light);
         border-top: 1px solid var(--border-color);
         padding: 2rem 0;

@@ -238,8 +238,11 @@ const related = (await getPosts(lang)).filter((p) => p.id !== post.id).slice(0, 
 
   .post-footer {
     margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-light);
+    text-align: center;
   }
 
   .post-back {
@@ -250,6 +253,9 @@ const related = (await getPosts(lang)).filter((p) => p.id !== post.id).slice(0, 
 
   .related {
     margin-top: 3rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
   }
 
   .related h2 {
@@ -266,7 +272,10 @@ const related = (await getPosts(lang)).filter((p) => p.id !== post.id).slice(0, 
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.5rem 0;
+    padding: 0.6rem 0;
+  }
+
+  .related li:not(:last-child) {
     border-bottom: 1px solid var(--border-color);
   }
 
