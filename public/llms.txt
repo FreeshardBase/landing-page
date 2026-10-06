@@ -47,5 +47,5 @@ Condensed, machine-readable summaries maintained for coding agents.
 
 ## Optional
 
-- [Blog](https://docs.freeshard.net/blog/): development notes and release write-ups, some predating the rename from Portal.
+- [Blog](https://freeshard.net/en/blog/): development notes and release write-ups, some predating the rename from Portal.
 - [User guides](https://docs.freeshard.net/user_guides/password_management/): task-level guides for owners.
