@@ -1,0 +1,189 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { Image } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import { languages } from '../../../i18n/ui';
+import { de } from '../../../i18n/de';
+import { en } from '../../../i18n/en';
+import { getPosts, urlOf, formatDate, coverOf, POSTS_PER_PAGE, type BlogPost } from '../../../lib/blog';
+
+type Props = { page: Page<BlogPost> };
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const routes = [];
+  for (const lang of Object.keys(languages)) {
+    const posts = await getPosts(lang);
+    routes.push(...paginate(posts, { params: { lang }, pageSize: POSTS_PER_PAGE }));
+  }
+  return routes;
+};
+
+const { page } = Astro.props;
+const lang = Astro.params.lang as string;
+const t = (lang === 'en' ? en : de).blog;
+---
+
+<Layout title={t.title} lang={lang} description={t.intro}>
+  <section class="blog-index">
+    <div class="container">
+      <h1>{t.pageTitle}</h1>
+      <p class="section-description">{t.intro}</p>
+
+      {page.data.length === 0 && <p class="blog-empty">{t.empty}</p>}
+
+      <ul class="post-list">
+        {page.data.map((post) => (
+          <li class="post-card">
+            {post.data.cover && (
+              <a href={urlOf(post)} class="post-card-cover">
+                <Image src={coverOf(post)!} alt={post.data.coverAlt ?? ''} widths={[400, 800]} sizes="(max-width: 720px) 100vw, 400px" />
+              </a>
+            )}
+            <div class="post-card-body">
+              <h2><a href={urlOf(post)}>{post.data.title}</a></h2>
+              <p class="post-meta">
+                <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, lang)}</time>
+                <span class="post-meta-sep">·</span>
+                <span>{t.by} {post.data.author}</span>
+              </p>
+              <p class="post-excerpt">{post.data.description}</p>
+              <a href={urlOf(post)} class="post-more">{t.readMore} →</a>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {(page.url.prev || page.url.next) && (
+        <nav class="pagination" aria-label="Pagination">
+          {page.url.prev ? <a href={page.url.prev}>← {t.newerPosts}</a> : <span />}
+          {page.url.next ? <a href={page.url.next}>{t.olderPosts} →</a> : <span />}
+        </nav>
+      )}
+
+      <p class="blog-feed">
+        <a href={`/${lang}/blog/rss.xml`}>{t.rss}</a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .blog-index h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .post-list {
+    list-style: none;
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .post-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .post-card-cover {
+    flex: 0 0 240px;
+    display: block;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .post-card-cover :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .post-card-body {
+    flex: 1 1 auto;
+  }
+
+  .post-card h2 {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 0.25rem;
+  }
+
+  .post-card h2 a {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  .post-card h2 a:hover {
+    color: var(--primary-color);
+  }
+
+  .post-meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta-sep {
+    margin: 0 0.4rem;
+  }
+
+  .post-excerpt {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .post-more:hover {
+    text-decoration: underline;
+  }
+
+  .blog-empty {
+    text-align: center;
+    color: var(--text-light);
+  }
+
+  .pagination {
+    max-width: 820px;
+    margin: 3rem auto 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pagination a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .blog-feed {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .blog-feed a {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 720px) {
+    .post-card {
+      flex-direction: column;
+    }
+
+    .post-card-cover {
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+</style>

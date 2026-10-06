@@ -24,6 +24,10 @@ pnpm-debug.log*
 .idea
 _wip/
 
+# test artifacts
+tests/screenshots/
+tests/e2e-blog-results.json
+
 # local agent state
 .worktrees/
 .claude/worktrees/
