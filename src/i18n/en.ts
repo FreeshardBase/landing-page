@@ -212,7 +212,7 @@ export const en = {
         label: "Full Data Export",
         link: "export",
         title: "Data Portability",
-        explanation: "You can export your entire Shard – including all data and settings – and run it on your own server or with another provider. Your data is truly yours."
+        explanation: "You can request an export of your entire Shard – including all data and settings – and run it on your own server or with another provider. Your data is truly yours."
       },
       privacy: {
         value: "Private",
@@ -308,7 +308,7 @@ export const en = {
       },
       {
         question: "What happens to my address if I leave Freeshard?",
-        answer: "Your auto-assigned subdomain is tied to our infrastructure, so it can't follow you. What you can do is export your entire Shard — all data and settings — and run it yourself under your own domain. Your data is truly portable.",
+        answer: "Your auto-assigned subdomain is tied to our infrastructure, so it can't follow you. What you can do is request an export of your entire Shard — all data and settings — and run it yourself under your own domain. Your data is truly portable.",
         tags: ["portability", "domain", "exit"]
       },
       {
@@ -319,7 +319,7 @@ export const en = {
       },
       {
         question: "Can I come back to you with an exported Shard?",
-        answer: "Technically, that is unfortunately not possible, as we must ensure the integrity of our systems. Our tip: You can download your Shard to test the export and simply keep your contract with us running. That way you have both.",
+        answer: "Technically, that is unfortunately not possible, as we must ensure the integrity of our systems. Our tip: You can request an export to test it and simply keep your contract with us running. That way you have both.",
         tags: ["portability", "export"]
       },
       {
@@ -432,7 +432,7 @@ export const en = {
         bigTechLabel: "Big Tech",
         bigTechText: "Accounts get locked, services shut down, and your data can disappear overnight.",
         freeshardLabel: "Your Shard",
-        freeshardText: "You own your Shard. Export it anytime and take it anywhere."
+        freeshardText: "You own your Shard. Request an export and take it anywhere."
       }
     ]
   },
