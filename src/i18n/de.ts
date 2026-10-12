@@ -212,7 +212,7 @@ export const de = {
         label: "Voller Daten-Export",
         link: "export",
         title: "Datenportabilität",
-        explanation: "Du kannst deinen gesamten Shard – einschließlich aller Daten und Einstellungen – exportieren und auf deinem eigenen Server oder bei einem anderen Anbieter betreiben. Deine Daten gehören wirklich dir."
+        explanation: "Du kannst einen Export deines gesamten Shards anfordern – einschließlich aller Daten und Einstellungen – und ihn auf deinem eigenen Server oder bei einem anderen Anbieter betreiben. Deine Daten gehören wirklich dir."
       },
       privacy: {
         value: "Privat",
@@ -308,7 +308,7 @@ export const de = {
       },
       {
         question: "Was passiert mit meiner Adresse, wenn ich Freeshard verlasse?",
-        answer: "Die automatisch zugewiesene Subdomain ist an unsere Infrastruktur gebunden und kann leider nicht mitgenommen werden. Was du mitnehmen kannst: deinen gesamten Shard – alle Daten und Einstellungen – als Export, den du auf einem eigenen Server unter deiner eigenen Domain betreiben kannst.",
+        answer: "Die automatisch zugewiesene Subdomain ist an unsere Infrastruktur gebunden und kann leider nicht mitgenommen werden. Was du mitnehmen kannst: deinen gesamten Shard – alle Daten und Einstellungen – als angeforderten Export, den du auf einem eigenen Server unter deiner eigenen Domain betreiben kannst.",
         tags: ["portabilität", "domain", "kündigung"]
       },
       {
@@ -319,7 +319,7 @@ export const de = {
       },
       {
         question: "Kann ich mit einem exportierten Shard wieder zu euch zurück?",
-        answer: "Das ist technisch leider nicht möglich, da wir die Integrität unserer Systeme gewährleisten müssen. Unser Tipp: Du kannst dir deinen Shard herunterladen, um den Export zu testen, und deinen Vertrag bei uns einfach weiterlaufen lassen. So hast du beides.",
+        answer: "Das ist technisch leider nicht möglich, da wir die Integrität unserer Systeme gewährleisten müssen. Unser Tipp: Du kannst einen Export anfordern, um ihn zu testen, und deinen Vertrag bei uns einfach weiterlaufen lassen. So hast du beides.",
         tags: ["portabilität", "export"]
       },
       {
@@ -432,7 +432,7 @@ export const de = {
         bigTechLabel: "Big Tech",
         bigTechText: "Konten werden gesperrt, Dienste abgeschaltet und deine Daten können über Nacht verschwinden.",
         freeshardLabel: "Dein Shard",
-        freeshardText: "Du besitzt deinen Shard. Exportiere ihn jederzeit und nimm ihn überall hin mit."
+        freeshardText: "Du besitzt deinen Shard. Fordere einen Export an und nimm ihn überall hin mit."
       }
     ]
   },
