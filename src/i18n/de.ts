@@ -198,7 +198,7 @@ export const de = {
         label: "Server-Standort",
         link: "data-location",
         title: "Server-Standort",
-        explanation: "Dein Shard läuft auf OVH-Servern in der EU (Frankreich). Verschlüsselte Backups werden separat, ebenfalls in EU-Rechenzentren, gespeichert. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO)."
+        explanation: "Dein Shard läuft auf IONOS-Servern in Deutschland (Berlin), einem deutschen Anbieter. Backups liegen aktuell bei Azure Blob Storage innerhalb der EU, verschlüsselt auf deinem Shard vor dem Hochladen, sodass Azure weder den Schlüssel noch die unverschlüsselten Daten erhält; der Umzug zu einem EU-eigenen Speicher ist für die Zukunft geplant. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO)."
       },
       code: {
         value: "Fair",
@@ -359,11 +359,6 @@ export const de = {
         tags: ["recht", "verschlüsselung", "sicherheit"]
       },
       {
-        question: "Es gab ein Urteil, dass OVH Daten an Kanada herausgeben muss. Sind meine Daten sicher?",
-        answer: "Das ist ein berechtigter Punkt und wir beobachten den Fall genau. Sollte es sich wirklich so entwickeln, dass OVH in Europa durch das kanadische Gerichtsurteil gezwungen werden kann, europäische Daten herauszugeben, werden wir die Situation neu betrachten müssen. Allerdings ist hierbei das letzte Wort noch lange nicht gesprochen, da dieses Thema sowohl in Kanada als auch in Frankreich jeweils auf der Ebene der Regierung angekommen ist. So oder so wird hier nichts überraschend kommen, sondern sich mit langem Vorlauf ankündigen und wir werden entsprechend reagieren.",
-        tags: ["recht", "serverstandort"]
-      },
-      {
         question: "Warum bietet ihr keine E-Mail- oder Kalender-Funktionen an?",
         answer: "E-Mail und Kalender sind eigentlich Kernfunktionen, die wir sehr gerne anbieten würden – der Grund, warum wir es nicht tun, ist rein technischer Natur. E-Mail-Hosting ist notorisch schwierig: E-Mails zuverlässig zuzustellen, ohne von großen Anbietern als Spam gefiltert zu werden, erfordert Infrastruktur und Reputationsmanagement, das schwer zu meistern ist. Beim Kalender ist das Problem ein anderes: Es gibt schlicht noch keine selbst-gehostete Kalender-Lösung, die wir für gut genug halten – das ist eine echte Lücke im Ökosystem. Wir behalten beide Bereiche im Blick und werden sie ergänzen, sobald wir sicher sind, dass wir es wirklich gut umsetzen können.",
         tags: ["apps", "roadmap"]
@@ -376,7 +371,7 @@ export const de = {
       {
         id: "data-location",
         question: "Wo liegen meine Daten?",
-        answer: "Dein Shard läuft auf OVH-Servern in der EU (Frankreich). Verschlüsselte Backups werden separat, ebenfalls in EU-Rechenzentren, gespeichert. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO).",
+        answer: "Dein Shard läuft auf IONOS-Servern in Deutschland (Berlin), einem deutschen Anbieter. Backups liegen aktuell bei Azure Blob Storage innerhalb der EU, verschlüsselt auf deinem Shard vor dem Hochladen, sodass Azure weder den Schlüssel noch die unverschlüsselten Daten erhält; der Umzug zu einem EU-eigenen Speicher ist für die Zukunft geplant. Alle Daten unterliegen den strengen europäischen Datenschutzgesetzen (DSGVO).",
         tags: ["serverstandort", "EU", "DSGVO", "datenschutz"]
       }
     ]
