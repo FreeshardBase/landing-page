@@ -198,7 +198,7 @@ export const en = {
         label: "Server Location",
         link: "data-location",
         title: "Server Location",
-        explanation: "Your Shard runs on OVH servers in the EU (France). Encrypted backups are stored separately, also within EU data centers. All data is subject to strict European data protection laws (GDPR)."
+        explanation: "Your Shard runs on IONOS servers in Germany (Berlin), a German-owned provider. Backups are currently stored on Azure Blob Storage within the EU, encrypted on your Shard before upload, so Azure never holds the key or the unencrypted data; moving them to EU-owned storage is on our roadmap. All data is subject to strict European data protection laws (GDPR)."
       },
       code: {
         value: "Fair",
@@ -359,11 +359,6 @@ export const en = {
         tags: ["legal", "encryption", "security"]
       },
       {
-        question: "There was a ruling that OVH must hand over data to Canada. Is my data safe?",
-        answer: "That is a valid point, and we are watching the case closely. Should it really develop that OVH in Europe can be forced by the Canadian court ruling to hand over European data, we will have to re-evaluate the situation. However, the last word has not yet been spoken on this, as this issue has reached the government level in both Canada and France. Either way, nothing will come as a surprise here, but will announce itself well in advance, and we will react accordingly.",
-        tags: ["legal", "data location"]
-      },
-      {
         question: "Why don't you offer email or calendar functions?",
         answer: "Email and calendar are actually core functions we would love to offer — the reason we don't is purely technical. Email hosting is notoriously difficult: getting emails reliably delivered without being filtered as spam by major providers requires a level of infrastructure and reputation management that is genuinely hard to get right. For calendar, the problem is different: there simply are no self-hosted calendar solutions we consider good enough yet — that is a real gap in the ecosystem. We are keeping a close eye on both areas and will add them as soon as we are confident we can do it well.",
         tags: ["apps", "roadmap"]
@@ -376,7 +371,7 @@ export const en = {
       {
         id: "data-location",
         question: "Where is my data located?",
-        answer: "Your Shard runs on OVH servers in the EU (France). Encrypted backups are stored separately, also within EU data centers. All data is subject to strict European data protection laws (GDPR).",
+        answer: "Your Shard runs on IONOS servers in Germany (Berlin), a German-owned provider. Backups are currently stored on Azure Blob Storage within the EU, encrypted on your Shard before upload, so Azure never holds the key or the unencrypted data; moving them to EU-owned storage is on our roadmap. All data is subject to strict European data protection laws (GDPR).",
         tags: ["data location", "EU", "GDPR", "privacy"]
       }
     ]
