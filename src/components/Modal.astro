@@ -1,4 +1,6 @@
 ---
+import { X } from '@lucide/astro';
+
 interface Props {
   id: string;
   title: string;
@@ -8,139 +10,98 @@ interface Props {
 const { id, title, content } = Astro.props;
 ---
 
-<div class="modal-overlay" data-modal-id={id}>
+<dialog class="modal" data-modal-id={id} aria-labelledby={`${id}-title`}>
   <div class="modal-content">
-    <button class="modal-close" aria-label="Close modal">&times;</button>
-    <h3>{title}</h3>
+    <button type="button" class="modal-close" aria-label="Close modal"><X size={18} stroke-width={1.5} /></button>
+    <h3 id={`${id}-title`}>{title}</h3>
     <p set:html={content} />
   </div>
-</div>
+</dialog>
 
 <style>
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease-in-out;
+  .modal {
+    margin: auto;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    color: var(--ink);
+    background: var(--surface);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius-sheet);
   }
 
-  .modal-overlay.active {
-    display: flex;
+  /* The page recedes toward the paper ground and loses some colour; the modal lifts on its border alone. */
+  .modal::backdrop {
+    background: color-mix(in srgb, var(--bg) 55%, transparent);
+    backdrop-filter: grayscale(0.5);
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .modal[open] {
+    animation: modal-in var(--motion-considered) var(--ease-standard);
+  }
+
+  @keyframes modal-in {
+    from { opacity: 0; translate: 0 8px; }
+    to { opacity: 1; translate: 0 0; }
   }
 
   .modal-content {
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    padding: 2rem;
-    max-width: 500px;
-    width: 90%;
     position: relative;
-    animation: slideUp 0.3s ease-in-out;
-  }
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    padding: var(--space-6);
   }
 
   .modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-light);
-    padding: 0;
-    width: 2rem;
-    height: 2rem;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.2s;
+    color: var(--ink-muted);
+    background: transparent;
+    border: var(--border-w) solid transparent;
+    border-radius: var(--radius-control);
+    cursor: pointer;
+    transition: color var(--motion-instant) var(--ease-standard),
+                border-color var(--motion-instant) var(--ease-standard);
   }
 
   .modal-close:hover {
-    color: var(--primary-color);
+    color: var(--ink);
+    border-color: var(--border-cool);
   }
 
   .modal-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    margin-top: 0;
-    font-size: 1.25rem;
+    margin: 0 var(--space-7) var(--space-4) 0;
   }
 
   .modal-content p {
-    color: var(--text-light);
+    color: var(--ink-muted);
     line-height: 1.6;
-    margin: 0;
   }
 
   .modal-content p :global(a) {
-    color: var(--primary-color);
-    text-decoration: underline;
-  }
-
-  .modal-content p :global(a:hover) {
-    text-decoration: none;
+    color: var(--line);
   }
 
   @media (max-width: 768px) {
     .modal-content {
-      max-width: 95%;
-      padding: 1.5rem;
-    }
-
-    .modal-close {
-      top: 0.75rem;
-      right: 0.75rem;
+      padding: var(--space-5);
     }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const modals = document.querySelectorAll('.modal-overlay');
+  document.querySelectorAll<HTMLDialogElement>('dialog.modal').forEach(modal => {
+    modal.querySelector('.modal-close')?.addEventListener('click', () => modal.close());
 
-    modals.forEach(modal => {
-      const closeBtn = modal.querySelector('.modal-close');
-
-      // Close on X button
-      closeBtn?.addEventListener('click', () => {
-        modal.classList.remove('active');
-      });
-
-      // Close on overlay click
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-        }
-      });
+    // A click on the dialog element itself lands on the backdrop, outside the content.
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.close();
+      }
     });
   });
 </script>

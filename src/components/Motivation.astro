@@ -25,9 +25,9 @@ const valuesList = Object.values(t.values);
       <div class="motivation-stats">
         {valuesList.map(item => (
           <>
-            <button class="stat-card" data-modal-trigger={item.link}>
+            <button type="button" class="stat-card fs-focusable" data-modal-trigger={item.link} aria-haspopup="dialog">
               <div class="stat-number">{item.value}</div>
-              <div class="stat-label">{item.label}</div>
+              <div class="stat-label fs-label">{item.label}</div>
             </button>
             <Modal id={item.link} title={item.title} content={item.explanation} />
           </>
@@ -41,79 +41,58 @@ const valuesList = Object.values(t.values);
   .motivation-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: var(--space-7);
     align-items: start;
   }
 
   .motivation-text h3 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-5);
   }
 
   .motivation-text p {
-    margin-bottom: 1.5rem;
-    color: var(--text-light);
-    font-size: 1.125rem;
-    line-height: 1.8;
+    margin-bottom: var(--space-5);
+    color: var(--ink-muted);
+    font-size: var(--fs-prose);
+    line-height: 1.75;
   }
-  
+
   .motivation-text p :global(a) {
-    color: var(--primary-color);
-    text-decoration: underline;
-    font-weight: 500;
-  }
-  
-  .motivation-text p :global(a:hover) {
-    text-decoration: none;
+    color: var(--line);
   }
 
   .motivation-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: var(--space-3);
   }
 
   .stat-card {
-    background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: 0.75rem;
+    font: inherit;
+    color: var(--ink);
+    background: var(--surface);
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--radius-tile);
+    border: var(--border-w) solid var(--border-cool);
     text-align: center;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s;
-    text-decoration: none;
     display: block;
-    position: relative;
     cursor: pointer;
-    font-family: inherit;
+    transition: border-color var(--motion-instant) var(--ease-standard);
   }
 
   .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary-color);
+    border-color: var(--line);
   }
 
   .stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    color: var(--text-light);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    color: var(--line);
+    margin-bottom: var(--space-3);
   }
 
   @media (max-width: 768px) {
     .motivation-content {
       grid-template-columns: 1fr;
-    }
-
-    .motivation-stats {
-      grid-template-columns: 1fr 1fr;
     }
   }
 </style>
@@ -125,10 +104,8 @@ const valuesList = Object.values(t.values);
     triggers.forEach(trigger => {
       trigger.addEventListener('click', () => {
         const modalId = trigger.getAttribute('data-modal-trigger');
-        const modal = document.querySelector(`[data-modal-id="${modalId}"]`);
-        if (modal) {
-          modal.classList.add('active');
-        }
+        const modal = document.querySelector<HTMLDialogElement>(`dialog[data-modal-id="${modalId}"]`);
+        modal?.showModal();
       });
     });
   });

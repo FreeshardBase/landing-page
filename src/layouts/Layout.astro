@@ -3,6 +3,12 @@ import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
 import { BRAND_MARK, BRAND_MARK_2X } from '../lib/branding';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/daylight.css';
 
 interface Props {
   title: string;
@@ -44,7 +50,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
       <nav class="navbar">
         <div class="container">
           <div class="logo">
-            <a href={`/${lang}/`} style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+            <a href={`/${lang}/`} class="logo-link">
               <img src={BRAND_MARK} srcset={`${BRAND_MARK_2X} 2x`} alt="Freeshard" class="logo-mark" />
               <span class="logo-text">Freeshard</span>
             </a>
@@ -85,54 +91,51 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         box-sizing: border-box;
       }
 
-      :root {
-        --primary-color: #4f46e5;
-        --secondary-color: #06b6d4;
-        --text-color: #1f2937;
-        --text-light: #6b7280;
-        --bg-color: #ffffff;
-        --bg-light: #f9fafb;
-        --border-color: #e5e7eb;
-      }
-
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: 80px;
       }
 
       body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        color: var(--text-color);
+        font-family: var(--font-ui);
+        font-size: var(--fs-body);
+        color: var(--ink);
         line-height: 1.6;
-        background-color: var(--bg-color);
+        background-color: var(--bg);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        -webkit-font-smoothing: antialiased;
       }
 
       main {
         flex: 1 0 auto;
       }
 
-      .site-footer {
-        flex-shrink: 0;
+      a {
+        color: var(--line);
+      }
+
+      code, kbd, pre, samp {
+        font-family: var(--font-mono);
       }
 
       .container {
-        max-width: 1200px;
+        max-width: 1120px;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0 var(--space-6);
       }
 
       .site-header {
-        background-color: var(--bg-color);
-        border-bottom: 1px solid var(--border-color);
+        background-color: var(--bg);
+        border-bottom: var(--border-w) solid var(--border);
         position: sticky;
         top: 0;
         z-index: 100;
       }
 
       .navbar {
-        padding: 1rem 0;
+        padding: var(--space-4) 0;
       }
 
       .navbar .container {
@@ -141,102 +144,114 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         align-items: center;
       }
 
+      .logo-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        text-decoration: none;
+      }
+
       .logo-mark {
-        height: 32px;
+        height: 28px;
         width: auto;
       }
 
-      .logo .logo-text,
-      .logo h1 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--primary-color);
+      .logo-text {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.01em;
       }
 
       .nav-links {
         display: flex;
-        align-items: center; /* Wichtig für vertikale Ausrichtung */
+        align-items: center;
         list-style: none;
-        gap: 2rem;
+        gap: var(--space-6);
       }
 
       .nav-links a {
         text-decoration: none;
-        color: var(--text-color);
+        color: var(--ink-muted);
+        font-size: var(--fs-small);
         font-weight: 500;
-        transition: color 0.3s;
+        transition: color var(--motion-instant) var(--ease-standard);
       }
 
       .nav-links a:hover {
-        color: var(--primary-color);
-      }
-      
-      .lang-switcher-li {
-        margin-left: 1rem; /* Abstand zu den anderen Links */
+        color: var(--ink);
       }
 
       .site-footer {
-        background-color: var(--bg-light);
-        border-top: 1px solid var(--border-color);
-        padding: 2rem 0;
+        flex-shrink: 0;
+        border-top: var(--border-w) solid var(--border);
+        padding: var(--space-7) 0;
         text-align: center;
       }
-      
+
       .footer-logo {
-        width: 40px;
+        width: 28px;
         height: auto;
-        margin-bottom: 1rem;
+        margin-bottom: var(--space-5);
       }
 
       .footer-links {
-        margin-bottom: 1rem;
+        margin-bottom: var(--space-5);
         display: flex;
         justify-content: center;
-        gap: 2rem;
+        gap: var(--space-3) var(--space-6);
         flex-wrap: wrap;
       }
 
       .footer-links a {
-        color: var(--text-light);
+        color: var(--ink-muted);
+        font-size: var(--fs-small);
         text-decoration: none;
       }
-      
+
       .footer-links a:hover {
-        color: var(--primary-color);
+        color: var(--ink);
         text-decoration: underline;
       }
 
-      footer p {
-        color: var(--text-light);
-        font-size: 0.9rem;
+      .site-footer p {
+        color: var(--ink-muted);
+        font-size: var(--fs-small);
       }
 
       section {
-        padding: 4rem 0;
+        padding: var(--space-8) 0;
       }
 
-      section:nth-child(even) {
-        background-color: var(--bg-light);
+      main > section + section {
+        border-top: var(--border-w) solid var(--border);
+      }
+
+      h1, h2, h3, h4 {
+        color: var(--ink);
+        letter-spacing: -0.01em;
       }
 
       h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
+        font-size: var(--fs-display);
+        font-weight: var(--fw-display);
+        line-height: 1.2;
+        margin-bottom: var(--space-4);
         text-align: center;
       }
 
       h3 {
-        font-size: 1.5rem;
+        font-size: var(--fs-h2);
         font-weight: 600;
-        margin-bottom: 0.5rem;
+        line-height: 1.3;
+        margin-bottom: var(--space-2);
       }
 
       .section-description {
         text-align: center;
-        color: var(--text-light);
-        font-size: 1.125rem;
-        margin-bottom: 3rem;
+        color: var(--ink-muted);
+        font-size: 17px;
+        margin-bottom: var(--space-7);
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
@@ -247,16 +262,16 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
           display: none;
         }
 
-        .navbar .container {
-          justify-content: space-between;
+        h2 {
+          font-size: var(--fs-h1);
         }
 
-        h2 {
-          font-size: 2rem;
+        section {
+          padding: var(--space-7) 0;
         }
 
         .container {
-          padding: 0 1rem;
+          padding: 0 var(--space-4);
         }
       }
     </style>

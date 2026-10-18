@@ -17,50 +17,37 @@ const t = content.miniFaq;
     <p class="section-description">{t.description}</p>
     <div class="mini-faq-grid">
       {t.items.map(item => (
-        <div class="mini-faq-card">
+        <div class="mini-faq-card fs-sheet">
           <h3>{item.question}</h3>
           <p>{item.answer}</p>
         </div>
       ))}
     </div>
     <div class="mini-faq-link">
-      <a href={`/${lang}/faq/`} class="btn btn-secondary">{t.linkText}</a>
+      <a href={`/${lang}/faq/`} class="fs-btn">{t.linkText}</a>
     </div>
   </div>
 </section>
 
 <style>
-  .mini-faq {
-    padding: 4rem 0;
-  }
-
   .mini-faq-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .mini-faq-card {
-    background-color: var(--bg-color);
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
+    gap: var(--space-5);
   }
 
   .mini-faq-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-3);
   }
 
   .mini-faq-card p {
-    color: var(--text-light);
+    color: var(--ink-muted);
     line-height: 1.6;
   }
 
   .mini-faq-link {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: var(--space-7);
   }
 </style>

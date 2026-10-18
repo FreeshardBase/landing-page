@@ -1,6 +1,8 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import { Sprout, Camera, House, Gem, Rocket } from '@lucide/astro';
+
 interface Props {
   lang: string;
 }
@@ -16,67 +18,67 @@ const t = content.pricing;
 
     <div class="pricing-intro">
       <p>{t.info.introText}</p>
-      <a href={`/${lang}/trial/`} class="trial-link">{t.info.trialCta}</a>
+      <a href={`/${lang}/trial/`} class="fs-btn">{t.info.trialCta}</a>
     </div>
     
     <div class="pricing-container">
       <div class="presets">
         <h3>{t.presetsTitle}</h3>
         <div class="preset-grid">
-          <div class="preset-card" data-vm-tier="xs" data-disk="10">
-            <div class="preset-icon">🌱</div>
-            <h4>{t.presets.starter.name}</h4>
-            <p class="preset-specs">1 vCore, 2 GB RAM</p>
-            <p class="preset-description">{t.presets.starter.description}</p>
-          </div>
-          <div class="preset-card" data-vm-tier="s" data-disk="50">
-            <div class="preset-icon">📸</div>
-            <h4>{t.presets.collector.name}</h4>
-            <p class="preset-specs">2 vCores, 4 GB RAM</p>
-            <p class="preset-description">{t.presets.collector.description}</p>
-          </div>
-          <div class="preset-card" data-vm-tier="m" data-disk="250">
-            <div class="preset-icon">🏠</div>
-            <h4>{t.presets.family.name}</h4>
-            <p class="preset-specs">4 vCores, 8 GB RAM</p>
-            <p class="preset-description">{t.presets.family.description}</p>
-          </div>
-          <div class="preset-card" data-vm-tier="l" data-disk="250">
-            <div class="preset-icon">💎</div>
-            <h4>Premium</h4>
-            <p class="preset-specs">4 vCores, 16 GB RAM</p>
-            <p class="preset-description">For demanding workloads and multiple concurrent users.</p>
-          </div>
-          <div class="preset-card" data-vm-tier="xl" data-disk="500">
-            <div class="preset-icon">🚀</div>
-            <h4>{t.presets.enthusiast.name}</h4>
-            <p class="preset-specs">8 vCores, 32 GB RAM</p>
-            <p class="preset-description">{t.presets.enthusiast.description}</p>
-          </div>
+          <button type="button" class="preset-card fs-focusable" data-vm-tier="xs" data-disk="10" aria-pressed="false">
+            <span class="fs-glyph"><Sprout size={22} stroke-width={1.5} aria-hidden="true" /></span>
+            <span class="preset-name">{t.presets.starter.name}</span>
+            <span class="preset-specs fs-mono">1 vCore, 2 GB RAM</span>
+            <span class="preset-description">{t.presets.starter.description}</span>
+          </button>
+          <button type="button" class="preset-card fs-focusable" data-vm-tier="s" data-disk="50" aria-pressed="false">
+            <span class="fs-glyph"><Camera size={22} stroke-width={1.5} aria-hidden="true" /></span>
+            <span class="preset-name">{t.presets.collector.name}</span>
+            <span class="preset-specs fs-mono">2 vCores, 4 GB RAM</span>
+            <span class="preset-description">{t.presets.collector.description}</span>
+          </button>
+          <button type="button" class="preset-card fs-focusable" data-vm-tier="m" data-disk="250" aria-pressed="false">
+            <span class="fs-glyph"><House size={22} stroke-width={1.5} aria-hidden="true" /></span>
+            <span class="preset-name">{t.presets.family.name}</span>
+            <span class="preset-specs fs-mono">4 vCores, 8 GB RAM</span>
+            <span class="preset-description">{t.presets.family.description}</span>
+          </button>
+          <button type="button" class="preset-card fs-focusable" data-vm-tier="l" data-disk="250" aria-pressed="false">
+            <span class="fs-glyph"><Gem size={22} stroke-width={1.5} aria-hidden="true" /></span>
+            <span class="preset-name">Premium</span>
+            <span class="preset-specs fs-mono">4 vCores, 16 GB RAM</span>
+            <span class="preset-description">For demanding workloads and multiple concurrent users.</span>
+          </button>
+          <button type="button" class="preset-card fs-focusable" data-vm-tier="xl" data-disk="500" aria-pressed="false">
+            <span class="fs-glyph"><Rocket size={22} stroke-width={1.5} aria-hidden="true" /></span>
+            <span class="preset-name">{t.presets.enthusiast.name}</span>
+            <span class="preset-specs fs-mono">8 vCores, 32 GB RAM</span>
+            <span class="preset-description">{t.presets.enthusiast.description}</span>
+          </button>
         </div>
       </div>
 
       <div class="calculator-wrapper">
-        <div class="calculator">
+        <div class="calculator fs-sheet">
           <div class="slider-group">
             <label for="disk-size">
               <span class="slider-label">{t.calculator.diskLabel}</span>
-              <span class="slider-value" id="disk-value">50</span>
+              <span class="slider-value fs-mono" id="disk-value">30</span>
             </label>
-            <input type="range" id="disk-size" min="0" max="12" value="3" step="1" class="slider"/>
-            <div class="slider-markers"><span>20</span><span>80</span><span>170</span><span>250</span><span>400</span></div>
+            <input type="range" id="disk-size" min="0" max="12" value="1" step="1" class="slider"/>
+            <div class="slider-markers fs-mono" aria-hidden="true"><span>20</span><span>50</span><span>130</span><span>250</span><span>400</span></div>
           </div>
         </div>
       </div>
 
-      <div class="price-summary">
+      <div class="price-summary fs-sheet">
         <div class="breakdown-total">
           <span>{t.summary.totalLabel}</span>
-          <span id="total-price" class="total-badge">€12.45</span>
+          <span id="total-price" class="total-price fs-mono"></span>
         </div>
         <div id="vat-note" class="vat-note"></div>
         <div class="cta-wrapper">
-          <a href={`/${lang}/trial/`} class="cta-button">{t.summary.ctaButton}</a>
+          <a href={`/${lang}/trial/`} class="fs-btn fs-btn--primary">{t.summary.ctaButton}</a>
         </div>
       </div>
     </div>
@@ -124,11 +126,9 @@ const t = content.pricing;
 
   function updateActiveCard() {
     document.querySelectorAll('.preset-card').forEach(card => {
-      if (card.dataset.vmTier === currentVMTier) {
-        card.classList.add('active');
-      } else {
-        card.classList.remove('active');
-      }
+      const active = card.dataset.vmTier === currentVMTier;
+      card.classList.toggle('active', active);
+      card.setAttribute('aria-pressed', active.toString());
     });
   }
 
@@ -168,97 +168,105 @@ const t = content.pricing;
 </script>
 
 <style>
-  .pricing-container { max-width: 900px; margin: 0 auto; }
-  
+  .pricing-container { max-width: 960px; margin: 0 auto; }
+
   .pricing-intro {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-7);
   }
 
   .pricing-intro p {
-    color: var(--text-light);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
+    color: var(--ink-muted);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0 auto var(--space-5);
   }
 
-  .trial-link {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.75rem 1.75rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
+  .presets { margin-bottom: var(--space-5); text-align: center; }
+  .presets h3 { margin-bottom: var(--space-5); }
 
-  .trial-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
+  .preset-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); }
 
-  .presets { margin-bottom: 2rem; text-align: center; }
-  .presets h3 { margin-bottom: 1.5rem; color: var(--primary-color); }
-  .preset-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; }
-  .preset-card { background-color: var(--bg-color); padding: 1.5rem; border-radius: 0.75rem; border: 2px solid var(--border-color); cursor: pointer; transition: all 0.3s; text-align: center; display: flex; flex-direction: column; }
-  .preset-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2); }
-  .preset-card.active { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2); border-color: var(--primary-color); border-width: 2px; }
-  .preset-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-  .preset-card h4 { color: var(--primary-color); margin-bottom: 0.25rem; font-size: 1.25rem; }
-  .preset-specs { color: var(--text-color); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
-  .preset-price { color: var(--primary-color); font-weight: 700; font-size: 1rem; margin-bottom: 0.75rem; }
-  .preset-description { color: var(--text-light); font-size: 0.85rem; line-height: 1.5; flex-grow: 1; }
-  
-  .calculator-wrapper { margin-top: 2rem; }
-  .calculator { background-color: var(--bg-color); padding: 2rem; border-radius: 0.75rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
-  .slider-group { margin-bottom: 2.5rem; }
-  .slider-group:last-child { margin-bottom: 1.5rem; }
-  .slider-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-weight: 600; }
-  .slider-label { color: var(--text-color); }
-  .slider-value { color: var(--primary-color); font-size: 1.25rem; }
-  .slider { width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, #667eea, #764ba2); outline: none; -webkit-appearance: none; }
-  .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
-  .slider::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); border: none; }
-  .slider-markers { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-light); }
-  
-  .price-summary { margin-top: 2rem; padding: 2rem; border-radius: 0.75rem; background-color: var(--bg-color); border: 1px solid var(--border-color); text-align: center; }
-  .breakdown-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.4rem; }
-  .vat-note { font-size: 0.8rem; font-weight: 400; color: var(--text-light); text-align: right; margin-bottom: 1.5rem; }
-  .total-badge { color: white; background: var(--primary-color); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 1.25rem; }
-  
-  .cta-wrapper { margin-top: 1rem; }
-  .cta-button {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
+  .preset-card {
+    font: inherit;
+    color: var(--ink);
+    background: var(--surface);
+    padding: var(--space-5) var(--space-4);
+    border-radius: var(--radius-tile);
+    border: var(--border-w) solid var(--border-cool);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: border-color var(--motion-instant) var(--ease-standard);
   }
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
+  .preset-card:hover { border-color: var(--line); }
+  .preset-card.active { border-color: var(--data); box-shadow: inset 0 0 0 0.5px var(--data); }
+  .preset-card .fs-glyph { width: 40px; height: 40px; margin-bottom: var(--space-4); }
+  .preset-name { display: block; font-size: var(--fs-h3); font-weight: 600; margin-bottom: var(--space-1); }
+  .preset-specs { display: block; color: var(--ink); font-size: 11px; margin-bottom: var(--space-3); }
+  .preset-description { display: block; color: var(--ink-muted); font-size: var(--fs-small); line-height: 1.5; flex-grow: 1; }
 
-  .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-  .switch-slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-  input:checked + .switch-slider { background-color: var(--primary-color); }
-  input:focus + .switch-slider { box-shadow: 0 0 1px var(--primary-color); }
-  input:checked + .switch-slider:before { transform: translateX(26px); }
-  
-  @media (max-width: 1400px) {
-    .preset-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .calculator {
+    margin-top: var(--space-5);
+    padding: var(--space-6);
+  }
+  .slider-group label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-4); }
+  .slider-label { color: var(--ink); font-weight: 500; }
+  .slider-value { color: var(--ink); font-size: var(--fs-h3); }
+
+  .slider {
+    width: 100%;
+    height: 18px;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .slider::-webkit-slider-runnable-track { height: 1.5px; background: var(--border-cool); }
+  .slider::-moz-range-track { height: 1.5px; background: var(--border-cool); }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px; margin-top: -8.25px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: var(--border-w-glyph) solid var(--data);
+  }
+  .slider::-moz-range-thumb {
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: var(--border-w-glyph) solid var(--data);
+  }
+  /* Markers sit on slider steps 0, 3, 6, 9, 12; padded by half a thumb so each label centres on its stop. */
+  .slider-markers {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--space-2) 0 0;
+    font-size: 11px;
+    color: var(--ink-muted);
+  }
+  .slider-markers span { width: 18px; text-align: center; }
+
+  .price-summary {
+    margin-top: var(--space-5);
+    padding: var(--space-6);
+    text-align: center;
+  }
+  .breakdown-total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-1); }
+  .breakdown-total > span:first-child { font-size: var(--fs-h2); font-weight: 600; }
+  .total-price { font-size: var(--fs-h1); font-weight: 500; color: var(--ink); }
+  .vat-note { font-size: var(--fs-small); color: var(--ink-muted); text-align: right; margin-bottom: var(--space-5); }
+  .cta-wrapper { margin-top: var(--space-4); }
+
+  @media (max-width: 1100px) {
+    .preset-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
   }
 
   @media (max-width: 768px) {
-    .preset-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-    .preset-card { padding: 1.5rem 1rem; }
-    .pricing-info { grid-template-columns: 1fr; gap: 1.5rem; }
-    .breakdown-total { flex-direction: column; gap: 0.5rem; }
+    .preset-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .breakdown-total { flex-direction: column; align-items: center; gap: var(--space-2); }
+    .vat-note { text-align: center; }
   }
 </style>

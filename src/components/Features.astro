@@ -1,6 +1,7 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import { ShieldCheck, CircleUserRound, RefreshCw, MonitorSmartphone, FolderOpen, LayoutGrid } from '@lucide/astro';
 
 interface Props {
   lang: string;
@@ -9,7 +10,20 @@ interface Props {
 const { lang } = Astro.props;
 const content = lang === 'en' ? en : de;
 const t = content.features;
-const featuresList = Object.values(t.items);
+
+const glyphs = {
+  independence: ShieldCheck,
+  managed: CircleUserRound,
+  privacy: RefreshCw,
+  central: MonitorSmartphone,
+  fair: FolderOpen,
+  support: LayoutGrid,
+};
+
+const featuresList = Object.entries(t.items).map(([key, item]) => ({
+  ...item,
+  Glyph: glyphs[key as keyof typeof glyphs],
+}));
 ---
 
 <section id="features">
@@ -18,8 +32,8 @@ const featuresList = Object.values(t.items);
     <p class="section-description">{t.sectionDescription}</p>
     <div class="features-grid">
       {featuresList.map(feature => (
-        <div class="feature-card">
-          <div class="feature-icon">{feature.icon}</div>
+        <div class="feature-card fs-sheet">
+          <div class="fs-glyph"><feature.Glyph size={22} stroke-width={1.5} aria-hidden="true" /></div>
           <h3>{feature.title}</h3>
           <p>{feature.description}</p>
         </div>
@@ -32,34 +46,19 @@ const featuresList = Object.values(t.items);
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: var(--space-5);
   }
 
   .feature-card {
-    background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s;
+    padding: var(--space-6);
   }
 
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .feature-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
+  .feature-card .fs-glyph {
+    margin-bottom: var(--space-5);
   }
 
   .feature-card p {
-    color: var(--text-light);
-    line-height: 1.7;
+    color: var(--ink-muted);
+    line-height: 1.6;
   }
 </style>
