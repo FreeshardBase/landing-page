@@ -6,7 +6,8 @@ export const en = {
     pricing: "Pricing",
     motivation: "Mission",
     blog: "Blog",
-    contact: "Contact"
+    contact: "Contact",
+    menu: "Menu"
   },
   blog: {
     title: "Blog — Freeshard",
@@ -158,6 +159,7 @@ export const en = {
       starter: { name: "Basic", description: "Perfect for getting started. Ideal for securely managing your photos and documents." },
       collector: { name: "Standard", description: "The all-rounder. Enough power to make your apps run smoothly and be fun." },
       family: { name: "Pro", description: "For families & heavy users. When multiple people access the Shard at the same time." },
+      premium: { name: "Premium", description: "For demanding workloads and multiple concurrent users." },
       enthusiast: { name: "Expert", description: "Maximum freedom. For large media collections and intensive use without compromise." }
     },
     toggleLabel: "For Tech Fans: Adjust Details",

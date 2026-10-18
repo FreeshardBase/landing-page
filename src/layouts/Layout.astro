@@ -1,5 +1,6 @@
 ---
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { Menu, X } from '@lucide/astro';
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
 import { BRAND_MARK, BRAND_MARK_2X } from '../lib/branding';
@@ -55,7 +56,11 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
               <span class="logo-text">Freeshard</span>
             </a>
           </div>
-          <ul class="nav-links">
+          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label={t.nav.menu}>
+            <Menu class="nav-toggle-open" size={20} stroke-width={1.5} aria-hidden="true" />
+            <X class="nav-toggle-close" size={20} stroke-width={1.5} aria-hidden="true" />
+          </button>
+          <ul class="nav-links" id="nav-links">
             <li><a href={`/${lang}/#use-cases`}>{t.nav.useCases}</a></li>
             <li><a href={`/${lang}/#features`}>{t.nav.features}</a></li>
             <li><a href={`/${lang}/#pricing`}>{t.nav.pricing}</a></li>
@@ -66,6 +71,22 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         </div>
       </nav>
     </header>
+    <script>
+      // Phones: the nav links fold into a panel below the header, opened by the menu button.
+      const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+      const header = document.querySelector<HTMLElement>('.site-header');
+      if (toggle && header) {
+        const setOpen = (open: boolean) => {
+          header.classList.toggle('nav-open', open);
+          toggle.setAttribute('aria-expanded', String(open));
+        };
+        toggle.addEventListener('click', () => setOpen(!header.classList.contains('nav-open')));
+        header.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && header.classList.contains('nav-open')) { setOpen(false); toggle.focus(); }
+        });
+      }
+    </script>
     <main>
       <slot />
     </main>
@@ -182,6 +203,28 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         color: var(--ink);
       }
 
+      .nav-toggle {
+        display: none;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
+        background: transparent;
+        border: var(--border-w) solid var(--border-cool);
+        border-radius: var(--radius-control);
+        cursor: pointer;
+      }
+
+      .nav-toggle-close,
+      .nav-open .nav-toggle-open {
+        display: none;
+      }
+
+      .nav-open .nav-toggle-close {
+        display: block;
+      }
+
       .site-footer {
         flex-shrink: 0;
         border-top: var(--border-w) solid var(--border);
@@ -258,8 +301,53 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
       }
 
       @media (max-width: 768px) {
+        .navbar .container {
+          position: relative;
+        }
+
+        .nav-toggle {
+          display: flex;
+        }
+
+        /* Closed: hidden. Open: a sheet under the header with one link per row. */
         .nav-links {
           display: none;
+        }
+
+        .nav-open .nav-links {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          position: absolute;
+          top: calc(100% + var(--space-4));
+          left: 0;
+          right: 0;
+          margin: 0;
+          padding: var(--space-2) var(--space-4) var(--space-4);
+          background: var(--bg);
+          border-bottom: var(--border-w) solid var(--border);
+        }
+
+        .nav-open .nav-links li {
+          border-bottom: var(--border-w) solid var(--border);
+        }
+
+        .nav-open .nav-links li:last-child {
+          border-bottom: none;
+          padding-top: var(--space-4);
+        }
+
+        .nav-open .nav-links li:not(.lang-switcher-li) a {
+          display: block;
+          padding: var(--space-4) 0;
+          font-size: 16px;
+        }
+
+        /* The divider that separates the language switch on desktop has nothing to separate here. */
+        .nav-open .nav-links .lang-switch {
+          padding-left: 0;
+          border-left: none;
         }
 
         h2 {
