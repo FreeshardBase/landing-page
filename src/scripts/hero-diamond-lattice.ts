@@ -21,6 +21,9 @@ const SETTINGS = {
   twinkle: 0.3,         // per-cell brightness flicker depth
   spread: 1.7,          // hue bands across the effect
   driftSpeed: 70,       // touch screens: speed of the drifting point, px/s
+  // Narrow screens (the site's 768 px breakpoint): finer lattice and a smaller effect, scaled to the screen.
+  narrowCellWidth: 18,
+  narrowSigma: 60,
 };
 
 // The logomark's facet colours, sampled from Freeshard_logomark_color.png.
@@ -32,7 +35,8 @@ interface Cell { x: number; y: number; seed: number }
 /** Draws the lattice on `canvas` (which covers `hero`) and keeps it faint behind `copy`. */
 export function mountDiamondLattice(canvas: HTMLCanvasElement, hero: HTMLElement, copy: HTMLElement) {
   const S = SETTINGS;
-  const CELL_W = S.cellWidth, CELL_H = CELL_W * 2;
+  const narrow = matchMedia('(max-width: 768px)');
+  let CELL_W = S.cellWidth, CELL_H = CELL_W * 2, sigma = S.sigma;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const drifting = !reduced && matchMedia('(hover: none)').matches;
   const ctx = canvas.getContext('2d');
@@ -47,6 +51,8 @@ export function mountDiamondLattice(canvas: HTMLCanvasElement, hero: HTMLElement
   function build() {
     const dpr = devicePixelRatio || 1;
     W = canvas.clientWidth; H = canvas.clientHeight;
+    CELL_W = narrow.matches ? S.narrowCellWidth : S.cellWidth; CELL_H = CELL_W * 2;
+    sigma = narrow.matches ? S.narrowSigma : S.sigma;
     canvas.width = W * dpr; canvas.height = H * dpr;
     ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
     cells = [];
@@ -74,7 +80,7 @@ export function mountDiamondLattice(canvas: HTMLCanvasElement, hero: HTMLElement
 
   function influence(x: number, y: number) {
     const dx = x - lens.x, dy = y - lens.y;
-    return lens.a * Math.exp(-(dx * dx + dy * dy) / (2 * S.sigma * S.sigma));
+    return lens.a * Math.exp(-(dx * dx + dy * dy) / (2 * sigma * sigma));
   }
 
   // A cell's outline, scaled about its own centre. Scaling keeps every edge at the 2:1 slope.
@@ -133,7 +139,7 @@ export function mountDiamondLattice(canvas: HTMLCanvasElement, hero: HTMLElement
   function stepDrift(time: number) {
     const dt = drift.last ? Math.min(0.1, (time - drift.last) / 1000) : 0;
     drift.last = time;
-    const m = Math.min(S.sigma, W / 2, H / 2);
+    const m = Math.min(sigma, W / 2, H / 2);
     drift.x += drift.vx * dt; drift.y += drift.vy * dt;
     if (drift.x < m || drift.x > W - m) { drift.vx = -drift.vx; drift.x = Math.min(W - m, Math.max(m, drift.x)); }
     if (drift.y < m || drift.y > H - m) { drift.vy = -drift.vy; drift.y = Math.min(H - m, Math.max(m, drift.y)); }
