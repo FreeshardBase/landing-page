@@ -22,6 +22,7 @@ const t = content.faq;
       <div class="faq-search-wrapper">
         <input
           id="faq-search"
+          class="fs-input"
           type="search"
           placeholder={t.searchPlaceholder}
           autofocus
@@ -33,7 +34,7 @@ const t = content.faq;
 
       <div class="faq-grid">
         {t.questions.map(faq => (
-          <div class="faq-item" id={faq.id} data-tags={faq.tags.join(' ')}>
+          <div class="faq-item fs-sheet" id={faq.id} data-tags={faq.tags.join(' ')}>
             <h3>{faq.question}</h3>
             <p set:html={faq.answer} />
           </div>
@@ -45,95 +46,70 @@ const t = content.faq;
 
 <style>
   .faq-page {
-    padding: 4rem 0;
+    padding: var(--space-8) 0;
     min-height: 60vh;
   }
+
   .faq-page h1 {
+    font-size: var(--fs-display);
+    font-weight: var(--fw-display);
+    line-height: 1.2;
     text-align: center;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-  }
-  .section-description {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 3rem auto;
-    color: var(--text-light);
-  }
-  .faq-search-wrapper {
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
-  }
-  #faq-search {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    outline: none;
-    background: var(--bg-color);
-    color: var(--text-color);
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-  }
-  #faq-search:focus {
-    border-color: var(--primary-color);
-  }
-  #faq-no-results {
-    color: var(--text-light);
-    text-align: center;
-    padding: 2rem 0;
-  }
-  .faq-grid {
-    max-width: 800px;
-    margin: 0 auto;
-    display: grid;
-    gap: 2rem;
-  }
-  .faq-item {
-    background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
-    scroll-margin-top: 120px;
-    transition: all 0.5s ease;
-  }
-  
-  .faq-item:target {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-    background-color: #f5f3ff;
-    animation: pulse 2s ease-in-out;
+    margin-bottom: var(--space-4);
   }
 
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
+  .faq-search-wrapper,
+  .faq-grid {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .faq-search-wrapper {
+    margin-bottom: var(--space-6);
+  }
+
+  #faq-no-results {
+    color: var(--ink-muted);
+    text-align: center;
+    padding: var(--space-6) 0;
+  }
+
+  .faq-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .faq-item {
+    padding: var(--space-6);
+    scroll-margin-top: 120px;
+    transition: border-color var(--motion-considered) var(--ease-standard);
+  }
+
+  .faq-item:target {
+    border-color: var(--line);
   }
 
   .faq-item h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
   }
+
   .faq-item p {
     line-height: 1.7;
-    color: var(--text-light);
+    color: var(--ink-muted);
   }
+
   .faq-item p :global(a) {
-    color: var(--primary-color);
-    text-decoration: underline;
-    word-break: break-all;
+    color: var(--line);
+    word-break: break-word;
   }
-  .faq-item p :global(a:hover) {
-    text-decoration: none;
-  }
+
   .faq-item p :global(code) {
-    background-color: #f3f4f6;
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
-    font-family: monospace;
+    font-family: var(--font-mono);
     font-size: 0.9em;
+    color: var(--ink);
+    border: var(--border-w) solid var(--border);
+    padding: 1px 5px;
+    border-radius: 5px;
   }
 </style>
 

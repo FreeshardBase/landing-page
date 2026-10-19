@@ -24,44 +24,52 @@ const content = lang === 'en' ? en : de;
 
 <style>
   .legal-page {
-    padding: 4rem 0;
+    padding: var(--space-8) 0;
     min-height: 60vh;
   }
 
+  .legal-page .container {
+    max-width: 760px;
+  }
+
+  .terms-content {
+    font-size: var(--fs-prose);
+  }
+
   .terms-content :global(h1) {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--primary-color);
+    font-size: var(--fs-display);
+    font-weight: var(--fw-display);
+    line-height: 1.2;
+    margin-bottom: var(--space-7);
   }
 
   .terms-content :global(h2) {
-    font-size: 1.4rem;
+    font-size: var(--fs-h2);
     font-weight: 600;
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
     text-align: left;
   }
 
   .terms-content :global(h3) {
-    font-size: 1.1rem;
+    font-size: var(--fs-h3);
     font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
   }
 
   .terms-content :global(p) {
-    margin-bottom: 1rem;
-    line-height: 1.8;
+    margin-bottom: var(--space-4);
+    line-height: 1.75;
   }
 
   .terms-content :global(ul) {
-    margin: 0.75rem 0 1rem 1.5rem;
-    line-height: 1.8;
+    margin: var(--space-3) 0 var(--space-4) var(--space-5);
+    line-height: 1.75;
   }
 
   .terms-content :global(a) {
-    color: var(--primary-color);
+    color: var(--line);
     word-break: break-word;
   }
 </style>

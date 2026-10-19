@@ -1,6 +1,7 @@
 ---
 import { de } from '../i18n/de';
 import { en } from '../i18n/en';
+import { Image, FileText, KeyRound, CookingPot, Wallet, NotebookPen, Headphones, Folder, Boxes } from '@lucide/astro';
 
 interface Props {
   lang: string;
@@ -13,15 +14,15 @@ const useCasesList = Object.values(t.items);
 
 // Wir müssen die Icons hier manuell mappen, da sie nicht in den Übersetzungsdateien stehen sollten (technische Pfade)
 const icons = {
-  photos: { simple: "🖼️", tech: "/icons/apps/immich-logo.svg", software: "Immich", url: "https://immich.app/" },
-  documents: { simple: "📄", tech: "/icons/apps/paperless-ngx.svg", software: "Paperless-ngx", url: "https://docs.paperless-ngx.com/" },
-  passwords: { simple: "🔑", tech: "/icons/apps/vaultwarden.svg", software: "Vaultwarden", url: "https://github.com/dani-garcia/vaultwarden" },
-  recipes: { simple: "🍲", tech: "/icons/apps/kitchenowl.png", software: "KitchenOwl", url: "https://app.kitchenowl.org/" },
-  finances: { simple: "💶", tech: "/icons/apps/actual.png", software: "Actual", url: "https://actualbudget.org/" },
-  notes: { simple: "📝", tech: "/icons/apps/memos.webp", software: "Memos", url: "https://usememos.com" },
-  audiobooks: { simple: "🎧", tech: "/icons/apps/audiobookshelf.png", software: "Audiobookshelf", url: "https://www.audiobookshelf.org/" },
-  files: { simple: "📂", tech: "/icons/apps/filebrowser.svg", software: "Filebrowser", url: "https://filebrowser.org/" },
-  more: { simple: "✨", tech: "/icons/apps/opensource.svg", software: "Open Source", url: null }
+  photos: { Glyph: Image, tech: "/icons/apps/immich-logo.svg", software: "Immich", url: "https://immich.app/" },
+  documents: { Glyph: FileText, tech: "/icons/apps/paperless-ngx.svg", software: "Paperless-ngx", url: "https://docs.paperless-ngx.com/" },
+  passwords: { Glyph: KeyRound, tech: "/icons/apps/vaultwarden.svg", software: "Vaultwarden", url: "https://github.com/dani-garcia/vaultwarden" },
+  recipes: { Glyph: CookingPot, tech: "/icons/apps/kitchenowl.png", software: "KitchenOwl", url: "https://app.kitchenowl.org/" },
+  finances: { Glyph: Wallet, tech: "/icons/apps/actual.png", software: "Actual", url: "https://actualbudget.org/" },
+  notes: { Glyph: NotebookPen, tech: "/icons/apps/memos.webp", software: "Memos", url: "https://usememos.com" },
+  audiobooks: { Glyph: Headphones, tech: "/icons/apps/audiobookshelf.png", software: "Audiobookshelf", url: "https://www.audiobookshelf.org/" },
+  files: { Glyph: Folder, tech: "/icons/apps/filebrowser.svg", software: "Filebrowser", url: "https://filebrowser.org/" },
+  more: { Glyph: Boxes, tech: "/icons/apps/opensource.svg", software: "Open Source", url: null }
 };
 
 // Wir mappen die übersetzten Texte auf die Icons
@@ -37,20 +38,17 @@ const itemsWithIcons = Object.keys(t.items).map(key => {
     <h2>{t.sectionTitle}</h2>
     <p class="section-description">{t.sectionDescription}</p>
     
-    <div class="tech-toggle-wrapper">
-      <label class="switch">
-        <input type="checkbox" id="tech-toggle">
-        <span class="switch-slider"></span>
-      </label>
+    <label class="tech-toggle-wrapper">
+      <input type="checkbox" id="tech-toggle" class="fs-toggle" />
       <span class="toggle-label">{t.toggleLabel}</span>
-    </div>
+    </label>
     
     <div class="use-cases-grid" id="use-cases-grid">
       {itemsWithIcons.map(useCase => (
-        <div class="use-case-card">
+        <div class="use-case-card fs-sheet">
           <div class="card-header">
             <div class="icon-container">
-              <div class="simple-icon">{useCase.simple}</div>
+              <div class="simple-icon fs-glyph"><useCase.Glyph size={22} stroke-width={1.5} aria-hidden="true" /></div>
               <div class="tech-icon">
                 <img src={useCase.tech} alt={useCase.software} loading="lazy" />
               </div>
@@ -103,218 +101,145 @@ const itemsWithIcons = Object.keys(t.items).map(key => {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3rem;
+    gap: var(--space-3);
+    margin-bottom: var(--space-7);
+    cursor: pointer;
   }
 
   .toggle-label {
-    margin-left: 1rem;
-    font-weight: 600;
-    color: var(--text-color);
-    cursor: pointer;
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--ink);
   }
 
   .use-cases-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: var(--space-5);
   }
 
   .use-case-card {
-    background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s;
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
     text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .use-case-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary-color);
   }
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
-    height: 64px;
+    margin-bottom: var(--space-5);
+    height: 44px;
   }
 
   .icon-container {
     position: relative;
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
   }
 
   .simple-icon, .tech-icon {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-
-  .simple-icon {
-    font-size: 3.5rem;
-    opacity: 1;
-    transform: scale(1);
+    inset: 0;
+    transition: opacity var(--motion-considered) var(--ease-standard);
   }
 
   .tech-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transform: scale(0.5) rotate(-10deg);
   }
-  
+
   .tech-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: var(--radius-glyph);
   }
 
   .software-badge {
-    background-color: var(--bg-light);
-    color: var(--text-light);
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font: 500 11px/1 var(--font-mono);
+    letter-spacing: var(--ls-mono);
+    color: var(--ink-muted);
+    padding: 6px 10px;
+    border: var(--border-w) solid var(--border-cool);
+    border-radius: var(--radius-control);
     margin-left: auto;
     opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.4s ease;
+    visibility: hidden;
+    transition: opacity var(--motion-considered) var(--ease-standard),
+                visibility var(--motion-considered),
+                color var(--motion-instant) var(--ease-standard),
+                border-color var(--motion-instant) var(--ease-standard);
   }
 
   .software-link {
-    display: inline-block;
     text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
   }
 
   .software-link:hover {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: translateX(0) scale(1.05);
+    color: var(--line);
+    border-color: var(--line);
   }
 
   .use-case-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    font-size: 1.25rem;
+    font-size: var(--fs-h2);
+    margin-bottom: var(--space-2);
   }
 
   .description-container {
-    position: relative;
+    display: grid;
   }
 
   .simple-text, .tech-text {
-    color: var(--text-light);
+    grid-area: 1 / 1;
+    color: var(--ink-muted);
     line-height: 1.6;
-    font-size: 0.95rem;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-
-  .simple-text {
-    opacity: 1;
-    transform: translateY(0);
-    position: relative;
+    transition: opacity var(--motion-considered) var(--ease-standard);
   }
 
   .tech-text {
     opacity: 0;
-    transform: translateY(10px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
+    visibility: hidden;
   }
 
-  /* Tech-Mode Styles */
-  .use-cases-grid.show-tech .simple-icon {
+  /* Tech mode */
+  .use-cases-grid.show-tech .simple-icon,
+  .use-cases-grid.show-tech .simple-text {
     opacity: 0;
-    transform: scale(0.5) rotate(10deg);
+    visibility: hidden;
   }
 
-  .use-cases-grid.show-tech .tech-icon {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-
+  .use-cases-grid.show-tech .tech-icon,
+  .use-cases-grid.show-tech .tech-text,
   .use-cases-grid.show-tech .software-badge {
     opacity: 1;
-    transform: translateX(0);
-  }
-
-  .use-cases-grid.show-tech .simple-text {
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-  }
-
-  .use-cases-grid.show-tech .tech-text {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    position: relative;
-  }
-  
-  .use-cases-grid.show-tech .simple-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    visibility: visible;
   }
 
   .disclaimer-box {
-    max-width: 800px;
+    max-width: 720px;
     margin: 0 auto;
     text-align: center;
-    border-top: 1px solid var(--border-color);
     max-height: 0;
     opacity: 0;
-    padding-top: 0;
-    margin-top: 0;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: opacity var(--motion-considered) var(--ease-standard),
+                max-height var(--motion-considered) var(--ease-standard),
+                margin-top var(--motion-considered) var(--ease-standard);
   }
 
   .disclaimer-box.visible {
     max-height: 200px;
     opacity: 1;
-    padding-top: 2rem;
-    margin-top: 2rem;
+    margin-top: var(--space-7);
   }
 
   .disclaimer-box p {
-    font-size: 0.8rem;
-    color: var(--text-light);
-    opacity: 0.8;
+    font-size: var(--fs-small);
+    color: var(--ink-muted);
     line-height: 1.5;
   }
-
-  /* Switch Styles */
-  .switch { position: relative; display: inline-block; width: 50px; height: 28px; flex-shrink: 0; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-  .switch-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-  input:checked + .switch-slider { background-color: var(--primary-color); }
-  input:focus + .switch-slider { box-shadow: 0 0 1px var(--primary-color); }
-  input:checked + .switch-slider:before { transform: translateX(22px); }
 </style>

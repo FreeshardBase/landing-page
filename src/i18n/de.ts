@@ -6,7 +6,8 @@ export const de = {
     pricing: "Preise",
     motivation: "Mission",
     blog: "Blog",
-    contact: "Kontakt"
+    contact: "Kontakt",
+    menu: "Menü"
   },
   blog: {
     title: "Blog — Freeshard",
@@ -101,32 +102,26 @@ export const de = {
     sectionDescription: "Weniger Reibung, mehr Kontrolle. Dein Shard ist dein digitales Zentrum.",
     items: {
       independence: { 
-        icon: "🛡️",
         title: "Digitale Souveränität", 
         description: "Deine Daten, deine Regeln. Keine Plattform, die mitliest oder dich bindet." 
       },
       managed: { 
-        icon: "🧭",
         title: "Eine Identität statt vieler", 
         description: "Dein Shard ist dein Zugang. Keine Passwortflut, keine Konto-Silos." 
       },
       privacy: { 
-        icon: "⚡",
         title: "Keine Reibung", 
         description: "Backups, Updates und Sicherheit laufen automatisch im Hintergrund." 
       },
       central: { 
-        icon: "💠",
         title: "Ein Ort, alle Geräte", 
         description: "Installiere Apps einmal, nutze sie überall. Kein Sync, kein Export." 
       },
       fair: { 
-        icon: "🗂️",
         title: "Dateien gehören dir", 
         description: "Ein echtes Dateisystem statt App-Silos. Daten bleiben bei dir." 
       },
       support: { 
-        icon: "🧩",
         title: "Apps ohne Aufpreis", 
         description: "Alle Apps sind kostenlos. Du zahlst nur für deinen Shard." 
       }
@@ -164,6 +159,7 @@ export const de = {
       starter: { name: "Basis", description: "Perfekt für den Einstieg. Ideal, um deine Fotos und Dokumente sicher zu verwalten." },
       collector: { name: "Standard", description: "Der Allrounder. Genug Leistung, damit deine Apps flüssig laufen und Spaß machen." },
       family: { name: "Profi", description: "Für Familien & Vielnutzer. Wenn mehrere Personen gleichzeitig auf den Shard zugreifen." },
+      premium: { name: "Premium", description: "Für anspruchsvolle Anwendungen und mehrere gleichzeitige Nutzer." },
       enthusiast: { name: "Experte", description: "Maximale Freiheit. Für große Mediensammlungen und intensive Nutzung ohne Kompromisse." }
     },
     toggleLabel: "Für Technik-Fans: Details anpassen",
