@@ -46,4 +46,6 @@ None of this changes what Freeshard does. It changes what it feels like to use i
 
 A sneak peek of two things that are still coming, landing on this new foundation rather than the old one: a real redesign of the app store, and OIDC-based login, so pairing your device with your shard logs you into all your apps automatically. Saving yourself a password is the small benefit of that. The bigger one is giving a family member or a small team their own account on your shard, where you control what they're allowed to do, logging into every app through that one account instead of a separate one per app per person. That one is a big deal since it fundamentally changes the nature of a shard from a single-user product to a shareable one. But more on that later. Neither is live yet, both are close.
 
-This is the interface now, on every shard. There's no classic version to switch back to. If something about it genuinely gets in your way, say so. [contact@freeshard.net](mailto:contact@freeshard.net) reaches me directly.
+This is the interface now, on every shard. There's no classic version to switch back to. If something about it genuinely gets in your way, say so: there's a **Feedback** button right in the dock for a quick, one-off note, or write to [contact@freeshard.net](mailto:contact@freeshard.net) directly if you want an actual reply.
+
+Don't have a shard yet? [Start a free 24-hour trial](https://freeshard.net/en/trial/) and see Sundial for yourself, no strings attached.
