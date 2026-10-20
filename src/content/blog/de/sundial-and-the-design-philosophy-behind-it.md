@@ -6,7 +6,7 @@ cover: ../en/sundial-and-the-design-philosophy-behind-it/cover.png
 coverAlt: "Ein helles, nordisch eingerichtetes Zimmer mit Schreibtisch, einem petrolfarbenen Sofa und einer Pflanze; auf dem Schreibtisch zeigt ein Terminal eine ruhige, papierartige Oberfläche"
 lang: de
 author: Max von Tettenborn
-draft: true
+draft: false
 aiTranslated: true
 ---
 

@@ -6,7 +6,7 @@ cover: ./sundial-and-the-design-philosophy-behind-it/cover.png
 coverAlt: "A bright Nordic room with a desk, a teal couch and a plant; a terminal on the desk shows a calm, paper-like interface"
 lang: en
 author: Max von Tettenborn
-draft: true
+draft: false
 ---
 
 For as long as Freeshard has existed, the thing you actually touch every day, the web-terminal, has been showing its age. It worked, but every new feature meant fighting a foundation that had quietly outgrown its original shape, and more than that, it just looked old and stale. At some point I stopped patching it and started over.
