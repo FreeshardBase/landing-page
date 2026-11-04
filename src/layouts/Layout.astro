@@ -45,6 +45,15 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <title>{title}</title>
+    <!-- Cookieless analytics, self-hosted Umami. Described in the Datenschutzerklärung (#m-analytics). -->
+    <script
+      is:inline
+      defer
+      src="https://umami.c0p3x5.freeshard.cloud/script.js"
+      data-website-id="d3edd39e-4d03-4677-896e-89a018bf4acb"
+      data-domains="freeshard.net"
+      data-do-not-track="true"
+    ></script>
   </head>
   <body>
     <header class="site-header">
