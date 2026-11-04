@@ -55,7 +55,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
         if (!forwardedReferrer) return;
         url.searchParams.delete('ref');
         history.replaceState(history.state, '', url);
-        window.umamiBeforeSend = function (type, payload) {
+        window.umamiBeforeSend = function (_type, payload) {
           if (forwardedReferrer && payload) {
             payload.referrer = forwardedReferrer;
             forwardedReferrer = null;
