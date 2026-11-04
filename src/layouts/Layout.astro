@@ -46,6 +46,24 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <title>{title}</title>
     <!-- Cookieless analytics, self-hosted Umami. Described in the Datenschutzerklärung (#m-analytics). -->
+    <script is:inline>
+      // The root language redirect (src/pages/index.astro) forwards the external referrer as ?ref=.
+      // Take it out of the URL before Umami reads it, and report it as the referrer instead.
+      (function () {
+        var url = new URL(window.location.href);
+        var forwardedReferrer = url.searchParams.get('ref');
+        if (!forwardedReferrer) return;
+        url.searchParams.delete('ref');
+        history.replaceState(history.state, '', url);
+        window.umamiBeforeSend = function (type, payload) {
+          if (forwardedReferrer && payload) {
+            payload.referrer = forwardedReferrer;
+            forwardedReferrer = null;
+          }
+          return payload;
+        };
+      })();
+    </script>
     <script
       is:inline
       defer
@@ -53,6 +71,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
       data-website-id="d3edd39e-4d03-4677-896e-89a018bf4acb"
       data-domains="freeshard.net"
       data-do-not-track="true"
+      data-before-send="umamiBeforeSend"
     ></script>
   </head>
   <body>
