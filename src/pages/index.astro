@@ -12,7 +12,14 @@ import { defaultLang } from '../i18n/ui';
         var target = lang.startsWith('en') ? 'en' : 'de';
         var path = window.location.pathname;
         if (!path.endsWith('/')) path += '/';
-        window.location.replace(path + target + '/');
+        // The redirect makes this page the referrer of the next one, so an external referrer is
+        // forwarded as ?ref= for the analytics script in Layout.astro to pick up.
+        var params = new URLSearchParams(window.location.search);
+        if (document.referrer && new URL(document.referrer).origin !== window.location.origin) {
+            params.set('ref', document.referrer);
+        }
+        var query = params.toString();
+        window.location.replace(path + target + '/' + (query ? '?' + query : ''));
     </script>
 </head>
 <body>
