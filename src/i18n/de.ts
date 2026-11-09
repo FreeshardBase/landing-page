@@ -387,7 +387,7 @@ export const de = {
   imprint: {
     title: "Impressum",
     pageTitle: "Impressum",
-    contactLabel: "Angaben gemäß § 5 TMG:",
+    contactLabel: "Angaben gemäß § 5 DDG:",
     address: "Good For Business UG (haftungsbeschränkt)<br>Schwanthalerstr. 123<br>80339 München",
     ceoLabel: "Vertreten durch:",
     ceoName: "Max von Tettenborn",
@@ -397,7 +397,7 @@ export const de = {
     registerInfo: "Registergericht: Amtsgericht München<br>Registernummer: HRB 285507",
     vatLabel: "Umsatzsteuer-ID",
     vatInfo: "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>DE363918779",
-    responsibleLabel: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+    responsibleLabel: "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
     responsibleInfo: "Max von Tettenborn<br>Good For Business UG (haftungsbeschränkt)<br>Schwanthalerstr. 123<br>80339 München"
   },
   realityCheck: {
