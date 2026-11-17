@@ -33,7 +33,9 @@ export const en = {
     terms: "Terms",
     faq: "FAQ",
     trial: "Free Trial",
-    activate: "Activate using Promo-Code"
+    activate: "Activate using Promo-Code",
+    selfHosting: "Self-hosting",
+    sourceCode: "Source code"
   },
   terms: {
     title: "Terms and Conditions — Freeshard"
@@ -201,7 +203,7 @@ export const en = {
         label: "Fair Source Code",
         link: "fair-source",
         title: "Fair Source",
-        explanation: "Our code is published and auditable for security and trust. We use Fair Source licensing to prevent large platforms from copying our work while remaining transparent. You can view and verify our entire codebase."
+        explanation: "Our code is published and auditable for security and trust. We use Fair Source licensing to prevent large platforms from copying our work while remaining transparent. You can view and verify our entire codebase <a href='https://github.com/FreeshardBase/freeshard' target='_blank' rel='noopener noreferrer'>on GitHub</a>."
       },
       data: {
         value: "Yours",
