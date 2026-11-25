@@ -276,7 +276,7 @@ const t = (lang === 'en' ? en : de).signup;
       const badge = this.q<HTMLElement>('[data-role=badge]');
       badge.setAttribute('shard-id', shard.hash_id.substring(0, 6));
       const link = this.q<HTMLAnchorElement>('[data-role=pair-link]');
-      link.href = `http://${shard.domain}/#/pair?code=${shard.code}`;
+      link.href = `https://${shard.domain}/#/pair?code=${shard.code}`;
       this.q<HTMLElement>('[data-role=pair-code]').textContent = shard.code;
     }
 
